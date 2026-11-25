@@ -62,7 +62,7 @@ export const SITE_CONFIG = {
         'Top overlooked IRS Schedule-C seller write-offs (home office, postage, samples, software)',
         'Instant $0 download — opens in Microsoft Excel & Google Sheets'
       ],
-      checkoutUrl: 'https://payhip.com/b/YOUR_FREE_CHEATSHEET_CODE'
+      checkoutUrl: 'https://payhip.com/b/MGRn9'
     },
     flagshipOs: {
       id: 'seller-profit-os-2026',
@@ -77,7 +77,7 @@ export const SITE_CONFIG = {
         '12-Month Order, Ad Spend & Net Profit Automated Dashboard',
         'Low-Stock Reorder Alert Tracker + US IRS Schedule-C Tax Deduction Log'
       ],
-      checkoutUrl: 'https://payhip.com/b/YOUR_FLAGSHIP_EXCEL_CODE'
+      checkoutUrl: 'https://payhip.com/b/rgL6o'
     },
     podMatrix: {
       id: 'pod-pricing-matrix-2026',
@@ -91,7 +91,7 @@ export const SITE_CONFIG = {
         'Printify Standard vs. Printify Premium break-even threshold calculator',
         'Target ROAS & Daily Ad Budget Planner + 100-Listing SEO Keyword Tracker'
       ],
-      checkoutUrl: 'https://payhip.com/b/YOUR_POD_MATRIX_CODE'
+      checkoutUrl: 'https://payhip.com/b/u1UYJ'
     }
   }
 };
