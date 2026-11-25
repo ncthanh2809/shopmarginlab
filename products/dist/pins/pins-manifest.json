@@ -190,5 +190,165 @@
     ],
     "cta": "Estimate 2026 Seller Taxes Free →",
     "brandName": "ShopMarginLab"
+  },
+  {
+    "slug": "shopify-profit-margin-calculator",
+    "pngName": "pin-shopify-profit-margin-calculator.png",
+    "board": "Shopify Store Tips & Ecommerce Growth",
+    "topPill": "SHOPIFY DTC PROFIT 2026",
+    "line1": "What Do You Keep",
+    "line2": "Per Shopify Order",
+    "line3": "After Ads & COGS?",
+    "bullets": [
+      "• Landed COGS + Shipping + Card Fee",
+      "• Meta & TikTok CPA Break-Even Check",
+      "• Built-In 3% Return Reserve Formula"
+    ],
+    "cta": "Run Free Shopify Profit Calc →",
+    "brandName": "ShopMarginLab"
+  },
+  {
+    "slug": "etsy-digital-product-profit-calculator",
+    "pngName": "pin-etsy-digital-product-profit-calculator.png",
+    "board": "Etsy Digital Downloads & Printables 2026",
+    "topPill": "ETSY DIGITAL PRODUCTS",
+    "line1": "Why $2 Printables",
+    "line2": "Lose 27% To Etsy",
+    "line3": "Fees (Fix It Fast)",
+    "bullets": [
+      "• $0.45 Fixed Fee + 9.5% Breakdown",
+      "• Exact Sales Needed For $2,000/Mo",
+      "• Optimal Bundle Price Calculator"
+    ],
+    "cta": "Check Digital Product Profit →",
+    "brandName": "ShopMarginLab"
+  },
+  {
+    "slug": "poshmark-fee-calculator",
+    "pngName": "pin-poshmark-fee-calculator.png",
+    "board": "Reseller Profit Tips (Poshmark, eBay, Mercari)",
+    "topPill": "2026 POSHMARK US FEES",
+    "line1": "Check Poshmark",
+    "line2": "Payout & ROI Before",
+    "line3": "Sending Any Offer!",
+    "bullets": [
+      "• $2.95 Under $15 / 20% Over $15",
+      "• Offer-to-Likers Shipping Discount",
+      "• Instant Thrift Sourcing ROI %"
+    ],
+    "cta": "Calculate Poshmark Profit Free →",
+    "brandName": "ShopMarginLab"
+  },
+  {
+    "slug": "mercari-fee-calculator",
+    "pngName": "pin-mercari-fee-calculator.png",
+    "board": "Reseller Profit Tips (Poshmark, eBay, Mercari)",
+    "topPill": "2026 MERCARI 10% FEE",
+    "line1": "Mercari 10% Fee vs",
+    "line2": "Poshmark 20%: See",
+    "line3": "Exact Flip Savings",
+    "bullets": [
+      "• Simplified 10% Flat Seller Fee",
+      "• Free Ship vs Buyer-Paid Shipping",
+      "• Instant Savings vs Poshmark Check"
+    ],
+    "cta": "Run Free Mercari Fee Calc →",
+    "brandName": "ShopMarginLab"
+  },
+  {
+    "slug": "whatnot-fee-calculator",
+    "pngName": "pin-whatnot-fee-calculator.png",
+    "board": "Reseller Profit Tips (Poshmark, eBay, Mercari)",
+    "topPill": "2026 WHATNOT LIVE FEES",
+    "line1": "Know Your Exact",
+    "line2": "Whatnot Break-Even",
+    "line3": "Before $1 Starts!",
+    "bullets": [
+      "• 8% Commission + 2.9% + $0.30 Fee",
+      "• Includes Shipping & Sales Tax Base",
+      "• Factors In Amortized Giveaways"
+    ],
+    "cta": "Calculate Safe Whatnot Start Bid →",
+    "brandName": "ShopMarginLab"
+  },
+  {
+    "slug": "bundle-discount-profit-calculator",
+    "pngName": "pin-bundle-discount-profit-calculator.png",
+    "board": "Shopify Store Tips & Ecommerce Growth",
+    "topPill": "AOV & BUNDLE PROFITS",
+    "line1": "Why Buy-2-Save-15%",
+    "line2": "Makes MORE Profit",
+    "line3": "Than Full Price!",
+    "bullets": [
+      "• Amortize Postage & Ad CPA Once",
+      "• Test BOGO 50% Off & 3-Pack Math",
+      "• Compare 1-Unit vs Bundle Dollars"
+    ],
+    "cta": "Optimize Your Bundle Offer →",
+    "brandName": "ShopMarginLab"
+  },
+  {
+    "slug": "compare-7-channels-2026",
+    "pngName": "pin-compare-7-channels-2026.png",
+    "board": "Reseller Profit Tips (Poshmark, eBay, Mercari)",
+    "topPill": "2026 7-PLATFORM SHOWDOWN",
+    "line1": "7 US Sales Channels",
+    "line2": "Ranked By Net Profit",
+    "line3": "On a $40 Sale (2026)",
+    "bullets": [
+      "• Lowest: Shopify (~3.6%) & TikTok (6%)",
+      "• Mid: Mercari (10%) & Etsy (~10.6%)",
+      "• Highest: eBay (15.5%+) & Poshmark (20%)"
+    ],
+    "cta": "Compare All 7 Platforms Live →",
+    "brandName": "ShopMarginLab"
+  },
+  {
+    "slug": "guide-etsy-fees-2026",
+    "pngName": "pin-guide-etsy-fees-2026.png",
+    "board": "Etsy Seller Tips & Profit Calculators 2026",
+    "topPill": "FREE 2026 ETSY CHEAT SHEET",
+    "line1": "Etsy Fees 2026:",
+    "line2": "The 4 Stacked Fees",
+    "line3": "New Sellers Miss",
+    "bullets": [
+      "• 6.5% Charged On Shipping Too!",
+      "• 3% + $0.25 Payment Processing",
+      "• 12% Mandatory Ads Over $10k/Yr"
+    ],
+    "cta": "Read Guide + Free $0 Cheat Sheet →",
+    "brandName": "ShopMarginLab"
+  },
+  {
+    "slug": "guide-tiktok-bundle-rule-2026",
+    "pngName": "pin-guide-tiktok-bundle-rule-2026.png",
+    "board": "TikTok Shop US Seller Strategy 2026",
+    "topPill": "TIKTOK SHOP PROFIT PLAYBOOK",
+    "line1": "The $40 Bundle Rule",
+    "line2": "For Profitable",
+    "line3": "TikTok Shop Growth",
+    "bullets": [
+      "• 6% Referral + 15–20% Creator Cut",
+      "• Fixed $4.50 Postage Kills $20 SKUs",
+      "• Bundle 2-Packs To Keep 20%+ Net"
+    ],
+    "cta": "Read TikTok Margin Playbook →",
+    "brandName": "ShopMarginLab"
+  },
+  {
+    "slug": "guide-schedule-c-writeoffs-2026",
+    "pngName": "pin-guide-schedule-c-writeoffs-2026.png",
+    "board": "Small Business Bookkeeping & Pricing",
+    "topPill": "2026 SELLER TAX CHECKLIST",
+    "line1": "8 Legal Tax Write-Offs",
+    "line2": "Every US Online",
+    "line3": "Seller Must Track",
+    "bullets": [
+      "• Deduct 100% of Marketplace Fees",
+      "• Postage, Poly Mailers & Samples",
+      "• Home Office, Software & Landed COGS"
+    ],
+    "cta": "Get Free $0 Tax Cheat Sheet →",
+    "brandName": "ShopMarginLab"
   }
 ]

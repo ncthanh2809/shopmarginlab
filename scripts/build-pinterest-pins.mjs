@@ -1,5 +1,9 @@
 /**
- * Automated Pinterest Vertical Pin Pack (12 SEO Pins — 1000x1500 SVG + JSON metadata for PNG renderer)
+ * Automated Pinterest Vertical Pin Pack (22 SEO Pins — 18 Calculators + 4 Comparison Infographics)
+ * Outputs:
+ *  - 22 SVG pins + pins-manifest.json in products/dist/pins/
+ *  - Full Pinterest SEO descriptions in products/dist/pinterest-seo-descriptions.md
+ *  - Bulk upload CSV template in products/dist/pins/pinterest-bulk-upload.csv
  */
 
 import { mkdirSync, writeFileSync } from 'node:fs';
@@ -14,6 +18,10 @@ mkdirSync(PINS_DIR, { recursive: true });
 
 function esc(s) {
   return String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function csvCell(s) {
+  return '"' + String(s ?? '').replace(/"/g, '""') + '"';
 }
 
 const PIN_HOOKS = {
@@ -124,54 +132,200 @@ const PIN_HOOKS = {
     line3: 'For Quarterly Tax?',
     bullets: ['• 15.3% Self-Employment + QBI Math', '• Exact Quarterly 1040-ES Set-Aside', '• See Cash Saved By Tax Write-Offs'],
     cta: 'Estimate 2026 Seller Taxes Free →'
+  },
+  'shopify-profit-margin-calculator': {
+    board: 'Shopify Store Tips & Ecommerce Growth',
+    topPill: 'SHOPIFY DTC PROFIT 2026',
+    line1: 'What Do You Keep',
+    line2: 'Per Shopify Order',
+    line3: 'After Ads & COGS?',
+    bullets: ['• Landed COGS + Shipping + Card Fee', '• Meta & TikTok CPA Break-Even Check', '• Built-In 3% Return Reserve Formula'],
+    cta: 'Run Free Shopify Profit Calc →'
+  },
+  'etsy-digital-product-profit-calculator': {
+    board: 'Etsy Digital Downloads & Printables 2026',
+    topPill: 'ETSY DIGITAL PRODUCTS',
+    line1: 'Why $2 Printables',
+    line2: 'Lose 27% To Etsy',
+    line3: 'Fees (Fix It Fast)',
+    bullets: ['• $0.45 Fixed Fee + 9.5% Breakdown', '• Exact Sales Needed For $2,000/Mo', '• Optimal Bundle Price Calculator'],
+    cta: 'Check Digital Product Profit →'
+  },
+  'poshmark-fee-calculator': {
+    board: 'Reseller Profit Tips (Poshmark, eBay, Mercari)',
+    topPill: '2026 POSHMARK US FEES',
+    line1: 'Check Poshmark',
+    line2: 'Payout & ROI Before',
+    line3: 'Sending Any Offer!',
+    bullets: ['• $2.95 Under $15 / 20% Over $15', '• Offer-to-Likers Shipping Discount', '• Instant Thrift Sourcing ROI %'],
+    cta: 'Calculate Poshmark Profit Free →'
+  },
+  'mercari-fee-calculator': {
+    board: 'Reseller Profit Tips (Poshmark, eBay, Mercari)',
+    topPill: '2026 MERCARI 10% FEE',
+    line1: 'Mercari 10% Fee vs',
+    line2: 'Poshmark 20%: See',
+    line3: 'Exact Flip Savings',
+    bullets: ['• Simplified 10% Flat Seller Fee', '• Free Ship vs Buyer-Paid Shipping', '• Instant Savings vs Poshmark Check'],
+    cta: 'Run Free Mercari Fee Calc →'
+  },
+  'whatnot-fee-calculator': {
+    board: 'Reseller Profit Tips (Poshmark, eBay, Mercari)',
+    topPill: '2026 WHATNOT LIVE FEES',
+    line1: 'Know Your Exact',
+    line2: 'Whatnot Break-Even',
+    line3: 'Before $1 Starts!',
+    bullets: ['• 8% Commission + 2.9% + $0.30 Fee', '• Includes Shipping & Sales Tax Base', '• Factors In Amortized Giveaways'],
+    cta: 'Calculate Safe Whatnot Start Bid →'
+  },
+  'bundle-discount-profit-calculator': {
+    board: 'Shopify Store Tips & Ecommerce Growth',
+    topPill: 'AOV & BUNDLE PROFITS',
+    line1: 'Why Buy-2-Save-15%',
+    line2: 'Makes MORE Profit',
+    line3: 'Than Full Price!',
+    bullets: ['• Amortize Postage & Ad CPA Once', '• Test BOGO 50% Off & 3-Pack Math', '• Compare 1-Unit vs Bundle Dollars'],
+    cta: 'Optimize Your Bundle Offer →'
   }
 };
 
-const manifest = [];
-const mdLines = [
-  `# Pinterest Organic Traffic Launch Pack (12 Ready-to-Upload PNG Pins)`,
-  `Upload the 12 vertical \`1000x1500\` **PNG** graphics in \`products/dist/pins-png/\` to your **Pinterest Business** account (1–2 Pins/day) to drive high-intent US seller traffic for $0.\n`
+const BONUS_INFOGRAPHIC_PINS = [
+  {
+    slug: 'compare-7-channels-2026',
+    destPath: '/compare/',
+    board: 'Reseller Profit Tips (Poshmark, eBay, Mercari)',
+    title: '2026 Marketplace Fee Showdown: Shopify vs TikTok vs Etsy vs Mercari vs Whatnot vs eBay vs Poshmark',
+    description: 'Compare exact 2026 US seller fees across all 7 major platforms side-by-side at your exact price and COGS in one free live tool.',
+    topPill: '2026 7-PLATFORM SHOWDOWN',
+    line1: '7 US Sales Channels',
+    line2: 'Ranked By Net Profit',
+    line3: 'On a $40 Sale (2026)',
+    bullets: ['• Lowest: Shopify (~3.6%) & TikTok (6%)', '• Mid: Mercari (10%) & Etsy (~10.6%)', '• Highest: eBay (15.5%+) & Poshmark (20%)'],
+    cta: 'Compare All 7 Platforms Live →'
+  },
+  {
+    slug: 'guide-etsy-fees-2026',
+    destPath: '/guides/etsy-fees-2026-complete-breakdown/',
+    board: 'Etsy Seller Tips & Profit Calculators 2026',
+    title: '2026 Etsy Seller Fees Cheat Sheet: Shipping Traps & Mandatory Offsite Ads',
+    description: 'Complete 2026 breakdown of every Etsy US seller fee with real $39 order math and how top shops protect margins.',
+    topPill: 'FREE 2026 ETSY CHEAT SHEET',
+    line1: 'Etsy Fees 2026:',
+    line2: 'The 4 Stacked Fees',
+    line3: 'New Sellers Miss',
+    bullets: ['• 6.5% Charged On Shipping Too!', '• 3% + $0.25 Payment Processing', '• 12% Mandatory Ads Over $10k/Yr'],
+    cta: 'Read Guide + Free $0 Cheat Sheet →'
+  },
+  {
+    slug: 'guide-tiktok-bundle-rule-2026',
+    destPath: '/guides/tiktok-shop-us-fees-creator-margins-2026/',
+    board: 'TikTok Shop US Seller Strategy 2026',
+    title: 'TikTok Shop US $40 Bundle Rule: How to Afford 20% Creator Commissions',
+    description: 'Learn why single $20 items lose money on TikTok Shop US and how $40+ bundles unlock profitable creator affiliates.',
+    topPill: 'TIKTOK SHOP PROFIT PLAYBOOK',
+    line1: 'The $40 Bundle Rule',
+    line2: 'For Profitable',
+    line3: 'TikTok Shop Growth',
+    bullets: ['• 6% Referral + 15–20% Creator Cut', '• Fixed $4.50 Postage Kills $20 SKUs', '• Bundle 2-Packs To Keep 20%+ Net'],
+    cta: 'Read TikTok Margin Playbook →'
+  },
+  {
+    slug: 'guide-schedule-c-writeoffs-2026',
+    destPath: '/guides/ecommerce-schedule-c-tax-deductions-2026/',
+    board: 'Small Business Bookkeeping & Pricing',
+    title: '8 Overlooked 2026 IRS Schedule-C Tax Write-Offs For Etsy, Shopify & Amazon Sellers',
+    description: 'Stop paying 25%–35% self-employment tax on gross 1099-K sales. Track these 8 legal US e-commerce Schedule-C deductions.',
+    topPill: '2026 SELLER TAX CHECKLIST',
+    line1: '8 Legal Tax Write-Offs',
+    line2: 'Every US Online',
+    line3: 'Seller Must Track',
+    bullets: ['• Deduct 100% of Marketplace Fees', '• Postage, Poly Mailers & Samples', '• Home Office, Software & Landed COGS'],
+    cta: 'Get Free $0 Tax Cheat Sheet →'
+  }
 ];
 
-for (const calc of CALCULATORS) {
-  const hook = PIN_HOOKS[calc.slug];
-  const destUrl = `${SITE_CONFIG.domain.replace(/\/$/, '')}/${calc.slug}/`;
-  const svgName = `pin-${calc.slug}.svg`;
-  const pngName = `pin-${calc.slug}.png`;
+const base = SITE_CONFIG.domain.replace(/\/$/, '');
+const manifest = [];
+const mdLines = [
+  `# Pinterest Organic Traffic Launch Pack (22 Ready-to-Upload PNG Pins)`,
+  `Upload the 22 vertical \`1000x1500\` **PNG** graphics in \`products/dist/pins-png/\` to your **Pinterest Business** account (2 Pins/day = 11 days of fresh content, then recycle new hooks) to drive high-intent US seller traffic for $0.\n`
+];
+const csvLines = ['Pin Filename,Board,Title,Destination Link,Alt Text,Description'];
+
+function emitPin(item) {
+  const svgName = `pin-${item.slug}.svg`;
+  const pngName = `pin-${item.slug}.png`;
+  const destUrl = `${base}${item.destPath}`;
+  const altText = `${item.line1} ${item.line2} ${item.line3} — Free 2026 ${item.shortLabel} by ${SITE_CONFIG.brandName}`;
+  const fullDesc = `${item.description} Try our 100% free interactive 2026 e-commerce profit tools with shareable links & CSV export, plus grab our free $0 2026 US Seller Fee & Schedule-C Tax Cheat Sheet. #etsyseller #shopify #printondemand #amazonfba #poshmarkseller #tiktokshop #ecommerce2026`;
 
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1500" viewBox="0 0 1000 1500">
   <rect width="1000" height="1500" fill="#0f172a"/>
   <circle cx="880" cy="180" r="320" fill="#0d9488" opacity="0.28"/>
   <circle cx="120" cy="1360" r="260" fill="#f59e0b" opacity="0.16"/>
-  <rect x="80" y="100" width="480" height="62" rx="31" fill="#0d9488"/>
-  <text x="115" y="141" font-family="system-ui, sans-serif" font-size="25" font-weight="800" fill="#ffffff">${esc(hook.topPill)}</text>
-  <text x="80" y="300" font-family="system-ui, sans-serif" font-size="72" font-weight="800" fill="#ffffff">${esc(hook.line1)}</text>
-  <text x="80" y="395" font-family="system-ui, sans-serif" font-size="72" font-weight="800" fill="#5eead4">${esc(hook.line2)}</text>
-  <text x="80" y="490" font-family="system-ui, sans-serif" font-size="72" font-weight="800" fill="#ffffff">${esc(hook.line3)}</text>
+  <rect x="80" y="100" width="520" height="62" rx="31" fill="#0d9488"/>
+  <text x="115" y="141" font-family="system-ui, sans-serif" font-size="24" font-weight="800" fill="#ffffff">${esc(item.topPill)}</text>
+  <text x="80" y="300" font-family="system-ui, sans-serif" font-size="70" font-weight="800" fill="#ffffff">${esc(item.line1)}</text>
+  <text x="80" y="395" font-family="system-ui, sans-serif" font-size="70" font-weight="800" fill="#5eead4">${esc(item.line2)}</text>
+  <text x="80" y="490" font-family="system-ui, sans-serif" font-size="70" font-weight="800" fill="#ffffff">${esc(item.line3)}</text>
   <rect x="80" y="575" width="840" height="470" rx="28" fill="#1e293b" stroke="#334155" stroke-width="3"/>
-  <text x="125" y="685" font-family="system-ui, sans-serif" font-size="35" font-weight="600" fill="#f8fafc">${esc(hook.bullets[0])}</text>
-  <text x="125" y="810" font-family="system-ui, sans-serif" font-size="35" font-weight="600" fill="#f8fafc">${esc(hook.bullets[1])}</text>
-  <text x="125" y="935" font-family="system-ui, sans-serif" font-size="35" font-weight="600" fill="#f8fafc">${esc(hook.bullets[2])}</text>
+  <text x="125" y="685" font-family="system-ui, sans-serif" font-size="34" font-weight="600" fill="#f8fafc">${esc(item.bullets[0])}</text>
+  <text x="125" y="810" font-family="system-ui, sans-serif" font-size="34" font-weight="600" fill="#f8fafc">${esc(item.bullets[1])}</text>
+  <text x="125" y="935" font-family="system-ui, sans-serif" font-size="34" font-weight="600" fill="#f8fafc">${esc(item.bullets[2])}</text>
   <rect x="80" y="1140" width="840" height="115" rx="22" fill="#f59e0b"/>
-  <text x="500" y="1210" text-anchor="middle" font-family="system-ui, sans-serif" font-size="36" font-weight="800" fill="#0f172a">${esc(hook.cta)}</text>
+  <text x="500" y="1210" text-anchor="middle" font-family="system-ui, sans-serif" font-size="35" font-weight="800" fill="#0f172a">${esc(item.cta)}</text>
   <text x="500" y="1385" text-anchor="middle" font-family="system-ui, sans-serif" font-size="30" font-weight="700" fill="#94a3b8">${esc(SITE_CONFIG.brandName)} • 100% Free Interactive Tool</text>
 </svg>`;
 
   writeFileSync(join(PINS_DIR, svgName), svg, 'utf8');
-  manifest.push({ slug: calc.slug, pngName, ...hook, brandName: SITE_CONFIG.brandName });
+  manifest.push({
+    slug: item.slug,
+    pngName,
+    board: item.board,
+    topPill: item.topPill,
+    line1: item.line1,
+    line2: item.line2,
+    line3: item.line3,
+    bullets: item.bullets,
+    cta: item.cta,
+    brandName: SITE_CONFIG.brandName
+  });
 
   mdLines.push(`---
-## Pin ${manifest.length}: ${calc.shortName} (\`pins-png/${pngName}\`)
-- **Suggested Board:** \`${hook.board}\`
+## Pin ${manifest.length}: ${item.shortLabel} (\`pins-png/${pngName}\`)
+- **Suggested Board:** \`${item.board}\`
 - **Destination Link:** \`${destUrl}\`
-- **Pin Title:** \`${calc.title}\`
-- **Alt Text:** \`${hook.line1} ${hook.line2} ${hook.line3} — Free 2026 ${calc.shortName} infographic by ShopMarginLab\`
-- **SEO Description:** \`${calc.metaDescription} Try our 100% free interactive 2026 e-commerce calculator with shareable breakdown & CSV export, plus download our free $0 2026 US Seller Fee & Schedule-C Tax Cheat Sheet. #etsyseller #shopify #printondemand #amazonfba #tiktokshop #smallbusinesstips #ecommerce2026\`
+- **Pin Title:** \`${item.title}\`
+- **Alt Text:** \`${altText}\`
+- **SEO Description:** \`${fullDesc}\`
 `);
+
+  csvLines.push([pngName, item.board, item.title, destUrl, altText, fullDesc].map(csvCell).join(','));
+}
+
+for (const calc of CALCULATORS) {
+  const hook = PIN_HOOKS[calc.slug];
+  if (!hook) throw new Error(`Missing Pinterest hook for ${calc.slug}`);
+  emitPin({
+    slug: calc.slug,
+    destPath: `/${calc.slug}/`,
+    shortLabel: calc.shortName,
+    title: calc.title,
+    description: calc.metaDescription,
+    ...hook
+  });
+}
+
+for (const bonus of BONUS_INFOGRAPHIC_PINS) {
+  emitPin({
+    ...bonus,
+    shortLabel: bonus.topPill
+  });
 }
 
 writeFileSync(join(PINS_DIR, 'pins-manifest.json'), JSON.stringify(manifest, null, 2), 'utf8');
+writeFileSync(join(PINS_DIR, 'pinterest-bulk-upload.csv'), csvLines.join('\n'), 'utf8');
 const schedulePath = join(__dirname, '..', 'products', 'dist', 'pinterest-seo-descriptions.md');
 writeFileSync(schedulePath, mdLines.join('\n'), 'utf8');
 
-console.log(`✅ Generated ${CALCULATORS.length} Pinterest 1000x1500 SVG pins + manifest + SEO descriptions in ${PINS_DIR}`);
+console.log(`✅ Generated ${manifest.length} Pinterest 1000x1500 SVG pins + manifest + bulk CSV + SEO descriptions in ${PINS_DIR}`);

@@ -524,9 +524,82 @@ dialog::backdrop {
   font-size: 0.88rem;
   color: var(--text-muted);
 }
+
+.search-input {
+  inline-size: min(100%, 340px);
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--border);
+  font: inherit;
+  font-size: 0.9rem;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.search-input:focus {
+  outline: 2px solid var(--brand);
+  outline-offset: 1px;
+  border-color: var(--brand);
+}
+
+.embed-footer {
+  display: none;
+  margin-top: 1rem;
+  padding: 0.7rem 1rem;
+  border-radius: 10px;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  font-size: 0.85rem;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+html.embed-mode .disclosure-bar,
+html.embed-mode .site-header,
+html.embed-mode .site-footer,
+html.embed-mode .monetize-grid,
+html.embed-mode .non-embed-section {
+  display: none !important;
+}
+
+html.embed-mode .embed-footer {
+  display: flex;
+}
+
+@media print {
+  .disclosure-bar,
+  .site-header,
+  .site-footer,
+  .toolbar,
+  .monetize-grid,
+  .non-embed-section,
+  .toast,
+  dialog {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+    color: #000;
+  }
+  .result-hero {
+    background: #f1f5f9 !important;
+    color: #0f172a !important;
+    border: 2px solid #0f172a;
+  }
+  .result-big {
+    color: #0f172a !important;
+  }
+}
 `;
 
 const SHARED_JS = `
+// Detect ?embed=1 mode for clean iframe embeds with attribution backlink
+if (new URLSearchParams(window.location.search).get('embed') === '1') {
+  document.documentElement.classList.add('embed-mode');
+}
+
 // Light-dismiss Safari fallback per light-dismiss-a-dialog guide
 if (!('closedBy' in HTMLDialogElement.prototype)) {
   document.querySelectorAll('dialog[closedby="any"]').forEach((dialog) => {
@@ -574,9 +647,9 @@ function renderHeader() {
       </a>
       <nav aria-label="Primary Navigation">
         <ul class="nav-list">
+          <li><a href="/compare/">Compare 7 Channels</a></li>
           <li><a href="/etsy-fee-calculator/">Etsy Fees</a></li>
           <li><a href="/shopify-vs-etsy-calculator/">Shopify vs Etsy</a></li>
-          <li><a href="/tiktok-shop-fee-calculator/">TikTok Shop</a></li>
           <li><a href="/amazon-fba-fee-calculator/">Amazon FBA</a></li>
           <li><a href="/guides/">2026 Guides</a></li>
           <li><a href="/templates/"><strong>📊 Excel Bundles ($0–$24)</strong></a></li>
@@ -593,36 +666,38 @@ function renderFooter() {
       <div style="display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));margin-bottom:1.5rem">
         <div>
           <strong style="color:var(--text);font-size:1rem">${esc(SITE_CONFIG.brandName)}</strong>
-          <p style="margin-top:0.4rem">12 free, ultra-accurate 2026 fee, ROAS &amp; tax calculators plus Excel operating systems for Etsy, Shopify, Amazon, eBay, POD, and TikTok Shop sellers.</p>
+          <p style="margin-top:0.4rem">${CALCULATORS.length} free, ultra-accurate 2026 fee, ROAS, reseller &amp; tax calculators plus Excel operating systems for Etsy, Shopify, Amazon, eBay, Poshmark, Mercari, Whatnot, POD, and TikTok Shop sellers.</p>
         </div>
         <div>
-          <strong style="color:var(--text)">Etsy, Shopify &amp; POD Tools</strong>
+          <strong style="color:var(--text)">Etsy, Shopify, POD &amp; ROAS</strong>
           <ul style="list-style:none;padding:0;margin:0.5rem 0 0">
-            ${CALCULATORS.slice(0, 6)
-              .map((c) => `<li style="margin-bottom:0.32rem"><a href="/${c.slug}/" style="color:var(--text-muted);text-decoration:none">${esc(c.shortName)}</a></li>`)
+            ${CALCULATORS.slice(0, 9)
+              .map((c) => `<li style="margin-bottom:0.3rem"><a href="/${c.slug}/" style="color:var(--text-muted);text-decoration:none">${esc(c.shortName)}</a></li>`)
               .join('')}
           </ul>
         </div>
         <div>
-          <strong style="color:var(--text)">Marketplace &amp; Tax Tools</strong>
+          <strong style="color:var(--text)">Marketplaces, Resellers &amp; Tax</strong>
           <ul style="list-style:none;padding:0;margin:0.5rem 0 0">
-            ${CALCULATORS.slice(6)
-              .map((c) => `<li style="margin-bottom:0.32rem"><a href="/${c.slug}/" style="color:var(--text-muted);text-decoration:none">${esc(c.shortName)}</a></li>`)
+            ${CALCULATORS.slice(9)
+              .map((c) => `<li style="margin-bottom:0.3rem"><a href="/${c.slug}/" style="color:var(--text-muted);text-decoration:none">${esc(c.shortName)}</a></li>`)
               .join('')}
           </ul>
         </div>
         <div>
-          <strong style="color:var(--text)">Guides, Bundles &amp; Legal</strong>
+          <strong style="color:var(--text)">Compare, Guides &amp; Legal</strong>
           <ul style="list-style:none;padding:0;margin:0.5rem 0 0">
-            <li style="margin-bottom:0.32rem"><a href="/templates/" style="color:var(--text-muted);text-decoration:none">2026 Seller Excel Bundles ($0–$24)</a></li>
-            <li style="margin-bottom:0.32rem"><a href="/guides/" style="color:var(--text-muted);text-decoration:none">2026 E-Commerce Fee &amp; Tax Guides</a></li>
-            <li style="margin-bottom:0.32rem"><a href="/legal/#affiliate-disclosure" style="color:var(--text-muted);text-decoration:none">FTC Affiliate Disclosure</a></li>
-            <li style="margin-bottom:0.32rem"><a href="/legal/#privacy" style="color:var(--text-muted);text-decoration:none">Privacy &amp; Terms</a></li>
+            <li style="margin-bottom:0.3rem"><a href="/compare/" style="color:var(--text-muted);text-decoration:none">7-Channel Live Fee Showdown</a></li>
+            <li style="margin-bottom:0.3rem"><a href="/templates/" style="color:var(--text-muted);text-decoration:none">2026 Seller Excel Bundles ($0–$24)</a></li>
+            <li style="margin-bottom:0.3rem"><a href="/guides/" style="color:var(--text-muted);text-decoration:none">2026 E-Commerce Fee &amp; Tax Guides (${GUIDES.length})</a></li>
+            <li style="margin-bottom:0.3rem"><a href="/legal/#affiliate-disclosure" style="color:var(--text-muted);text-decoration:none">FTC Affiliate Disclosure</a></li>
+            <li style="margin-bottom:0.3rem"><a href="/legal/#privacy" style="color:var(--text-muted);text-decoration:none">Privacy &amp; Terms</a></li>
+            <li style="margin-bottom:0.3rem"><a href="/feed.xml" style="color:var(--text-muted);text-decoration:none">RSS Feed</a> • <a href="/llms.txt" style="color:var(--text-muted);text-decoration:none">LLMs.txt</a></li>
           </ul>
         </div>
       </div>
       <div style="border-top:1px solid var(--border);padding-top:1rem;font-size:0.8rem">
-        © 2026 ${esc(SITE_CONFIG.brandName)}. Independent seller toolset; not endorsed by Etsy, Inc., Shopify Inc., Amazon, eBay, or TikTok. Verify final tax figures with a licensed CPA.
+        © 2026 ${esc(SITE_CONFIG.brandName)}. Independent seller toolset; not endorsed by Etsy, Inc., Shopify Inc., Amazon, eBay, Poshmark, Mercari, Whatnot, or TikTok. Verify final tax figures with a licensed CPA.
       </div>
     </div>
   </footer>
@@ -644,6 +719,7 @@ function buildHead({ title, description, canonicalPath, jsonLd = null }) {
   <meta name="description" content="${esc(description)}">
   <link rel="canonical" href="${esc(fullUrl)}">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="alternate" type="application/rss+xml" title="${esc(SITE_CONFIG.brandName)} 2026 Seller Guides" href="/feed.xml">
   <meta property="og:type" content="website">
   <meta property="og:title" content="${esc(title)}">
   <meta property="og:description" content="${esc(description)}">
@@ -681,6 +757,14 @@ function buildCalculatorPage(calc) {
         name: f.q,
         acceptedAnswer: { '@type': 'Answer', text: f.a }
       }))
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: SITE_CONFIG.brandName, item: `${SITE_CONFIG.domain.replace(/\/$/, '')}/` },
+        { '@type': 'ListItem', position: 2, name: calc.shortName, item: `${SITE_CONFIG.domain.replace(/\/$/, '')}${canonicalPath}` }
+      ]
     }
   ];
 
@@ -735,8 +819,10 @@ function buildCalculatorPage(calc) {
 
         <div class="toolbar" style="margin-bottom:1rem">
           <button type="button" class="btn btn-secondary btn-sm" id="copySummaryBtn">📋 Copy Breakdown</button>
-          <button type="button" class="btn btn-secondary btn-sm" id="copyShareLinkBtn">🔗 Copy Shareable Link</button>
-          <button type="button" class="btn btn-secondary btn-sm" id="exportCsvBtn">⬇️ Export CSV</button>
+          <button type="button" class="btn btn-secondary btn-sm" id="copyShareLinkBtn">🔗 Share Link</button>
+          <button type="button" class="btn btn-secondary btn-sm" id="exportCsvBtn">⬇️ CSV</button>
+          <button type="button" class="btn btn-secondary btn-sm" id="printPdfBtn">🖨️ Print / PDF</button>
+          <button type="button" class="btn btn-secondary btn-sm" id="openEmbedBtn">&lt;/&gt; Embed Free</button>
         </div>
 
         <div tabindex="0" role="region" aria-labelledby="breakdownCaption" class="table-wrapper">
@@ -751,6 +837,11 @@ function buildCalculatorPage(calc) {
             </thead>
             <tbody id="resTableBody"></tbody>
           </table>
+        </div>
+
+        <div class="embed-footer">
+          <span>Powered by <strong>${esc(SITE_CONFIG.brandName)}</strong> (2026 Fee Rates)</span>
+          <a href="${esc(SITE_CONFIG.domain.replace(/\/$/, '') + canonicalPath)}" target="_blank" rel="noopener" style="font-weight:700;color:var(--brand-dark)">Open Full Calculator + Free Excel Sheet →</a>
         </div>
       </section>
     </div>
@@ -788,7 +879,7 @@ function buildCalculatorPage(calc) {
     </section>
 
     <!-- SEO FAQ & Methodology -->
-    <section class="card" style="margin-block: 2rem;">
+    <section class="card non-embed-section" style="margin-block: 2rem;">
       <h2 style="font-size:1.4rem">Frequently Asked Questions (${esc(calc.shortName)})</h2>
       <div style="display:grid;gap:1.1rem;margin-top:1rem">
         ${calc.faqs
@@ -804,8 +895,11 @@ function buildCalculatorPage(calc) {
     </section>
 
     <!-- Internal SEO Cross-Links -->
-    <section style="margin-top:2.5rem">
-      <h2 style="font-size:1.3rem">Explore More Free 2026 Seller Calculators</h2>
+    <section class="non-embed-section" style="margin-top:2.5rem">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:0.75rem">
+        <h2 style="font-size:1.3rem;margin:0">Explore More Free 2026 Seller Calculators</h2>
+        <a href="/compare/" style="font-weight:700;color:var(--brand-dark);text-decoration:none">Compare All 7 Channels Side-by-Side →</a>
+      </div>
       <div class="grid-cards" style="margin-top:1rem">
         ${relatedCalcs
           .map(
@@ -820,6 +914,22 @@ function buildCalculatorPage(calc) {
       </div>
     </section>
   </main>
+
+  <!-- Native Embed Code Generator Modal (Passive Backlink Engine) -->
+  <dialog id="embedDialog" closedby="any" aria-labelledby="embedDialogTitle">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:0.8rem">
+      <div>
+        <span class="pill">Free Blogger &amp; Agency Widget</span>
+        <h2 id="embedDialogTitle" style="font-size:1.25rem;margin-top:0.4rem">Embed ${esc(calc.shortName)} on Your Site</h2>
+      </div>
+      <button type="button" class="btn btn-secondary btn-sm" id="closeEmbedBtn" aria-label="Close embed modal">✕</button>
+    </div>
+    <p style="font-size:0.9rem;color:var(--text-muted)">Copy and paste this responsive HTML snippet into WordPress, Shopify, Webflow, or Ghost to give your readers a live 2026 fee calculator for free:</p>
+    <textarea id="embedCodeBox" readonly rows="5" style="inline-size:100%;font-family:ui-monospace,monospace;font-size:0.8rem;padding:0.75rem;border-radius:10px;border:1.5px solid var(--border);background:var(--surface-muted);color:var(--text)"></textarea>
+    <div class="toolbar" style="justify-content:flex-end;margin-top:0.9rem">
+      <button type="button" class="btn btn-primary btn-sm" id="copyEmbedCodeBtn">📋 Copy Embed HTML</button>
+    </div>
+  </dialog>
 
   <!-- Native Light-Dismiss Spreadsheet Preview Modal -->
   <dialog id="sheetPreviewDialog" closedby="any" aria-labelledby="previewDialogTitle">
@@ -952,9 +1062,217 @@ function buildCalculatorPage(calc) {
       window.showToast?.('CSV downloaded! Need 50+ SKUs? Try our Excel OS.');
     });
 
+    document.getElementById('printPdfBtn').addEventListener('click', () => window.print());
+
+    const embedDlg = document.getElementById('embedDialog');
+    const embedCodeBox = document.getElementById('embedCodeBox');
+    document.getElementById('openEmbedBtn').addEventListener('click', () => {
+      const pageUrl = window.location.origin + window.location.pathname;
+      embedCodeBox.value =
+        '<iframe src="' +
+        pageUrl +
+        '?embed=1" width="100%" height="680" style="border:1px solid #cbd5e1;border-radius:14px" loading="lazy" title="' +
+        CALC_NAME +
+        '"></iframe>\\n<p style="font-size:12px;margin-top:6px">Calculator by <a href="' +
+        pageUrl +
+        '" target="_blank" rel="noopener">ShopMarginLab</a></p>';
+      embedDlg.showModal();
+    });
+    document.getElementById('closeEmbedBtn').addEventListener('click', () => embedDlg.close());
+    document.getElementById('copyEmbedCodeBtn').addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(embedCodeBox.value);
+        window.showToast?.('Embed HTML copied!');
+      } catch {
+        embedCodeBox.select();
+        window.showToast?.('Select and press Ctrl+C to copy');
+      }
+    });
+
     const dlg = document.getElementById('sheetPreviewDialog');
     document.getElementById('openSheetPreviewBtn').addEventListener('click', () => dlg.showModal());
     document.getElementById('closeSheetPreviewBtn').addEventListener('click', () => dlg.close());
+  </script>
+  ${renderFooter()}
+</body>
+</html>`;
+}
+
+function buildComparePage() {
+  const shopifyAff = SITE_CONFIG.affiliates.shopify;
+  const flagship = SITE_CONFIG.products.flagshipOs;
+  const freebie = SITE_CONFIG.products.freeCheatSheet;
+  const canonicalPath = '/compare/';
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: '2026 Multi-Channel Marketplace Fee Showdown (7 Platforms)',
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Any',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    description:
+      'Compare net profit and seller fees side-by-side across Shopify, TikTok Shop US, Etsy, Mercari, Whatnot, eBay, and Poshmark in one live calculator.'
+  };
+
+  return `${buildHead({
+    title: `2026 7-Channel Marketplace Fee Comparison Calculator | ${SITE_CONFIG.brandName}`,
+    description:
+      'Enter one price and COGS to compare exact 2026 seller fees and net profit side-by-side across Shopify, TikTok Shop US, Mercari, Etsy, Whatnot, eBay, and Poshmark.',
+    canonicalPath,
+    jsonLd
+  })}
+<body>
+  ${renderHeader()}
+  <main class="container" style="padding-block:2.25rem">
+    <span class="pill">Interactive 2026 7-Platform Showdown</span>
+    <h1 style="font-size:clamp(1.85rem,3.8vw,2.65rem);margin-top:0.55rem">Where Do You Keep the Most Profit? Compare 7 US Sales Channels Live</h1>
+    <p style="color:var(--text-muted);max-inline-size:68ch;font-size:1.05rem">
+      Type your item price, shipping, and product cost once—instantly rank your net take-home profit across Shopify Basic, TikTok Shop US, Mercari, Etsy US, Whatnot Live, eBay US, and Poshmark.
+    </p>
+
+    <section class="card" style="margin-block:1.5rem">
+      <div style="display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(175px,1fr))">
+        <div class="field" style="margin:0">
+          <label for="cmpPrice">Item Sale Price ($)</label>
+          <input type="number" id="cmpPrice" value="40" step="1" min="1">
+        </div>
+        <div class="field" style="margin:0">
+          <label for="cmpShipBuyer">Buyer-Paid Shipping ($)</label>
+          <input type="number" id="cmpShipBuyer" value="5.95" step="0.25" min="0">
+        </div>
+        <div class="field" style="margin:0">
+          <label for="cmpCogs">Product Cost / COGS ($)</label>
+          <input type="number" id="cmpCogs" value="11" step="0.5" min="0">
+        </div>
+        <div class="field" style="margin:0">
+          <label for="cmpShipActual">Actual Postage Cost ($)</label>
+          <input type="number" id="cmpShipActual" value="5.5" step="0.25" min="0">
+        </div>
+        <div class="field" style="margin:0">
+          <label for="cmpVolume">Monthly Orders (for Annual Diff)</label>
+          <input type="number" id="cmpVolume" value="50" step="5" min="1">
+        </div>
+      </div>
+    </section>
+
+    <div class="result-hero" style="margin-bottom:1.5rem">
+      <div style="font-size:0.88rem;color:#cbd5e1;font-weight:600">Highest Net Profit Channel At Your Price</div>
+      <div id="cmpWinner" class="result-big" data-tone="positive">Shopify Basic</div>
+      <div id="cmpSummary" style="color:#e2e8f0;font-size:0.98rem"></div>
+    </div>
+
+    <div tabindex="0" role="region" aria-labelledby="cmpCaption" class="table-wrapper">
+      <table style="--label-2:'Fees'; --label-3:'Net Profit';">
+        <caption id="cmpCaption">2026 Side-by-Side US Platform Fee &amp; Net Profit Ranking</caption>
+        <thead>
+          <tr>
+            <th>Sales Channel (2026 US Rates)</th>
+            <th>Platform + Card Fees</th>
+            <th>Net Profit / Order</th>
+            <th>Profit Margin</th>
+            <th>Deep-Dive Tool</th>
+          </tr>
+        </thead>
+        <tbody id="cmpBody"></tbody>
+      </table>
+    </div>
+
+    <section class="monetize-grid" style="margin-top:2rem">
+      <article class="card affiliate-box">
+        <span class="pill">${esc(shopifyAff.badge)} • Partner Tool</span>
+        <h2 style="font-size:1.28rem;margin-top:0.5rem">${esc(shopifyAff.headline)}</h2>
+        <p style="font-size:0.92rem;color:var(--text-muted)">${esc(shopifyAff.pitch)}</p>
+        <a href="${esc(shopifyAff.url)}" target="_blank" rel="sponsored noopener" class="btn btn-primary">${esc(shopifyAff.ctaLabel)}</a>
+      </article>
+      <article class="card product-box">
+        <span class="pill pill-gold">Track 50+ SKUs Across Channels</span>
+        <h2 style="font-size:1.28rem;margin-top:0.5rem">${esc(flagship.title)} ($${flagship.priceUsd})</h2>
+        <p style="font-size:0.92rem;color:var(--text-muted)">Compare all your SKUs side-by-side in Microsoft Excel or Google Sheets with automatic 12-month profit &amp; Schedule-C tax rollups.</p>
+        <div class="toolbar">
+          <a href="${esc(flagship.checkoutUrl)}" target="_blank" rel="noopener" class="btn btn-accent">Get Excel OS ($${flagship.priceUsd}) →</a>
+          <a href="${esc(freebie.checkoutUrl)}" target="_blank" rel="noopener" class="btn btn-secondary btn-sm">Free Cheat Sheet ($0) →</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script type="module">
+    const fmt = (n) => (n < 0 ? '-$' + Math.abs(n).toFixed(2) : '$' + Number(n).toFixed(2));
+    function renderCompare() {
+      const price = Number(document.getElementById('cmpPrice').value || 0);
+      const shipB = Number(document.getElementById('cmpShipBuyer').value || 0);
+      const cogs = Number(document.getElementById('cmpCogs').value || 0);
+      const shipA = Number(document.getElementById('cmpShipActual').value || 0);
+      const vol = Math.max(1, Number(document.getElementById('cmpVolume').value || 50));
+
+      const gross = price + shipB;
+      const estTax = gross * 0.07;
+
+      const rows = [
+        {
+          name: 'Shopify Basic (2.9% + $0.30 + $39/mo amortized)',
+          fee: gross * 0.029 + 0.30 + 39 / vol,
+          profit: gross - (gross * 0.029 + 0.30 + 39 / vol) - cogs - shipA,
+          slug: 'shopify-profit-margin-calculator'
+        },
+        {
+          name: 'TikTok Shop US (6.0% Organic Referral)',
+          fee: gross * 0.06,
+          profit: gross - gross * 0.06 - cogs - shipA,
+          slug: 'tiktok-shop-fee-calculator'
+        },
+        {
+          name: 'Etsy US Organic ($0.20 + 6.5% + 3% + $0.25)',
+          fee: 0.45 + gross * 0.095,
+          profit: gross - (0.45 + gross * 0.095) - cogs - shipA,
+          slug: 'etsy-fee-calculator'
+        },
+        {
+          name: 'Mercari US (10.0% Flat Seller Fee)',
+          fee: gross * 0.10,
+          profit: price - gross * 0.10 - cogs,
+          slug: 'mercari-fee-calculator'
+        },
+        {
+          name: 'Whatnot Live (8% + 2.9% + $0.30 incl. ship & tax)',
+          fee: price * 0.08 + (gross + estTax) * 0.029 + 0.30,
+          profit: price - (price * 0.08 + (gross + estTax) * 0.029 + 0.30) - cogs,
+          slug: 'whatnot-fee-calculator'
+        },
+        {
+          name: 'eBay US No-Store (13.6% incl. ship & tax + $0.40)',
+          fee: (gross + estTax) * 0.136 + (gross > 10 ? 0.40 : 0.30),
+          profit: gross - ((gross + estTax) * 0.136 + (gross > 10 ? 0.40 : 0.30)) - cogs - shipA,
+          slug: 'ebay-fee-calculator'
+        },
+        {
+          name: 'Poshmark US ($2.95 under $15 / 20% over $15)',
+          fee: price < 15 ? 2.95 : price * 0.20,
+          profit: price - (price < 15 ? 2.95 : price * 0.20) - cogs,
+          slug: 'poshmark-fee-calculator'
+        }
+      ].sort((a, b) => b.profit - a.profit);
+
+      const best = rows[0];
+      const worst = rows[rows.length - 1];
+      const annualGap = (best.profit - worst.profit) * vol * 12;
+
+      document.getElementById('cmpWinner').textContent = best.name.split(' (')[0] + ' (' + fmt(best.profit) + '/order)';
+      document.getElementById('cmpSummary').textContent =
+        'At ' + vol + ' orders/month, selling on ' + best.name.split(' (')[0] + ' keeps ' + fmt(best.profit - worst.profit) + ' more per order (' + fmt(annualGap) + '/year!) than ' + worst.name.split(' (')[0] + '.';
+
+      document.getElementById('cmpBody').innerHTML = rows
+        .map((r, i) => {
+          const margin = gross > 0 ? ((r.profit / gross) * 100).toFixed(1) + '%' : '0.0%';
+          const badge = i === 0 ? ' <span class="pill" style="margin-left:0.35rem">#1 Best</span>' : '';
+          return '<tr><th>' + r.name + badge + '</th><td>-' + fmt(r.fee) + '</td><td style="font-weight:800;color:' + (r.profit >= 0 ? 'var(--success)' : 'var(--danger)') + '">' + fmt(r.profit) + '</td><td>' + margin + '</td><td><a href="/' + r.slug + '/" style="font-weight:700;color:var(--brand-dark)">Open Tool →</a></td></tr>';
+        })
+        .join('');
+    }
+    ['cmpPrice', 'cmpShipBuyer', 'cmpCogs', 'cmpShipActual', 'cmpVolume'].forEach((id) => {
+      document.getElementById(id).addEventListener('input', renderCompare);
+    });
+    renderCompare();
   </script>
   ${renderFooter()}
 </body>
@@ -965,11 +1283,33 @@ function buildHomePage() {
   const freebie = SITE_CONFIG.products.freeCheatSheet;
   const flagship = SITE_CONFIG.products.flagshipOs;
   const pod = SITE_CONFIG.products.podMatrix;
+  const baseUrl = SITE_CONFIG.domain.replace(/\/$/, '');
+  const homeJsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: SITE_CONFIG.brandName,
+      url: baseUrl + '/',
+      logo: baseUrl + '/favicon.svg'
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: '2026 Free E-Commerce & Reseller Calculators',
+      itemListElement: CALCULATORS.map((c, idx) => ({
+        '@type': 'ListItem',
+        position: idx + 1,
+        name: c.title,
+        url: `${baseUrl}/${c.slug}/`
+      }))
+    }
+  ];
   return `${buildHead({
     title: `${SITE_CONFIG.brandName} — ${SITE_CONFIG.tagline}`,
     description:
-      '12 free 2026 seller fee, profit margin, Amazon FBA, eBay, POD, ROAS, and US Schedule-C tax calculators—plus instant Excel profit operating systems.',
-    canonicalPath: '/'
+      `${CALCULATORS.length} free 2026 seller fee, profit margin, Amazon FBA, eBay, Poshmark, Mercari, Whatnot, POD, ROAS, and US Schedule-C tax calculators—plus instant Excel profit operating systems.`,
+    canonicalPath: '/',
+    jsonLd: homeJsonLd
   })}
 <body>
   ${renderHeader()}
@@ -980,13 +1320,14 @@ function buildHomePage() {
         <h1 style="font-size:clamp(2rem,4.4vw,3.15rem);margin-top:0.65rem;max-inline-size:22ch">
           Know Your Real Net Profit Before You List or Scale Ads.
         </h1>
-        <p style="font-size:1.12rem;color:var(--text-muted);max-inline-size:62ch">
-          12 instant, zero-signup calculators for Etsy, Shopify, TikTok Shop US, Amazon FBA, eBay, and Print-on-Demand sellers—paired with unlocked Excel profit &amp; tax workbooks.
+        <p style="font-size:1.12rem;color:var(--text-muted);max-inline-size:64ch">
+          ${CALCULATORS.length} instant, zero-signup calculators for Etsy, Shopify, TikTok Shop US, Amazon FBA, eBay, Poshmark, Mercari, Whatnot &amp; Print-on-Demand sellers—paired with unlocked Excel profit &amp; tax workbooks.
         </p>
         <div class="toolbar" style="margin-top:1.35rem">
-          <a href="/etsy-fee-calculator/" class="btn btn-primary">Open 2026 Etsy Fee Calculator →</a>
-          <a href="${esc(freebie.checkoutUrl)}" target="_blank" rel="noopener" class="btn btn-secondary">Free 2026 Fee Cheat Sheet ($0)</a>
-          <a href="/templates/" class="btn btn-accent">Browse Excel Toolkits ($0–$24)</a>
+          <a href="/compare/" class="btn btn-primary">⚡ Compare 7 Channels Live →</a>
+          <a href="/etsy-fee-calculator/" class="btn btn-secondary">2026 Etsy Fee Calculator</a>
+          <a href="${esc(freebie.checkoutUrl)}" target="_blank" rel="noopener" class="btn btn-secondary">Free Cheat Sheet ($0)</a>
+          <a href="/templates/" class="btn btn-accent">Excel Toolkits ($0–$24)</a>
         </div>
       </div>
     </section>
@@ -994,21 +1335,22 @@ function buildHomePage() {
     <section class="container" style="padding-block:3rem">
       <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:1rem">
         <div>
-          <h2 style="font-size:1.65rem;margin-bottom:0.25rem">12 Free 2026 E-Commerce Calculators</h2>
-          <p style="color:var(--text-muted);margin:0">Filter by sales channel or pick any tool to run live margin math with shareable links &amp; CSV export.</p>
+          <h2 style="font-size:1.65rem;margin-bottom:0.25rem">${CALCULATORS.length} Free 2026 E-Commerce &amp; Reseller Calculators</h2>
+          <p id="calcCountLabel" style="color:var(--text-muted);margin:0">Showing all ${CALCULATORS.length} interactive tools — shareable links, CSV export, PDF print &amp; free embed.</p>
         </div>
-        <div class="toolbar" role="group" aria-label="Filter calculators by category">
-          <button type="button" class="filter-chip" data-filter="all" aria-pressed="true">All (12)</button>
-          <button type="button" class="filter-chip" data-filter="etsy-pod" aria-pressed="false">Etsy &amp; POD</button>
-          <button type="button" class="filter-chip" data-filter="shopify-dtc" aria-pressed="false">Shopify &amp; DTC</button>
-          <button type="button" class="filter-chip" data-filter="marketplaces" aria-pressed="false">Amazon, eBay &amp; TikTok</button>
-          <button type="button" class="filter-chip" data-filter="ads-tax" aria-pressed="false">ROAS &amp; US Tax</button>
-        </div>
+        <input type="search" id="calcSearch" class="search-input" placeholder="Search Etsy, Amazon, Poshmark, Whatnot, Tax..." aria-label="Search calculators">
+      </div>
+      <div class="toolbar" role="group" aria-label="Filter calculators by category" style="margin-top:1rem">
+        <button type="button" class="filter-chip" data-filter="all" aria-pressed="true">All (${CALCULATORS.length})</button>
+        <button type="button" class="filter-chip" data-filter="etsy-pod" aria-pressed="false">Etsy &amp; POD</button>
+        <button type="button" class="filter-chip" data-filter="shopify-dtc" aria-pressed="false">Shopify &amp; DTC</button>
+        <button type="button" class="filter-chip" data-filter="marketplaces" aria-pressed="false">Amazon, eBay, TikTok &amp; Resellers</button>
+        <button type="button" class="filter-chip" data-filter="ads-tax" aria-pressed="false">ROAS &amp; US Tax</button>
       </div>
       <div class="grid-cards" id="calcGrid" style="margin-top:1.35rem">
         ${CALCULATORS.map(
           (c) => `
-          <article class="card" data-category="${esc(c.category)}" style="display:flex;flex-direction:column;justify-content:space-between">
+          <article class="card" data-category="${esc(c.category)}" data-search="${esc((c.shortName + ' ' + c.h1 + ' ' + c.badge + ' ' + c.metaDescription).toLowerCase())}" style="display:flex;flex-direction:column;justify-content:space-between">
             <div>
               <span class="pill">${esc(c.badge)}</span>
               <h3 style="font-size:1.18rem;margin-top:0.6rem">${esc(c.h1)}</h3>
@@ -1022,8 +1364,8 @@ function buildHomePage() {
 
     <section class="container" style="padding-block:0.5rem 2.5rem">
       <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:0.75rem;margin-bottom:1.15rem">
-        <h2 style="font-size:1.55rem;margin:0">2026 Seller Fee &amp; Margin Playbooks</h2>
-        <a href="/guides/" style="font-weight:700;color:var(--brand-dark);text-decoration:none">View All 4 Guides →</a>
+        <h2 style="font-size:1.55rem;margin:0">2026 Seller Fee &amp; Margin Playbooks (${GUIDES.length})</h2>
+        <a href="/guides/" style="font-weight:700;color:var(--brand-dark);text-decoration:none">View All ${GUIDES.length} Guides →</a>
       </div>
       <div class="grid-cards">
         ${GUIDES.map(
@@ -1071,15 +1413,31 @@ function buildHomePage() {
   <script type="module">
     const chips = document.querySelectorAll('.filter-chip');
     const cards = document.querySelectorAll('#calcGrid [data-category]');
+    const searchInput = document.getElementById('calcSearch');
+    const countLabel = document.getElementById('calcCountLabel');
+    let activeCat = 'all';
+
+    function applyFilters() {
+      const q = (searchInput.value || '').trim().toLowerCase();
+      let shown = 0;
+      cards.forEach((card) => {
+        const matchCat = activeCat === 'all' || card.getAttribute('data-category') === activeCat;
+        const matchSearch = !q || (card.getAttribute('data-search') || '').includes(q);
+        const visible = matchCat && matchSearch;
+        card.style.display = visible ? 'flex' : 'none';
+        if (visible) shown++;
+      });
+      countLabel.textContent = 'Showing ' + shown + ' of ' + cards.length + ' interactive 2026 tools';
+    }
+
     chips.forEach((btn) => {
       btn.addEventListener('click', () => {
-        const cat = btn.getAttribute('data-filter');
+        activeCat = btn.getAttribute('data-filter');
         chips.forEach((c) => c.setAttribute('aria-pressed', c === btn ? 'true' : 'false'));
-        cards.forEach((card) => {
-          card.style.display = cat === 'all' || card.getAttribute('data-category') === cat ? 'flex' : 'none';
-        });
+        applyFilters();
       });
     });
+    searchInput.addEventListener('input', applyFilters);
   </script>
   ${renderFooter()}
 </body>
@@ -1283,6 +1641,9 @@ writeFileSync(join(DIST_DIR, 'styles.css'), CSS_CONTENT, 'utf8');
 writeFileSync(join(DIST_DIR, 'shared.js'), SHARED_JS, 'utf8');
 writeFileSync(join(DIST_DIR, 'index.html'), buildHomePage(), 'utf8');
 
+mkdirSync(join(DIST_DIR, 'compare'), { recursive: true });
+writeFileSync(join(DIST_DIR, 'compare', 'index.html'), buildComparePage(), 'utf8');
+
 mkdirSync(join(DIST_DIR, 'templates'), { recursive: true });
 writeFileSync(join(DIST_DIR, 'templates', 'index.html'), buildTemplatesPage(), 'utf8');
 
@@ -1319,17 +1680,18 @@ writeFileSync(
   <rect width="1200" height="630" fill="#0f172a"/>
   <circle cx="1040" cy="110" r="230" fill="#0d9488" opacity="0.35"/>
   <text x="80" y="140" font-family="system-ui, sans-serif" font-size="36" font-weight="800" fill="#5eead4">${esc(SITE_CONFIG.brandName)}</text>
-  <text x="80" y="260" font-family="system-ui, sans-serif" font-size="56" font-weight="800" fill="#ffffff">12 Free 2026 E-Commerce Fee,</text>
-  <text x="80" y="335" font-family="system-ui, sans-serif" font-size="56" font-weight="800" fill="#ffffff">ROAS, POD &amp; Tax Calculators</text>
-  <text x="80" y="420" font-family="system-ui, sans-serif" font-size="27" fill="#cbd5e1">Etsy • Shopify • Amazon FBA • eBay • TikTok Shop US • Excel Profit OS</text>
+  <text x="80" y="260" font-family="system-ui, sans-serif" font-size="56" font-weight="800" fill="#ffffff">${CALCULATORS.length} Free 2026 E-Commerce &amp;</text>
+  <text x="80" y="335" font-family="system-ui, sans-serif" font-size="56" font-weight="800" fill="#ffffff">Reseller Profit Calculators</text>
+  <text x="80" y="420" font-family="system-ui, sans-serif" font-size="25" fill="#cbd5e1">Etsy • Shopify • Amazon FBA • eBay • Poshmark • Mercari • Whatnot • TikTok Shop</text>
 </svg>`,
   'utf8'
 );
 
-// Sitemap & Robots.txt
+// Sitemap, Robots.txt, llms.txt (AI Search Discovery), and RSS feed.xml
 const base = SITE_CONFIG.domain.replace(/\/$/, '');
 const allPaths = [
   '/',
+  '/compare/',
   '/templates/',
   '/guides/',
   '/legal/',
@@ -1338,10 +1700,60 @@ const allPaths = [
 ];
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${allPaths.map((p) => `  <url><loc>${esc(base + p)}</loc><priority>${p === '/' ? '1.0' : '0.85'}</priority></url>`).join('\n')}
+${allPaths.map((p) => `  <url><loc>${esc(base + p)}</loc><priority>${p === '/' ? '1.0' : p === '/compare/' ? '0.95' : '0.85'}</priority></url>`).join('\n')}
 </urlset>`;
 
 writeFileSync(join(DIST_DIR, 'sitemap.xml'), sitemap, 'utf8');
-writeFileSync(join(DIST_DIR, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${base}/sitemap.xml\n`, 'utf8');
+writeFileSync(
+  join(DIST_DIR, 'robots.txt'),
+  `User-agent: *\nAllow: /\nSitemap: ${base}/sitemap.xml\n`,
+  'utf8'
+);
 
-console.log(`✅ Built ${allPaths.length} static SEO pages (${CALCULATORS.length} calculators + ${GUIDES.length} guides) into ${DIST_DIR}`);
+const llmsTxt = [
+  `# ${SITE_CONFIG.brandName}`,
+  `> ${SITE_CONFIG.tagline}. Free browser-based 2026 US marketplace fee calculators, multi-channel profit comparison, and unlocked Excel seller workbooks.`,
+  '',
+  '## Interactive Multi-Channel Comparison',
+  `- [7-Channel Live Fee Showdown](${base}/compare/): Compare net profit across Shopify, TikTok Shop US, Etsy, Mercari, Whatnot, eBay, and Poshmark simultaneously.`,
+  '',
+  `## Free 2026 Interactive Calculators (${CALCULATORS.length})`,
+  ...CALCULATORS.map((c) => `- [${c.title}](${base}/${c.slug}/): ${c.metaDescription}`),
+  '',
+  `## 2026 Seller Fee & Tax Playbooks (${GUIDES.length})`,
+  ...GUIDES.map((g) => `- [${g.title}](${base}/guides/${g.slug}/): ${g.metaDescription}`),
+  '',
+  '## Unlocked Excel & Google Sheets Seller Workbooks',
+  `- [All Templates ($0–$24)](${base}/templates/)`,
+  `- Free 2026 US Seller Fee & Schedule-C Tax Cheat Sheet ($0): ${SITE_CONFIG.products.freeCheatSheet.checkoutUrl}`,
+  `- 2026 Multi-Channel Seller Profit, Inventory & Tax Excel OS ($24): ${SITE_CONFIG.products.flagshipOs.checkoutUrl}`,
+  `- 2026 POD & Etsy Bulk Pricing Matrix ($17): ${SITE_CONFIG.products.podMatrix.checkoutUrl}`
+].join('\n');
+writeFileSync(join(DIST_DIR, 'llms.txt'), llmsTxt, 'utf8');
+
+const feedXml = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>${esc(SITE_CONFIG.brandName)} — 2026 E-Commerce Fee &amp; Profit Guides</title>
+    <link>${esc(base)}/</link>
+    <description>${esc(SITE_CONFIG.tagline)}</description>
+    <language>en-us</language>
+    <item>
+      <title>Interactive 7-Channel Marketplace Fee Showdown (2026)</title>
+      <link>${esc(base)}/compare/</link>
+      <guid>${esc(base)}/compare/</guid>
+      <description>Compare Shopify, TikTok Shop US, Etsy, Mercari, Whatnot, eBay, and Poshmark fees side-by-side in one live calculator.</description>
+    </item>
+${GUIDES.map(
+  (g) => `    <item>
+      <title>${esc(g.title)}</title>
+      <link>${esc(base)}/guides/${g.slug}/</link>
+      <guid>${esc(base)}/guides/${g.slug}/</guid>
+      <description>${esc(g.metaDescription)}</description>
+    </item>`
+).join('\n')}
+  </channel>
+</rss>`;
+writeFileSync(join(DIST_DIR, 'feed.xml'), feedXml, 'utf8');
+
+console.log(`✅ Built ${allPaths.length} static SEO pages (${CALCULATORS.length} calculators + ${GUIDES.length} guides + /compare/ + llms.txt + feed.xml) into ${DIST_DIR}`);

@@ -4,11 +4,14 @@ import { GUIDES } from '../src/guides-data.mjs';
 const base = process.argv[2] || 'https://shopmarginlab.pages.dev';
 const routes = [
   '/',
+  '/compare/',
   '/templates/',
   '/guides/',
   '/legal/',
   '/sitemap.xml',
   '/robots.txt',
+  '/llms.txt',
+  '/feed.xml',
   '/styles.css',
   '/shared.js',
   '/favicon.svg',
@@ -34,11 +37,19 @@ for (const r of routes) {
       for (const code of ['MGRn9', 'rgL6o', 'u1UYJ']) {
         if (!body.includes(code)) failures.push(`HOME missing Payhip code ${code}`);
       }
-      if (!body.includes('amazon-fba-fee-calculator')) failures.push('HOME missing v2 calculator links');
+      if (!body.includes('poshmark-fee-calculator')) failures.push('HOME missing v3 calculator links');
+      if (!body.includes('cad1da804f7b4d96a19ba0c6a11ac227')) failures.push('HOME missing Cloudflare Web Analytics beacon');
+    }
+    if (r === '/compare/' && !body.includes('Shopify Basic')) {
+      failures.push('/compare/ missing 7-channel table');
+    }
+    if (r === '/llms.txt' && !body.includes('ShopMarginLab')) {
+      failures.push('/llms.txt missing brand index');
     }
     if (r === '/sitemap.xml') {
       sitemapUrls = (body.match(/<loc>/g) || []).length;
-      if (sitemapUrls !== 20) failures.push(`Expected 20 sitemap URLs, got ${sitemapUrls}`);
+      const expectedUrls = 5 + CALCULATORS.length + GUIDES.length;
+      if (sitemapUrls !== expectedUrls) failures.push(`Expected ${expectedUrls} sitemap URLs, got ${sitemapUrls}`);
     }
     ok++;
   } catch (err) {
@@ -46,10 +57,9 @@ for (const r of routes) {
   }
 }
 
-// Verify 301 redirect for no-trailing-slash URL
 try {
-  const redir = await fetch(base + '/etsy-fee-calculator', { redirect: 'manual' });
-  if (redir.status !== 301) failures.push(`Expected 301 on /etsy-fee-calculator, got ${redir.status}`);
+  const redir = await fetch(base + '/compare', { redirect: 'manual' });
+  if (redir.status !== 301) failures.push(`Expected 301 on /compare, got ${redir.status}`);
 } catch (err) {
   failures.push(`Redirect check failed -> ${err.message}`);
 }

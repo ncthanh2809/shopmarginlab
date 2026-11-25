@@ -12,12 +12,12 @@ const ROOT = join(__dirname, '..');
 const DIST = join(ROOT, 'dist');
 const PROD_DIST = join(ROOT, 'products', 'dist');
 
-console.log('🧪 Running ShopMarginLab v2 End-to-End Verification...');
+console.log('🧪 Running ShopMarginLab v3 End-to-End Verification...');
 
-assert.equal(CALCULATORS.length, 12, 'Expected 12 calculators');
-assert.equal(GUIDES.length, 4, 'Expected 4 SEO guides');
+assert.equal(CALCULATORS.length, 18, 'Expected 18 calculators');
+assert.equal(GUIDES.length, 8, 'Expected 8 SEO guides');
 
-// 1. Verify all 12 SEO calculator pages + JSON-LD + CRO features + live formula math execution
+// 1. Verify all 18 SEO calculator pages + JSON-LD + CRO features + live formula math execution
 const fmtUsd = (n) => (n < 0 ? '-$' + Math.abs(n).toFixed(2) : '$' + Number(n).toFixed(2));
 const pct = (part, whole) => (whole > 0 ? ((part / whole) * 100).toFixed(1) + '%' : '0.0%');
 
@@ -27,13 +27,17 @@ for (const calc of CALCULATORS) {
   const html = readFileSync(pageFile, 'utf8');
   assert.ok(html.includes('application/ld+json'), `Missing JSON-LD schema on ${calc.slug}`);
   assert.ok(html.includes('FAQPage'), `Missing FAQPage schema on ${calc.slug}`);
+  assert.ok(html.includes('BreadcrumbList'), `Missing BreadcrumbList schema on ${calc.slug}`);
   assert.ok(html.includes('rel="sponsored noopener"'), `Missing compliant affiliate rel attribute on ${calc.slug}`);
-  assert.ok(html.includes('closedby="any"'), `Missing native light-dismiss preview modal on ${calc.slug}`);
+  assert.ok(html.includes('closedby="any"'), `Missing native light-dismiss modal on ${calc.slug}`);
   assert.ok(html.includes('copyShareLinkBtn'), `Missing shareable link button on ${calc.slug}`);
   assert.ok(html.includes('copySummaryBtn'), `Missing copy summary button on ${calc.slug}`);
   assert.ok(html.includes('exportCsvBtn'), `Missing CSV export button on ${calc.slug}`);
+  assert.ok(html.includes('printPdfBtn'), `Missing Print/PDF button on ${calc.slug}`);
+  assert.ok(html.includes('openEmbedBtn'), `Missing Embed Free button on ${calc.slug}`);
   assert.ok(!/YOUR_[A-Z0-9_]+/.test(html), `Found unresolved YOUR_* placeholder on ${calc.slug}`);
   assert.ok(html.includes('https://payhip.com/b/MGRn9'), `Missing $0 Payhip lead magnet link on ${calc.slug}`);
+  assert.ok(html.includes('cad1da804f7b4d96a19ba0c6a11ac227'), `Missing Cloudflare Web Analytics token on ${calc.slug}`);
 
   // Execute calculator computeFnBody with default inputs + every select option to verify zero NaN!
   const fn = new Function('v', 'fmtUsd', 'pct', calc.computeFnBody);
@@ -47,7 +51,6 @@ for (const calc of CALCULATORS) {
   for (const row of out.rows) {
     assert.ok(!row.join(' ').includes('NaN'), `NaN in breakdown row for ${calc.slug}: ${row.join(' | ')}`);
   }
-  // Test alternate select options
   for (const inp of calc.inputs.filter((i) => i.type === 'select')) {
     for (const opt of inp.options) {
       const testV = { ...defaults, [inp.id]: isNaN(Number(opt.value)) ? opt.value : Number(opt.value) };
@@ -57,7 +60,10 @@ for (const calc of CALCULATORS) {
   }
 }
 
-// 2. Verify all 4 SEO Guides + /guides/ index + Legal + Templates + Home + Sitemap
+// 2. Verify /compare/, all 8 SEO Guides + /guides/ + Legal + Templates + Home + Sitemap + llms.txt + feed.xml
+const compareHtml = readFileSync(join(DIST, 'compare', 'index.html'), 'utf8');
+assert.ok(compareHtml.includes('Shopify Basic') && compareHtml.includes('Poshmark US') && compareHtml.includes('Whatnot Live'), 'Compare page missing platforms');
+
 assert.ok(existsSync(join(DIST, 'guides', 'index.html')), 'Missing /guides/ index');
 for (const g of GUIDES) {
   const gfile = join(DIST, 'guides', g.slug, 'index.html');
@@ -69,11 +75,19 @@ for (const g of GUIDES) {
 
 const homeHtml = readFileSync(join(DIST, 'index.html'), 'utf8');
 assert.ok(homeHtml.includes('https://payhip.com/b/MGRn9') && homeHtml.includes('https://payhip.com/b/rgL6o') && homeHtml.includes('https://payhip.com/b/u1UYJ'));
+assert.ok(homeHtml.includes('id="calcSearch"'), 'Missing instant search box on homepage');
+assert.ok(homeHtml.includes('"@type":"ItemList"'), 'Missing ItemList JSON-LD on homepage');
 assert.ok(!/YOUR_[A-Z0-9_]+/.test(homeHtml), 'Found placeholder on home page');
 
 const sitemap = readFileSync(join(DIST, 'sitemap.xml'), 'utf8');
 const urlCount = (sitemap.match(/<url>/g) || []).length;
-assert.equal(urlCount, 20, `Expected 20 URLs in sitemap.xml, got ${urlCount}`);
+assert.equal(urlCount, 31, `Expected 31 URLs in sitemap.xml, got ${urlCount}`);
+
+const llmsTxt = readFileSync(join(DIST, 'llms.txt'), 'utf8');
+assert.ok(llmsTxt.includes('ShopMarginLab') && llmsTxt.includes('/compare/') && llmsTxt.includes('poshmark-fee-calculator'), 'llms.txt incomplete');
+
+const feedXml = readFileSync(join(DIST, 'feed.xml'), 'utf8');
+assert.ok(feedXml.includes('<rss version="2.0">') && (feedXml.match(/<item>/g) || []).length === 9, 'feed.xml should have 9 items');
 
 const legalHtml = readFileSync(join(DIST, 'legal', 'index.html'), 'utf8');
 assert.ok(legalHtml.includes('FTC Affiliate Disclosure'));
@@ -110,21 +124,36 @@ for (const xlsxName of [
   assert.ok(foundSheet1, `Verified worksheet XML inside ${xlsxName}`);
 }
 
-// 4. Verify 12 Pinterest 1000x1500 SVG & PNG Pins + SEO Descriptions
-for (const calc of CALCULATORS) {
-  assert.ok(existsSync(join(PROD_DIST, 'pins', `pin-${calc.slug}.svg`)), `Missing SVG pin for ${calc.slug}`);
-  const pngPath = join(PROD_DIST, 'pins-png', `pin-${calc.slug}.png`);
-  assert.ok(existsSync(pngPath), `Missing PNG pin for ${calc.slug}`);
-  assert.ok(statSync(pngPath).size > 20000, `PNG pin looks too small: ${calc.slug}`);
+// 4. Verify 22 Pinterest 1000x1500 SVG & PNG Pins + Bulk CSV + SEO Descriptions
+const pinsManifest = JSON.parse(readFileSync(join(PROD_DIST, 'pins', 'pins-manifest.json'), 'utf8'));
+assert.equal(pinsManifest.length, 22, `Expected 22 pins in manifest, got ${pinsManifest.length}`);
+for (const pin of pinsManifest) {
+  assert.ok(existsSync(join(PROD_DIST, 'pins', `pin-${pin.slug}.svg`)), `Missing SVG pin for ${pin.slug}`);
+  const pngPath = join(PROD_DIST, 'pins-png', pin.pngName);
+  assert.ok(existsSync(pngPath), `Missing PNG pin for ${pin.slug}`);
+  assert.ok(statSync(pngPath).size > 20000, `PNG pin looks too small: ${pin.slug}`);
 }
+assert.ok(existsSync(join(PROD_DIST, 'pins', 'pinterest-bulk-upload.csv')), 'Missing Pinterest bulk upload CSV');
 assert.ok(existsSync(join(PROD_DIST, 'pinterest-seo-descriptions.md')));
 
-// 5. Verify HTTP Preview Server responds 200 OK across calculators, guides, and templates
+// 5. Verify HTTP Preview Server responds 200 OK across v3 routes
 const srv = createPreviewServer();
 await new Promise((r) => srv.listen(0, '127.0.0.1', r));
 const { port } = srv.address();
 try {
-  for (const path of ['/', '/etsy-fee-calculator/', '/amazon-fba-fee-calculator/', '/ecommerce-tax-calculator/', '/guides/', '/guides/etsy-fees-2026-complete-breakdown/', '/templates/']) {
+  for (const path of [
+    '/',
+    '/compare/',
+    '/etsy-fee-calculator/',
+    '/poshmark-fee-calculator/',
+    '/whatnot-fee-calculator/',
+    '/etsy-digital-product-profit-calculator/',
+    '/guides/',
+    '/guides/reseller-platform-fees-compared-2026/',
+    '/templates/',
+    '/llms.txt',
+    '/feed.xml'
+  ]) {
     const r = await fetch(`http://127.0.0.1:${port}${path}`);
     assert.equal(r.status, 200, `Preview server failed on ${path}`);
   }
@@ -132,4 +161,4 @@ try {
   await new Promise((r) => srv.close(r));
 }
 
-console.log('✅ All 5 verification suites (12 SEO Calculators + Math Unit Tests, 4 Guides, 3 .XLSX Workbooks, 12 SVG+PNG Pinterest Pins, Preview Server) passed!');
+console.log('✅ All 5 v3 verification suites (18 Calculators + Math Unit Tests, /compare/, 8 Guides, 31-URL Sitemap + llms.txt + feed.xml, 3 .XLSX Workbooks, 22 SVG+PNG Pinterest Pins + CSV, Preview Server) passed!');

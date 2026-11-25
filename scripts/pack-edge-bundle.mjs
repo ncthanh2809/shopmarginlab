@@ -1,4 +1,5 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { gzipSync } from 'node:zlib';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { SITE_CONFIG } from '../src/site-config.mjs';
@@ -27,6 +28,8 @@ const faviconRaw = readFileSync(join(DIST, 'favicon.svg'), 'utf8');
 const ogCardRaw = readFileSync(join(DIST, 'og-card.svg'), 'utf8');
 const sitemapRaw = readFileSync(join(DIST, 'sitemap.xml'), 'utf8');
 const robotsRaw = readFileSync(join(DIST, 'robots.txt'), 'utf8');
+const llmsRaw = readFileSync(join(DIST, 'llms.txt'), 'utf8');
+const feedRaw = readFileSync(join(DIST, 'feed.xml'), 'utf8');
 
 const workerCode = `// Auto-generated compact Cloudflare Pages _worker.js (zero-CPU per request)
 const SITE_CONFIG = ${JSON.stringify(resolvedConfig)};
@@ -43,13 +46,16 @@ const ASSETS = {
   '/styles.css': { ct: 'text/css; charset=utf-8', body: CSS_CONTENT },
   '/shared.js': { ct: 'application/javascript; charset=utf-8', body: SHARED_JS },
   '/index.html': { ct: 'text/html; charset=utf-8', body: buildHomePage() },
+  '/compare/index.html': { ct: 'text/html; charset=utf-8', body: buildComparePage() },
   '/templates/index.html': { ct: 'text/html; charset=utf-8', body: buildTemplatesPage() },
   '/guides/index.html': { ct: 'text/html; charset=utf-8', body: buildGuidesIndexPage() },
   '/legal/index.html': { ct: 'text/html; charset=utf-8', body: buildLegalPage() },
   '/favicon.svg': { ct: 'image/svg+xml', body: ${JSON.stringify(faviconRaw)} },
   '/og-card.svg': { ct: 'image/svg+xml', body: ${JSON.stringify(ogCardRaw)} },
   '/sitemap.xml': { ct: 'application/xml; charset=utf-8', body: ${JSON.stringify(sitemapRaw)} },
-  '/robots.txt': { ct: 'text/plain; charset=utf-8', body: ${JSON.stringify(robotsRaw)} }
+  '/robots.txt': { ct: 'text/plain; charset=utf-8', body: ${JSON.stringify(robotsRaw)} },
+  '/llms.txt': { ct: 'text/plain; charset=utf-8', body: ${JSON.stringify(llmsRaw)} },
+  '/feed.xml': { ct: 'application/rss+xml; charset=utf-8', body: ${JSON.stringify(feedRaw)} }
 };
 
 for (const calc of CALCULATORS) {
@@ -88,8 +94,13 @@ const outFile = 'C:/Users/Admin/.gemini/antigravity/brain/ae4b040c-3405-4a40-b16
 mkdirSync(dirname(outFile), { recursive: true });
 writeFileSync(outFile, workerCode, 'utf8');
 
+const gzB64 = gzipSync(Buffer.from(workerCode, 'utf8'), { level: 9 }).toString('base64');
 const mcpCode = `async () => {
-  const workerSource = ${JSON.stringify(workerCode)};
+  const b64 = "${gzB64}";
+  const raw = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
+  const ds = new DecompressionStream("gzip");
+  const stream = new Blob([raw]).stream().pipeThrough(ds);
+  const workerSource = await new Response(stream).text();
   const form = new FormData();
   form.append("manifest", "{}");
   form.append("branch", "main");
@@ -105,11 +116,11 @@ const mcpCode = `async () => {
     method: "GET",
     path: \`/accounts/\${accountId}/pages/projects/shopmarginlab/deployments/\${id}\`
   });
-  return { id, url: check.result?.url, latest_stage: check.result?.latest_stage };
+  return { id, url: check.result?.url, latest_stage: check.result?.latest_stage, workerBytes: workerSource.length };
 }`;
 
 const mcpCodeFile = 'C:/Users/Admin/.gemini/antigravity/brain/ae4b040c-3405-4a40-b16a-0636ae5d6470/scratch/mcp-code.txt';
 const mcpCheckFile = 'C:/Users/Admin/.gemini/antigravity/brain/ae4b040c-3405-4a40-b16a-0636ae5d6470/scratch/mcp-check.mjs';
 writeFileSync(mcpCodeFile, mcpCode, 'utf8');
 writeFileSync(mcpCheckFile, `(${mcpCode})();`, 'utf8');
-console.log(JSON.stringify({ outFile, bundleBytes: Buffer.byteLength(workerCode), mcpBytes: Buffer.byteLength(mcpCode) }));
+console.log(JSON.stringify({ outFile, bundleBytes: Buffer.byteLength(workerCode), mcpBytes: Buffer.byteLength(mcpCode), gzB64Bytes: gzB64.length }));

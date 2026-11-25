@@ -1,6 +1,6 @@
 /**
- * 12 High-Intent 2026 E-Commerce SEO Calculators
- * Verified against 2026 US Marketplace Fee Schedules (Etsy, Shopify, TikTok Shop US, Amazon FBA, eBay, POD, ROAS, Markup, Schedule-C Tax).
+ * 18 High-Intent 2026 E-Commerce & Reseller SEO Calculators
+ * Verified against 2026 US Marketplace Fee Schedules (Etsy, Shopify, TikTok Shop US, Amazon FBA, eBay, Poshmark, Mercari, Whatnot, POD, ROAS, Markup, Bundles, Schedule-C Tax).
  */
 
 export const CALCULATORS = [
@@ -927,6 +927,450 @@ export const CALCULATORS = [
       {
         q: 'Do marketplace fees and shipping labels count as Schedule-C deductions?',
         a: 'Yes! Every 1099-K reports gross unadjusted sales—so you must deduct your Etsy/Shopify/Amazon fees, shipping labels, packaging, product COGS, ad spend, software, and home office expenses on Schedule C so you never overpay tax.'
+      }
+    ]
+  },
+
+  // =========================================================================
+  // SHOPMARGINLAB V3 CALCULATORS (#13 – #18): SHOPIFY MARGIN, DIGITAL ETSY,
+  // POSHMARK, MERCARI, WHATNOT LIVE SELLING & BUNDLE DISCOUNT OPTIMIZER
+  // =========================================================================
+
+  {
+    slug: 'shopify-profit-margin-calculator',
+    category: 'shopify-dtc',
+    shortName: 'Shopify Profit Calc',
+    badge: '2026 Shopify DTC',
+    title: '2026 Shopify Net Profit Margin & Order Economics Calculator',
+    metaDescription:
+      'Calculate true Shopify per-order net profit after landed COGS, shipping & packaging, Shopify Payments fees (2.9% + $0.30), Meta/TikTok CPA, and return rate.',
+    h1: '2026 Shopify Order Net Profit Margin Calculator',
+    intro:
+      'See what you actually keep per Shopify order after landed COGS, postage, Shopify Payments card fees, paid customer acquisition cost (CPA), and realistic return allowances.',
+    primaryAffiliate: 'shopify',
+    secondaryAffiliate: 'linkMyBooks',
+    recommendedProduct: 'flagshipOs',
+    inputs: [
+      { id: 'orderPrice', label: 'Customer Order Value — AOV ($)', type: 'number', value: 68.0, step: 1, min: 1 },
+      { id: 'shippingCharged', label: 'Shipping Paid by Customer ($)', type: 'number', value: 0, step: 0.5, min: 0 },
+      { id: 'landedCogs', label: 'Landed Product COGS ($)', type: 'number', value: 15.5, step: 0.5, min: 0 },
+      { id: 'shippingPack', label: 'Actual Postage + Box/Mailer ($)', type: 'number', value: 6.25, step: 0.25, min: 0 },
+      {
+        id: 'planRate',
+        label: 'Shopify Payments Card Rate',
+        type: 'select',
+        value: '0.029',
+        options: [
+          { value: '0.029', label: '2.9% + $0.30 (Shopify Basic)' },
+          { value: '0.027', label: '2.7% + $0.30 (Shopify Grow)' },
+          { value: '0.025', label: '2.5% + $0.30 (Shopify Advanced)' }
+        ]
+      },
+      { id: 'adCpa', label: 'Paid Ad Cost Per Order / CPA ($)', type: 'number', value: 18.0, step: 1, min: 0 },
+      { id: 'returnRatePct', label: 'Expected Refund / Return Reserve (%)', type: 'number', value: 3.0, step: 0.5, min: 0 }
+    ],
+    computeFnBody: `
+      const gross = v.orderPrice + v.shippingCharged;
+      const cardFee = gross > 0 ? gross * v.planRate + 0.30 : 0;
+      const returnReserve = gross * (Math.min(50, Math.max(0, v.returnRatePct)) / 100);
+      const totalCosts = v.landedCogs + v.shippingPack + cardFee + v.adCpa + returnReserve;
+      const netProfit = gross - totalCosts;
+      const netMarginPct = gross > 0 ? (netProfit / gross) * 100 : 0;
+      const contributionBeforeAds = gross - v.landedCogs - v.shippingPack - cardFee - returnReserve;
+      const breakEvenRoas = contributionBeforeAds > 0 ? gross / contributionBeforeAds : 99.9;
+
+      return {
+        primaryLabel: 'True Net Profit Per Shopify Order',
+        primaryValue: fmtUsd(netProfit),
+        primaryTone: netProfit >= 10 ? 'positive' : netProfit >= 0 ? 'neutral' : 'negative',
+        kpis: [
+          { label: 'Net Profit Margin', value: netMarginPct.toFixed(1) + '%' },
+          { label: 'Pre-Ad Margin (Max CPA)', value: fmtUsd(contributionBeforeAds) },
+          { label: 'Break-Even ROAS', value: breakEvenRoas.toFixed(2) + 'x' }
+        ],
+        rows: [
+          ['Gross Checkout Revenue (Order + Shipping)', fmtUsd(gross), '100.0%'],
+          ['Shopify Payments Processing Fee', '-' + fmtUsd(cardFee), pct(cardFee, gross)],
+          ['Landed COGS + Fulfillment Postage', '-' + fmtUsd(v.landedCogs + v.shippingPack), pct(v.landedCogs + v.shippingPack, gross)],
+          ['Paid Acquisition Cost (Meta / TikTok CPA)', '-' + fmtUsd(v.adCpa), pct(v.adCpa, gross)],
+          ['Refund / Return Allowance (' + v.returnRatePct + '%)', '-' + fmtUsd(returnReserve), pct(returnReserve, gross)],
+          ['Net Take-Home Profit Per Order', fmtUsd(netProfit), netMarginPct.toFixed(1) + '%']
+        ],
+        dynamicAdvice: netMarginPct >= 20
+          ? 'Healthy DTC unit economics (' + netMarginPct.toFixed(1) + '% net margin after ads)! Automate daily Shopify payout reconciliation into QuickBooks/Xero with Link My Books.'
+          : 'Margin check (' + netMarginPct.toFixed(1) + '%): Raising AOV via 2-pack bundles or post-purchase upsells lifts contribution margin without raising your shipping or ad CPA.'
+      };
+    `,
+    faqs: [
+      {
+        q: 'What is a healthy net profit margin for a Shopify DTC store in 2026?',
+        a: 'Healthy Shopify brands target 60%–75% gross margin before ads and 15%–25% net profit margin after shipping, payment processing, returns, and paid customer acquisition (Meta/TikTok/Google Ads).'
+      },
+      {
+        q: 'Why should Shopify sellers model a 2%–5% return reserve?',
+        a: 'Even low-return niches experience damaged packages, chargebacks, or size exchanges. Building a 3% return reserve into per-order pricing prevents silent profit leaks at scale.'
+      }
+    ]
+  },
+
+  {
+    slug: 'etsy-digital-product-profit-calculator',
+    category: 'etsy-pod',
+    shortName: 'Etsy Digital Calc',
+    badge: 'Digital Downloads 2026',
+    title: '2026 Etsy Digital Product Profit & Fee Calculator (PDF, Canva, SVG)',
+    metaDescription:
+      'Calculate exact 2026 Etsy fees and net profit for digital downloads (printables, Canva templates, SVGs, spreadsheets) — $0 shipping, $0 COGS, 6.5% + 3% + $0.45.',
+    h1: '2026 Etsy Digital Product Profit & Monthly Income Calculator',
+    intro:
+      'Digital downloads have $0 postage and $0 unit manufacturing cost—but Etsy’s fixed $0.45 per-order fees bite hard on $2–$5 files. Find your sweet-spot price and monthly income goal.',
+    primaryAffiliate: 'shopify',
+    secondaryAffiliate: 'linkMyBooks',
+    recommendedProduct: 'flagshipOs',
+    inputs: [
+      { id: 'listingPrice', label: 'Digital Product Price ($ USD)', type: 'number', value: 9.0, step: 0.5, min: 0.5 },
+      { id: 'discountPct', label: 'Shop Sale / Coupon Discount (%)', type: 'number', value: 20, step: 5, min: 0 },
+      { id: 'monthlySales', label: 'Estimated Monthly Units Sold', type: 'number', value: 120, step: 10, min: 1 },
+      {
+        id: 'offsiteAdsRate',
+        label: 'Etsy Offsite Ads Attribution',
+        type: 'select',
+        value: '0',
+        options: [
+          { value: '0', label: 'Organic Search / Pinterest — 0% Offsite Ads' },
+          { value: '0.15', label: '15% Offsite Ads (Shop under $10k/yr)' },
+          { value: '0.12', label: '12% Mandatory Offsite Ads (Shop $10k+/yr)' }
+        ]
+      },
+      { id: 'monthlyAdsSpend', label: 'Optional Monthly Etsy Ads Budget ($)', type: 'number', value: 45, step: 5, min: 0 }
+    ],
+    computeFnBody: `
+      const netSalePrice = v.listingPrice * (1 - Math.min(90, Math.max(0, v.discountPct)) / 100);
+      const listingRenewFee = 0.20;
+      const transactionFee = netSalePrice * 0.065;
+      const paymentFee = netSalePrice * 0.03 + 0.25;
+      const offsiteFee = Math.min(100, netSalePrice * v.offsiteAdsRate);
+      const feePerOrder = listingRenewFee + transactionFee + paymentFee + offsiteFee;
+      const netPerOrder = netSalePrice - feePerOrder;
+      const unitMarginPct = netSalePrice > 0 ? (netPerOrder / netSalePrice) * 100 : 0;
+
+      const monthlyGross = netSalePrice * v.monthlySales;
+      const monthlyFees = feePerOrder * v.monthlySales;
+      const monthlyNet = monthlyGross - monthlyFees - v.monthlyAdsSpend;
+      const salesFor2k = netPerOrder > 0 ? Math.ceil((2000 + v.monthlyAdsSpend) / netPerOrder) : 0;
+
+      return {
+        primaryLabel: 'Monthly Net Digital Product Income',
+        primaryValue: fmtUsd(monthlyNet) + '/mo',
+        primaryTone: monthlyNet >= 0 ? 'positive' : 'negative',
+        kpis: [
+          { label: 'Net Profit / Download', value: fmtUsd(netPerOrder) + ' (' + unitMarginPct.toFixed(1) + '%)' },
+          { label: 'Etsy Fee / Sale', value: fmtUsd(feePerOrder) + ' (' + pct(feePerOrder, netSalePrice) + ')' },
+          { label: 'Sales Needed For $2k/mo', value: salesFor2k + ' sales/mo' }
+        ],
+        rows: [
+          ['Net Checkout Price After ' + v.discountPct + '% Sale', fmtUsd(netSalePrice), 'Per Download'],
+          ['Etsy Fixed Fees ($0.20 Auto-Renew + $0.25 Payment)', '-' + fmtUsd(0.45), pct(0.45, netSalePrice)],
+          ['Etsy Percentage Fees (6.5% + 3% + Offsite)', '-' + fmtUsd(transactionFee + netSalePrice * 0.03 + offsiteFee), pct(transactionFee + netSalePrice * 0.03 + offsiteFee, netSalePrice)],
+          ['Net Profit Per Single Digital Download', fmtUsd(netPerOrder), unitMarginPct.toFixed(1) + '%'],
+          ['Projected Monthly Gross (' + v.monthlySales + ' sales)', fmtUsd(monthlyGross), '100.0%'],
+          ['Projected Monthly Net After Etsy Fees & Ads', fmtUsd(monthlyNet), pct(monthlyNet, monthlyGross)]
+        ],
+        dynamicAdvice: netSalePrice < 5
+          ? 'Fee-drag warning: At ' + fmtUsd(netSalePrice) + ', Etsy’s fixed $0.45 alone eats ' + pct(0.45, netSalePrice) + '! Bundle 5–10 templates into a $15–$24 Mega Pack to keep 86%+ net margin.'
+          : 'High-margin digital unit economics (' + unitMarginPct.toFixed(1) + '% kept per order)! You need ' + salesFor2k + ' downloads/month at this price to hit $2,000/month net.'
+      };
+    `,
+    faqs: [
+      {
+        q: 'Why do cheap $2–$3 Etsy digital downloads have terrible fee percentages?',
+        a: 'Because Etsy charges $0.20 auto-renewal + $0.25 fixed payment processing ($0.45 flat) on top of 9.5% — meaning a $2.50 printable loses 27.5% to Etsy fees before ads! Bundling templates at $12–$24 slashes the effective fee rate down to ~11.5%.'
+      },
+      {
+        q: 'Do digital product sellers still pay the $0.20 Etsy listing fee on every sale?',
+        a: 'Yes. Even though digital files have unlimited inventory, Etsy charges a $0.20 automatic renewal fee every single time a buyer purchases a copy.'
+      }
+    ]
+  },
+
+  {
+    slug: 'poshmark-fee-calculator',
+    category: 'marketplaces',
+    shortName: 'Poshmark Fees',
+    badge: '2026 Poshmark US',
+    title: '2026 Poshmark US Fee & Reseller Profit Calculator ($2.95 / 20%)',
+    metaDescription:
+      'Calculate exact 2026 Poshmark US seller fees ($2.95 flat under $15, 20% over $15), shipping discounts on Offer to Likers, sourcing COGS, and reseller ROI.',
+    h1: '2026 Poshmark US Fee & Reseller Profit Calculator',
+    intro:
+      'Instantly see your exact Poshmark payout after the $2.95 flat fee (under $15) or 20% commission ($15+), Offer-to-Likers shipping discounts, and thrift/liquidation sourcing cost.',
+    primaryAffiliate: 'shopify',
+    secondaryAffiliate: 'linkMyBooks',
+    recommendedProduct: 'flagshipOs',
+    inputs: [
+      { id: 'salePrice', label: 'Poshmark Sold Price ($)', type: 'number', value: 42.0, step: 1, min: 3 },
+      { id: 'itemCogs', label: 'Sourcing / Thrift / Wholesale Cost ($)', type: 'number', value: 11.0, step: 0.5, min: 0 },
+      {
+        id: 'shippingDiscount',
+        label: 'Seller Shipping Discount Offered (OTL / Closet Clear Out)',
+        type: 'select',
+        value: '0',
+        options: [
+          { value: '0', label: '$0.00 — Buyer Pays Full Poshmark Shipping' },
+          { value: '2.02', label: '$2.02 — Discounted $5.95 Shipping Offer' },
+          { value: '3.02', label: '$3.02 — Discounted $4.95 Shipping Offer' },
+          { value: '7.97', label: '$7.97 — Free Shipping Paid By Seller' }
+        ]
+      },
+      { id: 'suppliesCost', label: 'Poly Mailer / Tape / Thank-You Card ($)', type: 'number', value: 0.5, step: 0.1, min: 0 }
+    ],
+    computeFnBody: `
+      const poshFee = v.salePrice < 15 ? 2.95 : v.salePrice * 0.20;
+      const payout = v.salePrice - poshFee - v.shippingDiscount;
+      const netProfit = payout - v.itemCogs - v.suppliesCost;
+      const marginPct = v.salePrice > 0 ? (netProfit / v.salePrice) * 100 : 0;
+      const roiPct = v.itemCogs > 0 ? (netProfit / v.itemCogs) * 100 : 0;
+      const effectiveTakePct = v.salePrice > 0 ? ((poshFee + v.shippingDiscount) / v.salePrice) * 100 : 0;
+
+      return {
+        primaryLabel: 'Net Poshmark Reseller Profit',
+        primaryValue: fmtUsd(netProfit),
+        primaryTone: netProfit >= 10 ? 'positive' : netProfit >= 0 ? 'neutral' : 'negative',
+        kpis: [
+          { label: 'Poshmark Payout', value: fmtUsd(payout) },
+          { label: 'Profit Margin', value: marginPct.toFixed(1) + '%' },
+          { label: 'Sourcing ROI', value: roiPct.toFixed(0) + '%' }
+        ],
+        rows: [
+          ['Poshmark Sold Price', fmtUsd(v.salePrice), '100.0%'],
+          ['Poshmark Commission (' + (v.salePrice < 15 ? 'Flat $2.95' : '20.0%') + ')', '-' + fmtUsd(poshFee), pct(poshFee, v.salePrice)],
+          ['Seller-Paid Shipping Discount', '-' + fmtUsd(v.shippingDiscount), pct(v.shippingDiscount, v.salePrice)],
+          ['Poshmark Net Payout to Balance', fmtUsd(payout), pct(payout, v.salePrice)],
+          ['Sourcing COGS + Packing Supplies', '-' + fmtUsd(v.itemCogs + v.suppliesCost), pct(v.itemCogs + v.suppliesCost, v.salePrice)],
+          ['True Take-Home Reseller Profit', fmtUsd(netProfit), marginPct.toFixed(1) + '%']
+        ],
+        dynamicAdvice: effectiveTakePct >= 25
+          ? 'Heads up: Poshmark’s 20% fee + shipping discount took ' + effectiveTakePct.toFixed(1) + '%! Cross-listing higher-ticket items on eBay (13.6%) or your own Shopify boutique (2.9%) saves $4–$15 per sale.'
+          : 'Clean flip (' + roiPct.toFixed(0) + '% ROI on your ' + fmtUsd(v.itemCogs) + ' sourcing cost)! Log every thrift receipt in your Schedule-C tracker so you never pay tax on COGS.'
+      };
+    `,
+    faqs: [
+      {
+        q: 'What are Poshmark US seller fees in 2026?',
+        a: 'Poshmark charges a flat $2.95 commission on all sales under $15 USD, and a flat 20% commission on all sales of $15 or more. Standard payment processing is included in that 20% fee.'
+      },
+      {
+        q: 'How do Offer to Likers (OTL) shipping discounts affect my Poshmark payout?',
+        a: 'Whenever you send a private Offer to Likers with discounted shipping, Poshmark deducts the shipping subsidy ($2.02–$7.97) directly from your seller earnings on top of the 20% commission.'
+      }
+    ]
+  },
+
+  {
+    slug: 'mercari-fee-calculator',
+    category: 'marketplaces',
+    shortName: 'Mercari Fees',
+    badge: '2026 Mercari US',
+    title: '2026 Mercari US Seller Fee & Net Profit Calculator (10% Flat Fee)',
+    metaDescription:
+      'Calculate exact 2026 Mercari US seller fees (10% flat selling fee on item + buyer shipping), prepaid shipping labels, sourcing COGS, and net reseller profit.',
+    h1: '2026 Mercari US Seller Fee & Net Profit Calculator',
+    intro:
+      'Compare your true take-home profit on Mercari’s simplified 10% flat seller fee structure against Poshmark (20%) and eBay (13.6%) before listing.',
+    primaryAffiliate: 'linkMyBooks',
+    secondaryAffiliate: 'shopify',
+    recommendedProduct: 'flagshipOs',
+    inputs: [
+      { id: 'salePrice', label: 'Mercari Listing Sale Price ($)', type: 'number', value: 38.0, step: 1, min: 1 },
+      { id: 'buyerShipping', label: 'Buyer-Paid Shipping ($ — 0 if Free Ship)', type: 'number', value: 5.99, step: 0.5, min: 0 },
+      { id: 'sellerShippingCost', label: 'Seller-Paid Shipping Cost ($ — if Free Ship)', type: 'number', value: 0, step: 0.5, min: 0 },
+      { id: 'itemCogs', label: 'Item Sourcing Cost / COGS ($)', type: 'number', value: 10.0, step: 0.5, min: 0 },
+      { id: 'packagingCost', label: 'Mailer / Bubble Wrap / Label ($)', type: 'number', value: 0.65, step: 0.1, min: 0 }
+    ],
+    computeFnBody: `
+      const feeBasis = v.salePrice + v.buyerShipping;
+      const mercariFee = feeBasis * 0.10;
+      const payout = v.salePrice - mercariFee - v.sellerShippingCost;
+      const netProfit = payout - v.itemCogs - v.packagingCost;
+      const marginPct = v.salePrice > 0 ? (netProfit / v.salePrice) * 100 : 0;
+      const poshmarkSavings = (v.salePrice < 15 ? 2.95 : v.salePrice * 0.20) - mercariFee;
+
+      return {
+        primaryLabel: 'Net Mercari Seller Profit',
+        primaryValue: fmtUsd(netProfit),
+        primaryTone: netProfit >= 8 ? 'positive' : netProfit >= 0 ? 'neutral' : 'negative',
+        kpis: [
+          { label: 'Mercari 10% Fee', value: fmtUsd(mercariFee) },
+          { label: 'Net Margin', value: marginPct.toFixed(1) + '%' },
+          { label: 'Savings vs Poshmark', value: (poshmarkSavings >= 0 ? '+' : '-') + fmtUsd(Math.abs(poshmarkSavings)) }
+        ],
+        rows: [
+          ['Mercari Item Sale Price', fmtUsd(v.salePrice), '100.0%'],
+          ['Mercari 10% Seller Fee (on Item + Buyer Ship)', '-' + fmtUsd(mercariFee), pct(mercariFee, v.salePrice)],
+          ['Seller-Paid Shipping (if offering Free Ship)', '-' + fmtUsd(v.sellerShippingCost), pct(v.sellerShippingCost, v.salePrice)],
+          ['Mercari Net Payout', fmtUsd(payout), pct(payout, v.salePrice)],
+          ['Sourcing COGS + Packaging Supplies', '-' + fmtUsd(v.itemCogs + v.packagingCost), pct(v.itemCogs + v.packagingCost, v.salePrice)],
+          ['True Take-Home Reseller Profit', fmtUsd(netProfit), marginPct.toFixed(1) + '%']
+        ],
+        dynamicAdvice: poshmarkSavings > 0
+          ? 'Selling this item on Mercari instead of Poshmark saves you ' + fmtUsd(poshmarkSavings) + ' in marketplace commission on this single flip!'
+          : 'Always verify whether offering Free Shipping pushes Mercari’s fee base lower than buyer-paid shipping labels.'
+      };
+    `,
+    faqs: [
+      {
+        q: 'What is Mercari’s US seller fee in 2026?',
+        a: 'Mercari US charges a simplified 10% flat selling fee calculated on the item price plus buyer-paid shipping (with $0 direct-deposit ACH payout fees for standard bank transfers).'
+      },
+      {
+        q: 'Is Mercari cheaper than Poshmark and eBay for resellers?',
+        a: 'Yes! On a $40 item, Mercari’s 10% fee (~$4.00–$4.60) saves roughly $3.40+ compared to Poshmark’s 20% ($8.00) and ~$1.80+ compared to eBay’s 13.6% + $0.40.'
+      }
+    ]
+  },
+
+  {
+    slug: 'whatnot-fee-calculator',
+    category: 'marketplaces',
+    shortName: 'Whatnot Fees',
+    badge: '2026 Live Selling',
+    title: '2026 Whatnot Seller Fee & Live Auction Profit Calculator',
+    metaDescription:
+      'Calculate exact 2026 Whatnot US live-selling fees (8% commission + 2.9% + $0.30 processing on item, shipping & sales tax), giveaway costs, and net auction profit.',
+    h1: '2026 Whatnot Seller Fee & Live Auction Profit Calculator',
+    intro:
+      'Live auctions move fast—know your exact Whatnot break-even start bid before running $1 starts! Includes 8% commission, 2.9% + $0.30 processing on total order + tax, and amortized giveaway costs.',
+    primaryAffiliate: 'linkMyBooks',
+    secondaryAffiliate: 'shopify',
+    recommendedProduct: 'flagshipOs',
+    inputs: [
+      { id: 'winningBid', label: 'Winning Auction / Buy-It-Now Price ($)', type: 'number', value: 25.0, step: 1, min: 1 },
+      {
+        id: 'commissionRate',
+        label: 'Whatnot Category Commission Rate',
+        type: 'select',
+        value: '0.08',
+        options: [
+          { value: '0.08', label: '8.0% Standard (Apparel, Cards, Sneakers, Vintage, Toys)' },
+          { value: '0.04', label: '4.0% Coins & Money Category' },
+          { value: '0.05', label: '5.0% Electronics Category' }
+        ]
+      },
+      { id: 'buyerShipping', label: 'Buyer-Paid Shipping ($ — affects 2.9% fee)', type: 'number', value: 4.5, step: 0.25, min: 0 },
+      { id: 'salesTaxPct', label: 'Est. Buyer Sales Tax (% — affects 2.9% fee)', type: 'number', value: 7.0, step: 0.5, min: 0 },
+      { id: 'itemCogs', label: 'Item Cost / COGS ($)', type: 'number', value: 9.0, step: 0.5, min: 0 },
+      { id: 'giveawayAmortized', label: 'Amortized Giveaway & Packing Cost / Order ($)', type: 'number', value: 0.85, step: 0.1, min: 0 }
+    ],
+    computeFnBody: `
+      const commissionFee = v.winningBid * v.commissionRate;
+      const buyerTax = (v.winningBid + v.buyerShipping) * (v.salesTaxPct / 100);
+      const processingBasis = v.winningBid + v.buyerShipping + buyerTax;
+      const processingFee = processingBasis * 0.029 + 0.30;
+      const totalWhatnotFees = commissionFee + processingFee;
+      const netProfit = v.winningBid - totalWhatnotFees - v.itemCogs - v.giveawayAmortized;
+      const marginPct = v.winningBid > 0 ? (netProfit / v.winningBid) * 100 : 0;
+      const minStartBid = (v.itemCogs + v.giveawayAmortized + 0.30 + v.buyerShipping * 0.029 * (1 + v.salesTaxPct / 100)) / Math.max(0.1, 1 - v.commissionRate - 0.029 * (1 + v.salesTaxPct / 100));
+
+      return {
+        primaryLabel: 'Net Profit Per Whatnot Auction Sale',
+        primaryValue: fmtUsd(netProfit),
+        primaryTone: netProfit >= 5 ? 'positive' : netProfit >= 0 ? 'neutral' : 'negative',
+        kpis: [
+          { label: 'Total Whatnot Fees', value: fmtUsd(totalWhatnotFees) + ' (' + pct(totalWhatnotFees, v.winningBid) + ')' },
+          { label: 'Net Margin', value: marginPct.toFixed(1) + '%' },
+          { label: 'Break-Even Start Bid', value: fmtUsd(minStartBid) }
+        ],
+        rows: [
+          ['Winning Auction Hammer Price', fmtUsd(v.winningBid), '100.0%'],
+          ['Whatnot Commission (' + (v.commissionRate * 100).toFixed(0) + '%)', '-' + fmtUsd(commissionFee), pct(commissionFee, v.winningBid)],
+          ['Payment Processing (2.9% + $0.30 incl. Ship & Tax)', '-' + fmtUsd(processingFee), pct(processingFee, v.winningBid)],
+          ['Item COGS + Giveaway/Packing Allocation', '-' + fmtUsd(v.itemCogs + v.giveawayAmortized), pct(v.itemCogs + v.giveawayAmortized, v.winningBid)],
+          ['True Net Take-Home Profit', fmtUsd(netProfit), marginPct.toFixed(1) + '%']
+        ],
+        dynamicAdvice: netProfit < 3
+          ? 'Low-margin alert! Never start this item below ' + fmtUsd(minStartBid) + ' unless you have 40+ active bidders in your live room.'
+          : 'Profitable live-show lot (' + marginPct.toFixed(1) + '% net)! Your exact break-even start bid is ' + fmtUsd(minStartBid) + '.'
+      };
+    `,
+    faqs: [
+      {
+        q: 'How are Whatnot US seller fees calculated in 2026?',
+        a: 'Whatnot charges an 8% commission on the item sale price (4% for Coins & Money, 5% for Electronics) PLUS a 2.9% + $0.30 payment processing fee calculated on the buyer’s entire checkout total (item + shipping + sales tax).'
+      },
+      {
+        q: 'Should Whatnot sellers include giveaway shipping inside per-order math?',
+        a: 'Yes! Because sellers pay the shipping label on every viewer giveaway (~$4.50 each), dividing total show giveaway costs by expected paid orders prevents surprise margin wipeouts.'
+      }
+    ]
+  },
+
+  {
+    slug: 'bundle-discount-profit-calculator',
+    category: 'shopify-dtc',
+    shortName: 'Bundle & BOGO Calc',
+    badge: 'AOV & Margin Optimizer',
+    title: '2026 Bundle, Buy-2-Save-15% & BOGO Profit Margin Calculator',
+    metaDescription:
+      'Test whether a Buy 2 Save 15%, Buy 3 Save 20%, or BOGO 50% off bundle actually increases your net dollar profit per order by amortizing fixed shipping and ad CPA.',
+    h1: 'Bundle Discount & BOGO Net Profit Optimizer',
+    intro:
+      'Discounting scares sellers—until you see how spreading one shipping label and one ad click across 2–3 units dramatically increases net profit dollars per customer.',
+    primaryAffiliate: 'shopify',
+    secondaryAffiliate: 'printify',
+    recommendedProduct: 'flagshipOs',
+    inputs: [
+      { id: 'singlePrice', label: 'Single Unit Retail Price ($)', type: 'number', value: 32.0, step: 1, min: 1 },
+      { id: 'unitCogs', label: 'Single Unit Landed COGS ($)', type: 'number', value: 8.5, step: 0.25, min: 0 },
+      { id: 'unitsInBundle', label: 'Units in Bundle (e.g. 2 or 3)', type: 'number', value: 2, step: 1, min: 2 },
+      { id: 'bundleDiscountPct', label: 'Bundle Discount Offered (% — e.g. 15% or 25% for BOGO 50%)', type: 'number', value: 15, step: 1, min: 0 },
+      { id: 'singleShipCost', label: '1-Unit Postage + Box Cost ($)', type: 'number', value: 5.25, step: 0.25, min: 0 },
+      { id: 'bundleShipCost', label: 'Bundle Postage + Box Cost ($)', type: 'number', value: 6.25, step: 0.25, min: 0 },
+      { id: 'orderAdCpa', label: 'Paid Ad Cost Per Checkout / CPA ($)', type: 'number', value: 10.0, step: 0.5, min: 0 }
+    ],
+    computeFnBody: `
+      const feeRate = 0.029;
+      const singleFee = v.singlePrice * feeRate + 0.30;
+      const singleProfit = v.singlePrice - v.unitCogs - v.singleShipCost - singleFee - v.orderAdCpa;
+
+      const bundleFullPrice = v.singlePrice * v.unitsInBundle;
+      const bundleSalePrice = bundleFullPrice * (1 - Math.min(80, Math.max(0, v.bundleDiscountPct)) / 100);
+      const bundleFee = bundleSalePrice * feeRate + 0.30;
+      const bundleCogs = v.unitCogs * v.unitsInBundle;
+      const bundleProfit = bundleSalePrice - bundleCogs - v.bundleShipCost - bundleFee - v.orderAdCpa;
+
+      const profitLift = bundleProfit - singleProfit;
+      const bundleMarginPct = bundleSalePrice > 0 ? (bundleProfit / bundleSalePrice) * 100 : 0;
+
+      return {
+        primaryLabel: profitLift >= 0 ? 'Extra Net Profit Dollars Per Bundled Order' : 'Profit Lost vs. Single-Unit Order',
+        primaryValue: (profitLift >= 0 ? '+' : '-') + fmtUsd(Math.abs(profitLift)) + '/order',
+        primaryTone: profitLift >= 0 ? 'positive' : 'negative',
+        kpis: [
+          { label: '1-Unit Net Profit', value: fmtUsd(singleProfit) },
+          { label: v.unitsInBundle + '-Pack Bundle Profit', value: fmtUsd(bundleProfit) },
+          { label: 'Bundle Net Margin', value: bundleMarginPct.toFixed(1) + '%' }
+        ],
+        rows: [
+          ['Single-Unit Order Net Profit (after CPA & Ship)', fmtUsd(singleProfit), pct(singleProfit, v.singlePrice)],
+          ['Bundle Customer Price (' + v.unitsInBundle + ' units @ -' + v.bundleDiscountPct + '%)', fmtUsd(bundleSalePrice), '100.0%'],
+          ['Bundle Total COGS (' + v.unitsInBundle + ' × ' + fmtUsd(v.unitCogs) + ')', '-' + fmtUsd(bundleCogs), pct(bundleCogs, bundleSalePrice)],
+          ['Bundle Shipping + Card Fee + Same Ad CPA', '-' + fmtUsd(v.bundleShipCost + bundleFee + v.orderAdCpa), pct(v.bundleShipCost + bundleFee + v.orderAdCpa, bundleSalePrice)],
+          ['Bundle Net Profit Per Order', fmtUsd(bundleProfit), bundleMarginPct.toFixed(1) + '%'],
+          ['Net Profit Dollar Gain vs. Selling 1 Unit', (profitLift >= 0 ? '+' : '-') + fmtUsd(Math.abs(profitLift)), 'Per Customer']
+        ],
+        dynamicAdvice: profitLift > 0
+          ? 'Smart bundle! Even with ' + v.bundleDiscountPct + '% off, amortizing shipping & ad CPA across ' + v.unitsInBundle + ' units adds ' + fmtUsd(profitLift) + ' pure profit to every order!'
+          : 'Over-discounted! Lowering the bundle discount by 5%–10% keeps customer value high without shrinking your per-order dollar profit.'
+      };
+    `,
+    faqs: [
+      {
+        q: 'Why can a 15% bundle discount make MORE profit than selling at full price?',
+        a: 'Because you only pay your customer acquisition cost (CPA) and base shipping label ONCE per checkout. Selling 2 units at 15% off often doubles or triples net dollar profit per customer.'
+      },
+      {
+        q: 'What discount percentage equals a BOGO 50% Off offer?',
+        a: 'Buy One Get One 50% Off on 2 identical items equals a 25% blended discount across both units—enter 2 units and 25% discount above to verify your exact BOGO profit.'
       }
     ]
   }

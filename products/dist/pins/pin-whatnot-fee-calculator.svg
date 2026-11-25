@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1500" viewBox="0 0 1000 1500">
+  <rect width="1000" height="1500" fill="#0f172a"/>
+  <circle cx="880" cy="180" r="320" fill="#0d9488" opacity="0.28"/>
+  <circle cx="120" cy="1360" r="260" fill="#f59e0b" opacity="0.16"/>
+  <rect x="80" y="100" width="520" height="62" rx="31" fill="#0d9488"/>
+  <text x="115" y="141" font-family="system-ui, sans-serif" font-size="24" font-weight="800" fill="#ffffff">2026 WHATNOT LIVE FEES</text>
+  <text x="80" y="300" font-family="system-ui, sans-serif" font-size="70" font-weight="800" fill="#ffffff">Know Your Exact</text>
+  <text x="80" y="395" font-family="system-ui, sans-serif" font-size="70" font-weight="800" fill="#5eead4">Whatnot Break-Even</text>
+  <text x="80" y="490" font-family="system-ui, sans-serif" font-size="70" font-weight="800" fill="#ffffff">Before $1 Starts!</text>
+  <rect x="80" y="575" width="840" height="470" rx="28" fill="#1e293b" stroke="#334155" stroke-width="3"/>
+  <text x="125" y="685" font-family="system-ui, sans-serif" font-size="34" font-weight="600" fill="#f8fafc">• 8% Commission + 2.9% + $0.30 Fee</text>
+  <text x="125" y="810" font-family="system-ui, sans-serif" font-size="34" font-weight="600" fill="#f8fafc">• Includes Shipping &amp; Sales Tax Base</text>
+  <text x="125" y="935" font-family="system-ui, sans-serif" font-size="34" font-weight="600" fill="#f8fafc">• Factors In Amortized Giveaways</text>
+  <rect x="80" y="1140" width="840" height="115" rx="22" fill="#f59e0b"/>
+  <text x="500" y="1210" text-anchor="middle" font-family="system-ui, sans-serif" font-size="35" font-weight="800" fill="#0f172a">Calculate Safe Whatnot Start Bid →</text>
+  <text x="500" y="1385" text-anchor="middle" font-family="system-ui, sans-serif" font-size="30" font-weight="700" fill="#94a3b8">ShopMarginLab • 100% Free Interactive Tool</text>
+</svg>

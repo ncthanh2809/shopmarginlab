@@ -1,4 +1,9 @@
 
+// Detect ?embed=1 mode for clean iframe embeds with attribution backlink
+if (new URLSearchParams(window.location.search).get('embed') === '1') {
+  document.documentElement.classList.add('embed-mode');
+}
+
 // Light-dismiss Safari fallback per light-dismiss-a-dialog guide
 if (!('closedBy' in HTMLDialogElement.prototype)) {
   document.querySelectorAll('dialog[closedby="any"]').forEach((dialog) => {
