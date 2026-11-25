@@ -1,6 +1,6 @@
 /**
- * 18 High-Intent 2026 E-Commerce & Reseller SEO Calculators
- * Verified against 2026 US Marketplace Fee Schedules (Etsy, Shopify, TikTok Shop US, Amazon FBA, eBay, Poshmark, Mercari, Whatnot, POD, ROAS, Markup, Bundles, Schedule-C Tax).
+ * 20 High-Intent 2026 E-Commerce & Reseller SEO Calculators
+ * Verified against 2026 US Marketplace Fee Schedules (Etsy, Shopify, TikTok Shop US, Amazon FBA, eBay, Poshmark, Mercari, Depop, Whatnot, POD, ROAS, Markup, Bundles, Schedule-C Tax).
  */
 
 export const CALCULATORS = [
@@ -1371,6 +1371,154 @@ export const CALCULATORS = [
       {
         q: 'What discount percentage equals a BOGO 50% Off offer?',
         a: 'Buy One Get One 50% Off on 2 identical items equals a 25% blended discount across both units—enter 2 units and 25% discount above to verify your exact BOGO profit.'
+      }
+    ]
+  },
+
+  {
+    slug: 'depop-fee-calculator',
+    category: 'marketplaces',
+    shortName: 'Depop Fees',
+    badge: '2026 Zero-Commission US',
+    title: '2026 Depop US Seller Fee, Boosted Listing & Profit Calculator',
+    metaDescription:
+      'Calculate exact 2026 Depop US seller fees (0% selling fee, 3.3% + $0.45 Depop Payments on item + shipping + tax, and optional 12% Boosted Listings fee) vs. Poshmark.',
+    h1: '2026 Depop Seller Fee & Net Profit Calculator',
+    intro:
+      'Depop US removed its 10% selling commission—see what you actually keep after 3.3% + $0.45 Depop Payments processing (including buyer sales tax) and optional 12% Boosted Listings.',
+    primaryAffiliate: 'shopify',
+    secondaryAffiliate: 'linkMyBooks',
+    recommendedProduct: 'flagshipOs',
+    inputs: [
+      { id: 'salePrice', label: 'Item Sale Price ($ USD)', type: 'number', value: 38.0, step: 1, min: 1 },
+      { id: 'buyerShipping', label: 'Shipping Paid by Buyer ($ — affects 3.3% fee)', type: 'number', value: 5.99, step: 0.25, min: 0 },
+      { id: 'salesTaxPct', label: 'Est. Buyer Sales Tax (% — affects 3.3% fee)', type: 'number', value: 7.0, step: 0.5, min: 0 },
+      {
+        id: 'boosted',
+        label: 'Depop Boosted Listing Fee?',
+        type: 'select',
+        value: '0',
+        options: [
+          { value: '0', label: 'Organic Depop Sale — 0% Boosted Fee' },
+          { value: '0.12', label: 'Boosted Listing Sale — 12% Fee (on Item + Ship)' }
+        ]
+      },
+      { id: 'sellerShipping', label: 'Seller-Paid Shipping Cost (if Free Shipping, $)', type: 'number', value: 0, step: 0.25, min: 0 },
+      { id: 'itemCogs', label: 'Sourcing Cost / COGS + Poly Mailer ($)', type: 'number', value: 11.0, step: 0.5, min: 0 }
+    ],
+    computeFnBody: `
+      const buyerTax = (v.salePrice + v.buyerShipping) * (v.salesTaxPct / 100);
+      const processingBasis = v.salePrice + v.buyerShipping + buyerTax;
+      const processingFee = processingBasis * 0.033 + 0.45;
+      const boostedFee = (v.salePrice + v.buyerShipping) * v.boosted;
+      const totalDepopFees = processingFee + boostedFee;
+      const netProfit = v.salePrice - totalDepopFees - v.sellerShipping - v.itemCogs;
+      const marginPct = v.salePrice > 0 ? (netProfit / v.salePrice) * 100 : 0;
+      const poshmarkFee = v.salePrice < 15 ? 2.95 : v.salePrice * 0.20;
+      const savingsVsPoshmark = poshmarkFee - totalDepopFees;
+
+      return {
+        primaryLabel: 'Net Profit Per Depop US Sale',
+        primaryValue: fmtUsd(netProfit),
+        primaryTone: netProfit >= 8 ? 'positive' : netProfit >= 0 ? 'neutral' : 'negative',
+        kpis: [
+          { label: 'Total Depop Fees', value: fmtUsd(totalDepopFees) + ' (' + pct(totalDepopFees, v.salePrice) + ')' },
+          { label: 'Net Margin', value: marginPct.toFixed(1) + '%' },
+          { label: 'Savings vs. Poshmark', value: (savingsVsPoshmark >= 0 ? '+' : '-') + fmtUsd(Math.abs(savingsVsPoshmark)) }
+        ],
+        rows: [
+          ['Depop Item Sale Price', fmtUsd(v.salePrice), '100.0%'],
+          ['Depop US Selling Commission', '$0.00', '0.0%'],
+          ['Depop Payments (3.3% + $0.45 incl. Ship & Tax)', '-' + fmtUsd(processingFee), pct(processingFee, v.salePrice)],
+          ['Boosted Listing Fee (' + (v.boosted * 100).toFixed(0) + '% on Item + Ship)', '-' + fmtUsd(boostedFee), pct(boostedFee, v.salePrice)],
+          ['Seller-Paid Shipping + Sourcing COGS', '-' + fmtUsd(v.sellerShipping + v.itemCogs), pct(v.sellerShipping + v.itemCogs, v.salePrice)],
+          ['True Take-Home Reseller Profit', fmtUsd(netProfit), marginPct.toFixed(1) + '%']
+        ],
+        dynamicAdvice: savingsVsPoshmark > 0
+          ? 'You keep ' + fmtUsd(savingsVsPoshmark) + ' MORE on Depop than Poshmark (20% fee) on this flip! Ready to build repeat buyers with 0% marketplace lock-in? Test Shopify Basic.'
+          : 'Watch the 12% Boosted Listing fee on low-margin items—turn boosting off on high-demand vintage brands to preserve margin.'
+      };
+    `,
+    faqs: [
+      {
+        q: 'What are Depop US seller fees in 2026?',
+        a: 'Depop US charges 0% marketplace selling commission on eligible US listings, plus a mandatory 3.3% + $0.45 Depop Payments processing fee applied to the buyer total (item + shipping + sales tax).'
+      },
+      {
+        q: 'How much does Depop Boosted Listings cost if my item sells via a boost?',
+        a: 'Depop charges a 12% Boosted Listing fee applied to the item sale price (excluding sales tax) and shipping cost when a buyer purchases through a boosted view.'
+      }
+    ]
+  },
+
+  {
+    slug: 'etsy-vs-tiktok-shop-calculator',
+    category: 'marketplaces',
+    shortName: 'Etsy vs TikTok Shop',
+    badge: '2026 Channel Showdown',
+    title: '2026 Etsy vs. TikTok Shop US Profit & Creator Commission Calculator',
+    metaDescription:
+      'Compare monthly take-home profit between Etsy US (9.5% + $0.45 + Offsite Ads) and TikTok Shop US (6% referral + creator affiliate %) at your exact AOV and order volume.',
+    h1: 'Etsy vs. TikTok Shop US Monthly Profit Calculator',
+    intro:
+      'Should you scale your catalog on Etsy US or TikTok Shop US? Plug in your order volume, price, and creator affiliate rate to see which channel actually nets more cash each month.',
+    primaryAffiliate: 'printify',
+    secondaryAffiliate: 'shopify',
+    recommendedProduct: 'flagshipOs',
+    inputs: [
+      { id: 'monthlyOrders', label: 'Monthly Orders', type: 'number', value: 60, step: 5, min: 1 },
+      { id: 'orderTotal', label: 'Buyer Checkout Total (Item + Ship, $)', type: 'number', value: 38.0, step: 1, min: 1 },
+      { id: 'unitCostAndShip', label: 'Product COGS + Actual Postage / Order ($)', type: 'number', value: 14.5, step: 0.5, min: 0 },
+      { id: 'etsyOffsiteSharePct', label: 'Etsy Orders From 15% Offsite Ads (%)', type: 'number', value: 15, step: 5, min: 0 },
+      { id: 'tiktokReferralPct', label: 'TikTok Shop Referral Fee (6% Standard / 3% Promo, %)', type: 'number', value: 6, step: 1, min: 0 },
+      { id: 'tiktokCreatorPct', label: 'TikTok Creator Affiliate Cut (% across all orders)', type: 'number', value: 12, step: 1, min: 0 }
+    ],
+    computeFnBody: `
+      const monthlyRev = v.monthlyOrders * v.orderTotal;
+      const totalCogsAndShip = v.monthlyOrders * v.unitCostAndShip;
+      const etsyBase = v.monthlyOrders * 0.45 + monthlyRev * 0.095;
+      const etsyOffsite = v.monthlyOrders * (Math.min(100, Math.max(0, v.etsyOffsiteSharePct)) / 100) * Math.min(100, v.orderTotal * 0.15);
+      const etsyFees = etsyBase + etsyOffsite;
+      const etsyNet = monthlyRev - totalCogsAndShip - etsyFees;
+
+      const tiktokRef = monthlyRev * (Math.min(25, Math.max(0, v.tiktokReferralPct)) / 100);
+      const tiktokCreator = monthlyRev * (Math.min(50, Math.max(0, v.tiktokCreatorPct)) / 100);
+      const tiktokFees = tiktokRef + tiktokCreator;
+      const tiktokNet = monthlyRev - totalCogsAndShip - tiktokFees;
+
+      const diff = tiktokNet - etsyNet;
+      const winner = diff >= 0 ? 'TikTok Shop US' : 'Etsy US';
+
+      return {
+        primaryLabel: winner + ' Monthly Profit Advantage',
+        primaryValue: (diff >= 0 ? '+' : '+') + fmtUsd(Math.abs(diff)) + '/mo',
+        primaryTone: 'positive',
+        kpis: [
+          { label: 'Etsy Monthly Net', value: fmtUsd(etsyNet) },
+          { label: 'TikTok Shop Net', value: fmtUsd(tiktokNet) },
+          { label: 'Annual Profit Gap', value: fmtUsd(Math.abs(diff) * 12) + '/yr' }
+        ],
+        rows: [
+          ['Monthly Gross Revenue (' + v.monthlyOrders + ' orders)', fmtUsd(monthlyRev), '100.0%'],
+          ['Product COGS + Shipping Cost', '-' + fmtUsd(totalCogsAndShip), pct(totalCogsAndShip, monthlyRev)],
+          ['Etsy US Total Fees (incl. Offsite Ads)', '-' + fmtUsd(etsyFees), pct(etsyFees, monthlyRev)],
+          ['Etsy Monthly Net Profit', fmtUsd(etsyNet), pct(etsyNet, monthlyRev)],
+          ['TikTok Shop US Fees (Referral + Creator Cut)', '-' + fmtUsd(tiktokFees), pct(tiktokFees, monthlyRev)],
+          ['TikTok Shop Monthly Net Profit', fmtUsd(tiktokNet), pct(tiktokNet, monthlyRev)]
+        ],
+        dynamicAdvice: diff >= 0
+          ? 'TikTok Shop US nets ' + fmtUsd(diff) + '/month MORE at this creator rate! Pair with Printify auto-fulfillment + a 0%-commission Shopify store for repeat buyers.'
+          : 'Etsy US nets ' + fmtUsd(Math.abs(diff)) + '/month MORE here because creator commissions exceed Etsy fees. Lower TikTok creator % or raise bundle AOV over $40.'
+      };
+    `,
+    faqs: [
+      {
+        q: 'Which has lower base fees in 2026: Etsy or TikTok Shop US?',
+        a: 'TikTok Shop US has a lower organic base fee (6% referral vs. Etsy’s ~9.5% + $0.45), but TikTok creator affiliate commissions (10%–20%) quickly exceed Etsy fees unless you bundle orders above $40.'
+      },
+      {
+        q: 'Can I fulfill both Etsy and TikTok Shop orders automatically?',
+        a: 'Yes! POD platforms like Printify integrate with Etsy, TikTok Shop US, and Shopify simultaneously, and Printify Premium lowers blank costs by up to 20% across all channels.'
       }
     ]
   }

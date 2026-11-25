@@ -51,7 +51,7 @@ const ROBOTS='User-agent: *\\nAllow: /\\nSitemap: '+BASE+'/sitemap.xml\\n';
 const LLMS=['# '+SITE_CONFIG.brandName,'> '+SITE_CONFIG.tagline,'','## Compare','- [7-Channel Showdown]('+BASE+'/compare/)','','## Calculators ('+CALCULATORS.length+')',...CALCULATORS.map(c=>'- ['+c.title+']('+BASE+'/'+c.slug+'/): '+c.metaDescription),'','## Guides ('+GUIDES.length+')',...GUIDES.map(g=>'- ['+g.title+']('+BASE+'/guides/'+g.slug+'/): '+g.metaDescription)].join('\\n');
 const FEED='<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>'+esc(SITE_CONFIG.brandName)+'</title><link>'+esc(BASE)+'/</link><description>'+esc(SITE_CONFIG.tagline)+'</description><item><title>7-Channel Fee Showdown (2026)</title><link>'+esc(BASE)+'/compare/</link><guid>'+esc(BASE)+'/compare/</guid><description>Compare 7 US channels live.</description></item>'+GUIDES.map(g=>'<item><title>'+esc(g.title)+'</title><link>'+esc(BASE)+'/guides/'+g.slug+'/</link><guid>'+esc(BASE)+'/guides/'+g.slug+'/</guid><description>'+esc(g.metaDescription)+'</description></item>').join('')+'</channel></rss>';
 const FAVICON='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#0d9488"/><path d="M16 42l10-12 9 7 13-17" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-const OGCARD='<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><rect width="1200" height="630" fill="#0f172a"/><circle cx="1040" cy="110" r="230" fill="#0d9488" opacity="0.35"/><text x="80" y="140" font-family="system-ui,sans-serif" font-size="36" font-weight="800" fill="#5eead4">ShopMarginLab</text><text x="80" y="260" font-family="system-ui,sans-serif" font-size="56" font-weight="800" fill="#ffffff">18 Free 2026 E-Commerce &amp;</text><text x="80" y="335" font-family="system-ui,sans-serif" font-size="56" font-weight="800" fill="#ffffff">Reseller Profit Calculators</text><text x="80" y="420" font-family="system-ui,sans-serif" font-size="25" fill="#cbd5e1">Etsy • Shopify • Amazon FBA • eBay • Poshmark • Mercari • Whatnot • TikTok Shop</text></svg>';
+const OGCARD='<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><rect width="1200" height="630" fill="#0f172a"/><circle cx="1040" cy="110" r="230" fill="#0d9488" opacity="0.35"/><text x="80" y="140" font-family="system-ui,sans-serif" font-size="36" font-weight="800" fill="#5eead4">ShopMarginLab</text><text x="80" y="260" font-family="system-ui,sans-serif" font-size="56" font-weight="800" fill="#ffffff">' + CALCULATORS.length + ' Free 2026 E-Commerce &amp;</text><text x="80" y="335" font-family="system-ui,sans-serif" font-size="56" font-weight="800" fill="#ffffff">Reseller Profit Calculators</text><text x="80" y="420" font-family="system-ui,sans-serif" font-size="25" fill="#cbd5e1">Etsy • Shopify • Amazon FBA • eBay • Poshmark • Mercari • Depop • Whatnot • TikTok</text></svg>';
 const ASSETS={
 '/styles.css':{ct:'text/css; charset=utf-8',body:CSS_CONTENT},
 '/shared.js':{ct:'application/javascript; charset=utf-8',body:SHARED_JS},
@@ -67,17 +67,18 @@ const ASSETS={
 '/llms.txt':{ct:'text/plain; charset=utf-8',body:LLMS},
 '/feed.xml':{ct:'application/rss+xml; charset=utf-8',body:FEED}
 };
+if(SITE_CONFIG.indexNowKey)ASSETS['/'+SITE_CONFIG.indexNowKey+'.txt']={ct:'text/plain; charset=utf-8',body:SITE_CONFIG.indexNowKey};
 for(const c of CALCULATORS)ASSETS['/'+c.slug+'/index.html']={ct:'text/html; charset=utf-8',body:buildCalculatorPage(c)};
 for(const g of GUIDES)ASSETS['/guides/'+g.slug+'/index.html']={ct:'text/html; charset=utf-8',body:buildGuidePage(g)};
 export default{async fetch(request){const u=new URL(request.url);let p=u.pathname;if(p.endsWith('/'))p+='index.html';else if(!p.includes('.'))return Response.redirect(u.origin+p+'/'+u.search,301);const h=ASSETS[p];if(!h)return new Response('404 Not Found',{status:404});const cc=p.endsWith('.html')?'public, max-age=300, must-revalidate':'public, max-age=86400';return new Response(h.body,{headers:{'Content-Type':h.ct,'Cache-Control':cc,'X-Content-Type-Options':'nosniff'}});}};
 `;
 
-const outFile = 'C:/Users/Admin/.gemini/antigravity/brain/ae4b040c-3405-4a40-b16a-0636ae5d6470/scratch/pages-worker-compact.mjs';
+const outFile = join(ROOT, '.tmp', 'pages-worker-compact.mjs');
 mkdirSync(dirname(outFile), { recursive: true });
 writeFileSync(outFile, workerCode, 'utf8');
 
-// Verify worker locally across all 39 routes before generating MCP deploy snippet
-const mod = await import('file:///' + outFile + '?t=' + Date.now());
+// Verify worker locally across all routes before deploying
+const mod = await import('file:///' + outFile.replace(/\\/g, '/') + '?t=' + Date.now());
 const testPaths = [
   '/',
   '/compare/',
@@ -88,6 +89,7 @@ const testPaths = [
   '/robots.txt',
   '/llms.txt',
   '/feed.xml',
+  ...(SITE_CONFIG.indexNowKey ? [`/${SITE_CONFIG.indexNowKey}.txt`] : []),
   '/styles.css',
   '/shared.js',
   '/favicon.svg',

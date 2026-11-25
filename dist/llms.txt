@@ -4,7 +4,7 @@
 ## Interactive Multi-Channel Comparison
 - [7-Channel Live Fee Showdown](https://shopmarginlab.pages.dev/compare/): Compare net profit across Shopify, TikTok Shop US, Etsy, Mercari, Whatnot, eBay, and Poshmark simultaneously.
 
-## Free 2026 Interactive Calculators (18)
+## Free 2026 Interactive Calculators (20)
 - [2026 Etsy Fee & Profit Margin Calculator (With Offsite Ads)](https://shopmarginlab.pages.dev/etsy-fee-calculator/): Calculate exact 2026 Etsy seller fees ($0.20 listing, 6.5% transaction, 3% + $0.25 Etsy Payments, and 12%–15% Offsite Ads), net profit, and break-even price.
 - [Shopify vs. Etsy Fee Comparison Calculator (2026 Break-Even Tool)](https://shopmarginlab.pages.dev/shopify-vs-etsy-calculator/): Compare monthly Etsy fees vs. Shopify Basic ($39/mo + 2.9% + $0.30) at your exact order volume and average order value to find your exact savings switch point.
 - [2026 TikTok Shop US Seller Fee & Creator Commission Calculator](https://shopmarginlab.pages.dev/tiktok-shop-fee-calculator/): Calculate true TikTok Shop US margins after the 6% referral fee (or 3% new seller promo), 10%–25% creator affiliate cuts, FBT shipping, and GMV Max ads.
@@ -23,6 +23,8 @@
 - [2026 Mercari US Seller Fee & Net Profit Calculator (10% Flat Fee)](https://shopmarginlab.pages.dev/mercari-fee-calculator/): Calculate exact 2026 Mercari US seller fees (10% flat selling fee on item + buyer shipping), prepaid shipping labels, sourcing COGS, and net reseller profit.
 - [2026 Whatnot Seller Fee & Live Auction Profit Calculator](https://shopmarginlab.pages.dev/whatnot-fee-calculator/): Calculate exact 2026 Whatnot US live-selling fees (8% commission + 2.9% + $0.30 processing on item, shipping & sales tax), giveaway costs, and net auction profit.
 - [2026 Bundle, Buy-2-Save-15% & BOGO Profit Margin Calculator](https://shopmarginlab.pages.dev/bundle-discount-profit-calculator/): Test whether a Buy 2 Save 15%, Buy 3 Save 20%, or BOGO 50% off bundle actually increases your net dollar profit per order by amortizing fixed shipping and ad CPA.
+- [2026 Depop US Seller Fee, Boosted Listing & Profit Calculator](https://shopmarginlab.pages.dev/depop-fee-calculator/): Calculate exact 2026 Depop US seller fees (0% selling fee, 3.3% + $0.45 Depop Payments on item + shipping + tax, and optional 12% Boosted Listings fee) vs. Poshmark.
+- [2026 Etsy vs. TikTok Shop US Profit & Creator Commission Calculator](https://shopmarginlab.pages.dev/etsy-vs-tiktok-shop-calculator/): Compare monthly take-home profit between Etsy US (9.5% + $0.45 + Offsite Ads) and TikTok Shop US (6% referral + creator affiliate %) at your exact AOV and order volume.
 
 ## 2026 Seller Fee & Tax Playbooks (8)
 - [2026 Etsy Seller Fees Explained: Exact Math, Shipping Traps & Offsite Ads](https://shopmarginlab.pages.dev/guides/etsy-fees-2026-complete-breakdown/): Complete 2026 breakdown of every Etsy US seller fee ($0.20 listing, 6.5% transaction on item + shipping, 3% + $0.25 payments, and 12%/15% Offsite Ads) with real order examples.

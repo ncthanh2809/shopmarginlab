@@ -10,6 +10,7 @@ export const SITE_CONFIG = {
   domain: process.env.PUBLIC_SITE_URL || 'https://shopmarginlab.pages.dev',
   supportEmail: 'digitalnomadstep@gmail.com',
   cloudflareAnalyticsToken: 'cad1da804f7b4d96a19ba0c6a11ac227',
+  indexNowKey: 'a4f8c92e1b7d4039e5a61c82d9b34f07',
 
   // =========================================================================
   // 1. AFFILIATE PARTNER LINKS

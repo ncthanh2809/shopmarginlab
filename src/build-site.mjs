@@ -542,6 +542,27 @@ dialog::backdrop {
   border-color: var(--brand);
 }
 
+.advice-card {
+  margin-bottom: 1rem;
+  background: #f0fdfa;
+  border-color: #99f6e4;
+  font-size: 0.92rem;
+  color: #115e59;
+}
+
+.advice-text {
+  font-weight: 600;
+}
+
+.action-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #99f6e4;
+}
+
 .embed-footer {
   display: none;
   margin-top: 1rem;
@@ -560,7 +581,8 @@ html.embed-mode .disclosure-bar,
 html.embed-mode .site-header,
 html.embed-mode .site-footer,
 html.embed-mode .monetize-grid,
-html.embed-mode .non-embed-section {
+html.embed-mode .non-embed-section,
+html.embed-mode .action-strip {
   display: none !important;
 }
 
@@ -575,6 +597,7 @@ html.embed-mode .embed-footer {
   .toolbar,
   .monetize-grid,
   .non-embed-section,
+  .action-strip,
   .toast,
   dialog {
     display: none !important;
@@ -701,7 +724,7 @@ function renderFooter() {
       </div>
     </div>
   </footer>
-  <script type="module" src="/shared.js?v=3"></script>${
+  <script type="module" src="/shared.js?v=4"></script>${
     SITE_CONFIG.cloudflareAnalyticsToken
       ? `\n  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"${esc(SITE_CONFIG.cloudflareAnalyticsToken)}"}'></script>`
       : ''
@@ -726,7 +749,7 @@ function buildHead({ title, description, canonicalPath, jsonLd = null }) {
   <meta property="og:url" content="${esc(fullUrl)}">
   <meta property="og:image" content="${esc(SITE_CONFIG.domain.replace(/\/$/, ''))}/og-card.svg">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="/styles.css?v=3">
+  <link rel="stylesheet" href="/styles.css?v=4">
   <script>if(location.search.indexOf('embed=1')!==-1)document.documentElement.classList.add('embed-mode');</script>
   ${jsonLd ? `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>` : ''}
 </head>`;
@@ -816,7 +839,14 @@ function buildCalculatorPage(calc) {
           <div class="kpi-row" id="resKpiRow"></div>
         </div>
 
-        <div id="resAdviceBanner" class="card" style="margin-bottom:1rem;background:#f0fdfa;border-color:#99f6e4;font-size:0.92rem;font-weight:600;color:#115e59"></div>
+        <div class="card advice-card">
+          <div id="resAdviceBanner" class="advice-text"></div>
+          <div class="action-strip">
+            <a href="${esc(aff.url)}" target="_blank" rel="sponsored noopener" class="btn btn-primary btn-sm">${esc(aff.ctaLabel)}</a>
+            <a href="${esc(freebie.checkoutUrl)}" target="_blank" rel="noopener" class="btn btn-secondary btn-sm">Free $0 Cheat Sheet →</a>
+            <a href="/compare/" class="btn btn-secondary btn-sm">Compare 7 Channels →</a>
+          </div>
+        </div>
 
         <div class="toolbar" style="margin-bottom:1rem">
           <button type="button" class="btn btn-secondary btn-sm" id="copySummaryBtn">📋 Copy Breakdown</button>
@@ -1683,10 +1713,15 @@ writeFileSync(
   <text x="80" y="140" font-family="system-ui, sans-serif" font-size="36" font-weight="800" fill="#5eead4">${esc(SITE_CONFIG.brandName)}</text>
   <text x="80" y="260" font-family="system-ui, sans-serif" font-size="56" font-weight="800" fill="#ffffff">${CALCULATORS.length} Free 2026 E-Commerce &amp;</text>
   <text x="80" y="335" font-family="system-ui, sans-serif" font-size="56" font-weight="800" fill="#ffffff">Reseller Profit Calculators</text>
-  <text x="80" y="420" font-family="system-ui, sans-serif" font-size="25" fill="#cbd5e1">Etsy • Shopify • Amazon FBA • eBay • Poshmark • Mercari • Whatnot • TikTok Shop</text>
+  <text x="80" y="420" font-family="system-ui, sans-serif" font-size="25" fill="#cbd5e1">Etsy • Shopify • Amazon FBA • eBay • Poshmark • Mercari • Depop • Whatnot • TikTok</text>
 </svg>`,
   'utf8'
 );
+
+// IndexNow Verification Key File (instant Bing / DuckDuckGo / Yandex / Seznam indexing)
+if (SITE_CONFIG.indexNowKey) {
+  writeFileSync(join(DIST_DIR, `${SITE_CONFIG.indexNowKey}.txt`), SITE_CONFIG.indexNowKey, 'utf8');
+}
 
 // Sitemap, Robots.txt, llms.txt (AI Search Discovery), and RSS feed.xml
 const base = SITE_CONFIG.domain.replace(/\/$/, '');

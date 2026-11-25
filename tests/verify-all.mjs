@@ -3,6 +3,7 @@ import { existsSync, readFileSync, statSync } from 'node:fs';
 import { inflateRawSync } from 'node:zlib';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { SITE_CONFIG } from '../src/site-config.mjs';
 import { CALCULATORS } from '../src/calculators-data.mjs';
 import { GUIDES } from '../src/guides-data.mjs';
 import { createPreviewServer } from '../scripts/preview-server.mjs';
@@ -12,9 +13,9 @@ const ROOT = join(__dirname, '..');
 const DIST = join(ROOT, 'dist');
 const PROD_DIST = join(ROOT, 'products', 'dist');
 
-console.log('🧪 Running ShopMarginLab v3 End-to-End Verification...');
+console.log('🧪 Running ShopMarginLab v3.2 End-to-End Verification...');
 
-assert.equal(CALCULATORS.length, 18, 'Expected 18 calculators');
+assert.equal(CALCULATORS.length, 20, 'Expected 20 calculators');
 assert.equal(GUIDES.length, 8, 'Expected 8 SEO guides');
 
 // 1. Verify all 18 SEO calculator pages + JSON-LD + CRO features + live formula math execution
@@ -35,6 +36,7 @@ for (const calc of CALCULATORS) {
   assert.ok(html.includes('exportCsvBtn'), `Missing CSV export button on ${calc.slug}`);
   assert.ok(html.includes('printPdfBtn'), `Missing Print/PDF button on ${calc.slug}`);
   assert.ok(html.includes('openEmbedBtn'), `Missing Embed Free button on ${calc.slug}`);
+  assert.ok(html.includes('class="action-strip"'), `Missing above-the-fold conversion strip on ${calc.slug}`);
   assert.ok(!/YOUR_[A-Z0-9_]+/.test(html), `Found unresolved YOUR_* placeholder on ${calc.slug}`);
   assert.ok(html.includes('https://payhip.com/b/MGRn9'), `Missing $0 Payhip lead magnet link on ${calc.slug}`);
   assert.ok(html.includes('cad1da804f7b4d96a19ba0c6a11ac227'), `Missing Cloudflare Web Analytics token on ${calc.slug}`);
@@ -81,7 +83,10 @@ assert.ok(!/YOUR_[A-Z0-9_]+/.test(homeHtml), 'Found placeholder on home page');
 
 const sitemap = readFileSync(join(DIST, 'sitemap.xml'), 'utf8');
 const urlCount = (sitemap.match(/<url>/g) || []).length;
-assert.equal(urlCount, 31, `Expected 31 URLs in sitemap.xml, got ${urlCount}`);
+assert.equal(urlCount, 33, `Expected 33 URLs in sitemap.xml, got ${urlCount}`);
+
+assert.ok(existsSync(join(DIST, `${SITE_CONFIG.indexNowKey}.txt`)), 'Missing IndexNow key txt file');
+assert.equal(readFileSync(join(DIST, `${SITE_CONFIG.indexNowKey}.txt`), 'utf8').trim(), SITE_CONFIG.indexNowKey);
 
 const llmsTxt = readFileSync(join(DIST, 'llms.txt'), 'utf8');
 assert.ok(llmsTxt.includes('ShopMarginLab') && llmsTxt.includes('/compare/') && llmsTxt.includes('poshmark-fee-calculator'), 'llms.txt incomplete');
@@ -148,11 +153,14 @@ try {
     '/poshmark-fee-calculator/',
     '/whatnot-fee-calculator/',
     '/etsy-digital-product-profit-calculator/',
+    '/depop-fee-calculator/',
+    '/etsy-vs-tiktok-shop-calculator/',
     '/guides/',
     '/guides/reseller-platform-fees-compared-2026/',
     '/templates/',
     '/llms.txt',
-    '/feed.xml'
+    '/feed.xml',
+    `/${SITE_CONFIG.indexNowKey}.txt`
   ]) {
     const r = await fetch(`http://127.0.0.1:${port}${path}`);
     assert.equal(r.status, 200, `Preview server failed on ${path}`);
@@ -161,4 +169,4 @@ try {
   await new Promise((r) => srv.close(r));
 }
 
-console.log('✅ All 5 v3 verification suites (18 Calculators + Math Unit Tests, /compare/, 8 Guides, 31-URL Sitemap + llms.txt + feed.xml, 3 .XLSX Workbooks, 22 SVG+PNG Pinterest Pins + CSV, Preview Server) passed!');
+console.log('✅ All 5 v3.2 verification suites (20 Calculators + Math Unit Tests, /compare/, 8 Guides, 33-URL Sitemap + IndexNow + llms.txt + feed.xml, 3 .XLSX Workbooks, 22 SVG+PNG Pinterest Pins + CSV, Preview Server) passed!');

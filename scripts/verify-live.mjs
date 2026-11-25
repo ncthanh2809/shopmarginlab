@@ -1,3 +1,4 @@
+import { SITE_CONFIG } from '../src/site-config.mjs';
 import { CALCULATORS } from '../src/calculators-data.mjs';
 import { GUIDES } from '../src/guides-data.mjs';
 
@@ -12,6 +13,7 @@ const routes = [
   '/robots.txt',
   '/llms.txt',
   '/feed.xml',
+  ...(SITE_CONFIG.indexNowKey ? [`/${SITE_CONFIG.indexNowKey}.txt`] : []),
   '/styles.css',
   '/shared.js',
   '/favicon.svg',
