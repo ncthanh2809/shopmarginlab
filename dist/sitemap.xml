@@ -2,6 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://shopmarginlab.pages.dev/</loc><priority>1.0</priority></url>
   <url><loc>https://shopmarginlab.pages.dev/templates/</loc><priority>0.85</priority></url>
+  <url><loc>https://shopmarginlab.pages.dev/guides/</loc><priority>0.85</priority></url>
   <url><loc>https://shopmarginlab.pages.dev/legal/</loc><priority>0.85</priority></url>
   <url><loc>https://shopmarginlab.pages.dev/etsy-fee-calculator/</loc><priority>0.85</priority></url>
   <url><loc>https://shopmarginlab.pages.dev/shopify-vs-etsy-calculator/</loc><priority>0.85</priority></url>
@@ -9,4 +10,14 @@
   <url><loc>https://shopmarginlab.pages.dev/print-on-demand-profit-calculator/</loc><priority>0.85</priority></url>
   <url><loc>https://shopmarginlab.pages.dev/roas-break-even-calculator/</loc><priority>0.85</priority></url>
   <url><loc>https://shopmarginlab.pages.dev/wholesale-retail-markup-calculator/</loc><priority>0.85</priority></url>
+  <url><loc>https://shopmarginlab.pages.dev/amazon-fba-fee-calculator/</loc><priority>0.85</priority></url>
+  <url><loc>https://shopmarginlab.pages.dev/ebay-fee-calculator/</loc><priority>0.85</priority></url>
+  <url><loc>https://shopmarginlab.pages.dev/shopify-fee-calculator/</loc><priority>0.85</priority></url>
+  <url><loc>https://shopmarginlab.pages.dev/etsy-offsite-ads-calculator/</loc><priority>0.85</priority></url>
+  <url><loc>https://shopmarginlab.pages.dev/printful-vs-printify-calculator/</loc><priority>0.85</priority></url>
+  <url><loc>https://shopmarginlab.pages.dev/ecommerce-tax-calculator/</loc><priority>0.85</priority></url>
+  <url><loc>https://shopmarginlab.pages.dev/guides/etsy-fees-2026-complete-breakdown/</loc><priority>0.85</priority></url>
+  <url><loc>https://shopmarginlab.pages.dev/guides/when-to-switch-etsy-to-shopify/</loc><priority>0.85</priority></url>
+  <url><loc>https://shopmarginlab.pages.dev/guides/tiktok-shop-us-fees-creator-margins-2026/</loc><priority>0.85</priority></url>
+  <url><loc>https://shopmarginlab.pages.dev/guides/ecommerce-schedule-c-tax-deductions-2026/</loc><priority>0.85</priority></url>
 </urlset>

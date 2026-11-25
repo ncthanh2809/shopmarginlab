@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>ShopMarginLab — Free 2026 E-Commerce Fee, ROAS &amp; Profit Calculators</title>
-  <meta name="description" content="Free 2026 seller fee, profit margin, POD, and Break-Even ROAS calculators for Etsy, Shopify, and TikTok Shop US sellers—plus instant Excel profit operating systems.">
+  <title>ShopMarginLab — Free 2026 E-Commerce Fee, ROAS, POD &amp; Tax Calculators</title>
+  <meta name="description" content="12 free 2026 seller fee, profit margin, Amazon FBA, eBay, POD, ROAS, and US Schedule-C tax calculators—plus instant Excel profit operating systems.">
   <link rel="canonical" href="https://shopmarginlab.pages.dev/">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="ShopMarginLab — Free 2026 E-Commerce Fee, ROAS &amp; Profit Calculators">
-  <meta property="og:description" content="Free 2026 seller fee, profit margin, POD, and Break-Even ROAS calculators for Etsy, Shopify, and TikTok Shop US sellers—plus instant Excel profit operating systems.">
+  <meta property="og:title" content="ShopMarginLab — Free 2026 E-Commerce Fee, ROAS, POD &amp; Tax Calculators">
+  <meta property="og:description" content="12 free 2026 seller fee, profit margin, Amazon FBA, eBay, POD, ROAS, and US Schedule-C tax calculators—plus instant Excel profit operating systems.">
   <meta property="og:url" content="https://shopmarginlab.pages.dev/">
   <meta property="og:image" content="https://shopmarginlab.pages.dev/og-card.svg">
   <meta name="twitter:card" content="summary_large_image">
@@ -27,10 +27,14 @@
         <span class="brand-icon" aria-hidden="true">SM</span>
         <span>ShopMarginLab</span>
       </a>
-      <nav aria-label="Calculator Navigation">
+      <nav aria-label="Primary Navigation">
         <ul class="nav-list">
-          <li><a href="/etsy-fee-calculator/">Etsy Fee Calculator</a></li><li><a href="/shopify-vs-etsy-calculator/">Shopify vs Etsy</a></li><li><a href="/tiktok-shop-fee-calculator/">TikTok Shop Fees</a></li><li><a href="/print-on-demand-profit-calculator/">POD Profit Calc</a></li>
-          <li><a href="/templates/"><strong>📊 Excel Profit Bundles</strong></a></li>
+          <li><a href="/etsy-fee-calculator/">Etsy Fees</a></li>
+          <li><a href="/shopify-vs-etsy-calculator/">Shopify vs Etsy</a></li>
+          <li><a href="/tiktok-shop-fee-calculator/">TikTok Shop</a></li>
+          <li><a href="/amazon-fba-fee-calculator/">Amazon FBA</a></li>
+          <li><a href="/guides/">2026 Guides</a></li>
+          <li><a href="/templates/"><strong>📊 Excel Bundles ($0–$24)</strong></a></li>
         </ul>
       </nav>
     </div>
@@ -38,12 +42,12 @@
   <main>
     <section style="padding-block:clamp(2.5rem,6vw,4.5rem);background:radial-gradient(circle at 85% 20%,#ccfbf1 0%,transparent 48%),var(--bg);border-bottom:1px solid var(--border)">
       <div class="container">
-        <span class="pill">Updated for 2026 US Marketplace Fee Schedules</span>
+        <span class="pill">Updated for 2026 US Marketplace Fee &amp; Tax Schedules</span>
         <h1 style="font-size:clamp(2rem,4.4vw,3.15rem);margin-top:0.65rem;max-inline-size:22ch">
           Know Your Real Net Profit Before You List or Scale Ads.
         </h1>
-        <p style="font-size:1.12rem;color:var(--text-muted);max-inline-size:60ch">
-          Instant, zero-signup calculators for Etsy, Shopify, Print-on-Demand, and TikTok Shop US sellers—paired with ready-to-use Excel profit &amp; tax workbooks.
+        <p style="font-size:1.12rem;color:var(--text-muted);max-inline-size:62ch">
+          12 instant, zero-signup calculators for Etsy, Shopify, TikTok Shop US, Amazon FBA, eBay, and Print-on-Demand sellers—paired with unlocked Excel profit &amp; tax workbooks.
         </p>
         <div class="toolbar" style="margin-top:1.35rem">
           <a href="/etsy-fee-calculator/" class="btn btn-primary">Open 2026 Etsy Fee Calculator →</a>
@@ -54,58 +58,147 @@
     </section>
 
     <section class="container" style="padding-block:3rem">
-      <h2 style="font-size:1.65rem">6 Free Seller Profit &amp; Fee Calculators</h2>
-      <p style="color:var(--text-muted)">Pick any tool below to run live margin math on mobile or desktop.</p>
-      <div class="grid-cards" style="margin-top:1.25rem">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:1rem">
+        <div>
+          <h2 style="font-size:1.65rem;margin-bottom:0.25rem">12 Free 2026 E-Commerce Calculators</h2>
+          <p style="color:var(--text-muted);margin:0">Filter by sales channel or pick any tool to run live margin math with shareable links &amp; CSV export.</p>
+        </div>
+        <div class="toolbar" role="group" aria-label="Filter calculators by category">
+          <button type="button" class="filter-chip" data-filter="all" aria-pressed="true">All (12)</button>
+          <button type="button" class="filter-chip" data-filter="etsy-pod" aria-pressed="false">Etsy &amp; POD</button>
+          <button type="button" class="filter-chip" data-filter="shopify-dtc" aria-pressed="false">Shopify &amp; DTC</button>
+          <button type="button" class="filter-chip" data-filter="marketplaces" aria-pressed="false">Amazon, eBay &amp; TikTok</button>
+          <button type="button" class="filter-chip" data-filter="ads-tax" aria-pressed="false">ROAS &amp; US Tax</button>
+        </div>
+      </div>
+      <div class="grid-cards" id="calcGrid" style="margin-top:1.35rem">
         
-          <article class="card" style="display:flex;flex-direction:column;justify-content:space-between">
+          <article class="card" data-category="etsy-pod" style="display:flex;flex-direction:column;justify-content:space-between">
             <div>
               <span class="pill">Updated for 2026 US Rates</span>
-              <h3 style="font-size:1.22rem;margin-top:0.6rem">2026 Etsy Fee &amp; Net Profit Calculator</h3>
-              <p style="color:var(--text-muted);font-size:0.92rem">Calculate exact 2026 Etsy seller fees ($0.20 listing, 6.5% transaction, 3% + $0.25 Etsy Payments, and 12%–15% Offsite Ads), net profit, and break-even price.</p>
+              <h3 style="font-size:1.18rem;margin-top:0.6rem">2026 Etsy Fee &amp; Net Profit Calculator</h3>
+              <p style="color:var(--text-muted);font-size:0.9rem">Calculate exact 2026 Etsy seller fees ($0.20 listing, 6.5% transaction, 3% + $0.25 Etsy Payments, and 12%–15% Offsite Ads), net profit, and break-even price.</p>
             </div>
             <a href="/etsy-fee-calculator/" class="btn btn-secondary btn-sm" style="margin-top:0.8rem;align-self:flex-start">Launch Calculator →</a>
           </article>
-          <article class="card" style="display:flex;flex-direction:column;justify-content:space-between">
+          <article class="card" data-category="shopify-dtc" style="display:flex;flex-direction:column;justify-content:space-between">
             <div>
               <span class="pill">Platform Fee Showdown</span>
-              <h3 style="font-size:1.22rem;margin-top:0.6rem">Shopify vs. Etsy Monthly Profit &amp; Fee Calculator</h3>
-              <p style="color:var(--text-muted);font-size:0.92rem">Compare monthly Etsy fees vs. Shopify Basic ($39/mo + 2.9% + $0.30) at your exact order volume and average order value to find your exact savings switch point.</p>
+              <h3 style="font-size:1.18rem;margin-top:0.6rem">Shopify vs. Etsy Monthly Profit &amp; Fee Calculator</h3>
+              <p style="color:var(--text-muted);font-size:0.9rem">Compare monthly Etsy fees vs. Shopify Basic ($39/mo + 2.9% + $0.30) at your exact order volume and average order value to find your exact savings switch point.</p>
             </div>
             <a href="/shopify-vs-etsy-calculator/" class="btn btn-secondary btn-sm" style="margin-top:0.8rem;align-self:flex-start">Launch Calculator →</a>
           </article>
-          <article class="card" style="display:flex;flex-direction:column;justify-content:space-between">
+          <article class="card" data-category="marketplaces" style="display:flex;flex-direction:column;justify-content:space-between">
             <div>
               <span class="pill">Includes Creator % Cut</span>
-              <h3 style="font-size:1.22rem;margin-top:0.6rem">TikTok Shop US Seller Profit &amp; Affiliate Cut Calculator</h3>
-              <p style="color:var(--text-muted);font-size:0.92rem">Calculate true TikTok Shop US margins after the 6% referral fee (or 3% new seller promo), 10%–25% creator affiliate cuts, FBT shipping, and GMV Max ads.</p>
+              <h3 style="font-size:1.18rem;margin-top:0.6rem">TikTok Shop US Seller Profit &amp; Affiliate Cut Calculator</h3>
+              <p style="color:var(--text-muted);font-size:0.9rem">Calculate true TikTok Shop US margins after the 6% referral fee (or 3% new seller promo), 10%–25% creator affiliate cuts, FBT shipping, and GMV Max ads.</p>
             </div>
             <a href="/tiktok-shop-fee-calculator/" class="btn btn-secondary btn-sm" style="margin-top:0.8rem;align-self:flex-start">Launch Calculator →</a>
           </article>
-          <article class="card" style="display:flex;flex-direction:column;justify-content:space-between">
+          <article class="card" data-category="etsy-pod" style="display:flex;flex-direction:column;justify-content:space-between">
             <div>
               <span class="pill">Printify &amp; Etsy/Shopify</span>
-              <h3 style="font-size:1.22rem;margin-top:0.6rem">Print-on-Demand (POD) Pricing &amp; Margin Calculator</h3>
-              <p style="color:var(--text-muted);font-size:0.92rem">Calculate real Print-on-Demand profit margins on Printify &amp; Printful across Etsy or Shopify—including Printify Premium 20% blank discounts and sale pricing.</p>
+              <h3 style="font-size:1.18rem;margin-top:0.6rem">Print-on-Demand (POD) Pricing &amp; Margin Calculator</h3>
+              <p style="color:var(--text-muted);font-size:0.9rem">Calculate real Print-on-Demand profit margins on Printify &amp; Printful across Etsy or Shopify—including Printify Premium 20% blank discounts and sale pricing.</p>
             </div>
             <a href="/print-on-demand-profit-calculator/" class="btn btn-secondary btn-sm" style="margin-top:0.8rem;align-self:flex-start">Launch Calculator →</a>
           </article>
-          <article class="card" style="display:flex;flex-direction:column;justify-content:space-between">
+          <article class="card" data-category="ads-tax" style="display:flex;flex-direction:column;justify-content:space-between">
             <div>
               <span class="pill">Meta &amp; TikTok Ads</span>
-              <h3 style="font-size:1.22rem;margin-top:0.6rem">Break-Even ROAS &amp; Maximum CPA Calculator</h3>
-              <p style="color:var(--text-muted);font-size:0.92rem">Calculate your exact Break-Even Return on Ad Spend (ROAS), maximum allowable CPA, and net profit at 2x, 3x, and 4x ROAS for Meta, Google, and TikTok Ads.</p>
+              <h3 style="font-size:1.18rem;margin-top:0.6rem">Break-Even ROAS &amp; Maximum CPA Calculator</h3>
+              <p style="color:var(--text-muted);font-size:0.9rem">Calculate your exact Break-Even Return on Ad Spend (ROAS), maximum allowable CPA, and net profit at 2x, 3x, and 4x ROAS for Meta, Google, and TikTok Ads.</p>
             </div>
             <a href="/roas-break-even-calculator/" class="btn btn-secondary btn-sm" style="margin-top:0.8rem;align-self:flex-start">Launch Calculator →</a>
           </article>
-          <article class="card" style="display:flex;flex-direction:column;justify-content:space-between">
+          <article class="card" data-category="shopify-dtc" style="display:flex;flex-direction:column;justify-content:space-between">
             <div>
               <span class="pill">DTC &amp; B2B Pricing</span>
-              <h3 style="font-size:1.22rem;margin-top:0.6rem">Landed COGS, Wholesale &amp; Retail Margin Calculator</h3>
-              <p style="color:var(--text-muted);font-size:0.92rem">Calculate landed unit cost (manufacturing + freight + import tariffs + packaging) and set profitable wholesale (50% keystone) and DTC retail prices.</p>
+              <h3 style="font-size:1.18rem;margin-top:0.6rem">Landed COGS, Wholesale &amp; Retail Margin Calculator</h3>
+              <p style="color:var(--text-muted);font-size:0.9rem">Calculate landed unit cost (manufacturing + freight + import tariffs + packaging) and set profitable wholesale (50% keystone) and DTC retail prices.</p>
             </div>
             <a href="/wholesale-retail-markup-calculator/" class="btn btn-secondary btn-sm" style="margin-top:0.8rem;align-self:flex-start">Launch Calculator →</a>
           </article>
+          <article class="card" data-category="marketplaces" style="display:flex;flex-direction:column;justify-content:space-between">
+            <div>
+              <span class="pill">2026 Amazon US FBA</span>
+              <h3 style="font-size:1.18rem;margin-top:0.6rem">2026 Amazon FBA Fee &amp; Net Profit Calculator</h3>
+              <p style="color:var(--text-muted);font-size:0.9rem">Calculate exact 2026 Amazon US FBA profit margins including referral fees (8%–17%), FBA pick-and-pack fees, monthly storage, PPC ACoS, and ROI %.</p>
+            </div>
+            <a href="/amazon-fba-fee-calculator/" class="btn btn-secondary btn-sm" style="margin-top:0.8rem;align-self:flex-start">Launch Calculator →</a>
+          </article>
+          <article class="card" data-category="marketplaces" style="display:flex;flex-direction:column;justify-content:space-between">
+            <div>
+              <span class="pill">2026 eBay US Rates</span>
+              <h3 style="font-size:1.18rem;margin-top:0.6rem">2026 eBay US Seller Fee &amp; Net Profit Calculator</h3>
+              <p style="color:var(--text-muted);font-size:0.9rem">Calculate exact 2026 eBay US final value fees (13.6% + $0.40 per order), eBay Store discounts, Promoted Listings ad fees, and true net profit.</p>
+            </div>
+            <a href="/ebay-fee-calculator/" class="btn btn-secondary btn-sm" style="margin-top:0.8rem;align-self:flex-start">Launch Calculator →</a>
+          </article>
+          <article class="card" data-category="shopify-dtc" style="display:flex;flex-direction:column;justify-content:space-between">
+            <div>
+              <span class="pill">Basic vs Grow vs Advanced</span>
+              <h3 style="font-size:1.18rem;margin-top:0.6rem">2026 Shopify Plan &amp; Credit Card Fee Calculator</h3>
+              <p style="color:var(--text-muted);font-size:0.9rem">Calculate exact 2026 Shopify Payments fees and compare Basic ($39/mo), Grow ($105/mo), and Advanced ($399/mo) to find the cheapest plan for your monthly revenue.</p>
+            </div>
+            <a href="/shopify-fee-calculator/" class="btn btn-secondary btn-sm" style="margin-top:0.8rem;align-self:flex-start">Launch Calculator →</a>
+          </article>
+          <article class="card" data-category="etsy-pod" style="display:flex;flex-direction:column;justify-content:space-between">
+            <div>
+              <span class="pill">12% &amp; 15% Survival Tool</span>
+              <h3 style="font-size:1.18rem;margin-top:0.6rem">Etsy Offsite Ads Survival &amp; Price Adjustment Calculator</h3>
+              <p style="color:var(--text-muted);font-size:0.9rem">Protect your Etsy shop from 12% mandatory or 15% Offsite Ads fees. Calculate your exact worst-case profit, blended margin, and safe price adjustment.</p>
+            </div>
+            <a href="/etsy-offsite-ads-calculator/" class="btn btn-secondary btn-sm" style="margin-top:0.8rem;align-self:flex-start">Launch Calculator →</a>
+          </article>
+          <article class="card" data-category="etsy-pod" style="display:flex;flex-direction:column;justify-content:space-between">
+            <div>
+              <span class="pill">POD Supplier Showdown</span>
+              <h3 style="font-size:1.18rem;margin-top:0.6rem">Printify vs. Printful Monthly Profit Comparison Calculator</h3>
+              <p style="color:var(--text-muted);font-size:0.9rem">Compare exact per-shirt and annual profit between Printify Standard, Printify Premium ($29/mo), and Printful across your monthly Print-on-Demand order volume.</p>
+            </div>
+            <a href="/printful-vs-printify-calculator/" class="btn btn-secondary btn-sm" style="margin-top:0.8rem;align-self:flex-start">Launch Calculator →</a>
+          </article>
+          <article class="card" data-category="ads-tax" style="display:flex;flex-direction:column;justify-content:space-between">
+            <div>
+              <span class="pill">2026 IRS Schedule-C</span>
+              <h3 style="font-size:1.18rem;margin-top:0.6rem">2026 US E-Commerce Seller Tax &amp; Quarterly 1040-ES Estimator</h3>
+              <p style="color:var(--text-muted);font-size:0.9rem">Estimate 2026 US Schedule-C net profit, 15.3% self-employment tax, federal income tax, and quarterly IRS 1040-ES payments for Etsy, Shopify, and Amazon sellers.</p>
+            </div>
+            <a href="/ecommerce-tax-calculator/" class="btn btn-secondary btn-sm" style="margin-top:0.8rem;align-self:flex-start">Launch Calculator →</a>
+          </article>
+      </div>
+    </section>
+
+    <section class="container" style="padding-block:0.5rem 2.5rem">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:0.75rem;margin-bottom:1.15rem">
+        <h2 style="font-size:1.55rem;margin:0">2026 Seller Fee &amp; Margin Playbooks</h2>
+        <a href="/guides/" style="font-weight:700;color:var(--brand-dark);text-decoration:none">View All 4 Guides →</a>
+      </div>
+      <div class="grid-cards">
+        
+          <a href="/guides/etsy-fees-2026-complete-breakdown/" class="card" style="text-decoration:none;color:inherit;display:block">
+            <span class="pill">2026 Etsy Fee Guide • 6 min read</span>
+            <h3 style="font-size:1.1rem;margin-top:0.55rem">2026 Etsy Seller Fees Explained: Exact Math, Shipping Traps &amp; Offsite Ads</h3>
+            <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0">Complete 2026 breakdown of every Etsy US seller fee ($0.20 listing, 6.5% transaction on item + shipping, 3% + $0.25 payments, and 12%/15% Offsite Ads) with real order examples.</p>
+          </a>
+          <a href="/guides/when-to-switch-etsy-to-shopify/" class="card" style="text-decoration:none;color:inherit;display:block">
+            <span class="pill">Platform Strategy 2026 • 5 min read</span>
+            <h3 style="font-size:1.1rem;margin-top:0.55rem">Shopify vs. Etsy in 2026: The Exact Order Volume Where Shopify Saves You Money</h3>
+            <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0">Discover the exact monthly order break-even point where Shopify Basic ($39/mo) becomes cheaper than Etsy’s 6.5% + Offsite Ads fees—and how to run both channels together.</p>
+          </a>
+          <a href="/guides/tiktok-shop-us-fees-creator-margins-2026/" class="card" style="text-decoration:none;color:inherit;display:block">
+            <span class="pill">TikTok Shop US 2026 • 5 min read</span>
+            <h3 style="font-size:1.1rem;margin-top:0.55rem">TikTok Shop US Seller Fees &amp; Creator Affiliate Margins: 2026 Profitability Guide</h3>
+            <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0">Why TikTok Shop US’s 6% referral fee is only half the story—learn how to price products for 15%–20% creator commissions, FBT shipping, and GMV Max ads profitably.</p>
+          </a>
+          <a href="/guides/ecommerce-schedule-c-tax-deductions-2026/" class="card" style="text-decoration:none;color:inherit;display:block">
+            <span class="pill">US Seller Tax Playbook • 6 min read</span>
+            <h3 style="font-size:1.1rem;margin-top:0.55rem">2026 IRS Schedule-C Tax Deductions Checklist for Etsy, Shopify &amp; Amazon Sellers</h3>
+            <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0">Stop overpaying US self-employment tax on gross 1099-K numbers. Review the top 10 legal IRS Schedule-C business write-offs every US e-commerce seller must track.</p>
+          </a>
       </div>
     </section>
 
@@ -114,7 +207,7 @@
         <span class="pill pill-gold">Done-For-You Seller Spreadsheets</span>
         <h2 style="font-size:clamp(1.5rem,3vw,2.1rem);margin-top:0.6rem">Upgrade From Single-Order Checks to a Full 12-Month Profit OS</h2>
         <p style="color:#cbd5e1;max-inline-size:62ch">
-          Download our pre-built Microsoft Excel &amp; Google Sheets workbooks to track multi-SKU landed COGS, inventory reorder points, and US Schedule-C tax deductions in one place.
+          Start free with our $0 2026 Seller Fee &amp; Schedule-C Tax Cheat Sheet—or unlock our 5-tab Excel &amp; Google Sheets Profit OS with live formulas and zero monthly fees.
         </p>
         <div class="monetize-grid" style="margin-bottom:0">
           <div class="card" style="color:var(--text)">
@@ -131,37 +224,60 @@
             <ul style="padding-left:1.1rem;font-size:0.9rem;color:var(--text-muted)">
               <li>Compare 50 SKUs side-by-side with Offsite Ads (12%/15%) &amp; Sale Discount protection</li><li>Printify Standard vs. Printify Premium break-even threshold calculator</li><li>Target ROAS &amp; Daily Ad Budget Planner + 100-Listing SEO Keyword Tracker</li>
             </ul>
-            <a href="https://payhip.com/b/u1UYJ" target="_blank" rel="noopener" class="btn btn-secondary btn-sm">Get POD Pricing Matrix ($17) →</a>
+            <div class="toolbar">
+              <a href="https://payhip.com/b/u1UYJ" target="_blank" rel="noopener" class="btn btn-secondary btn-sm">Get POD Matrix ($17) →</a>
+              <a href="https://payhip.com/b/MGRn9" target="_blank" rel="noopener" class="btn btn-secondary btn-sm">Free Cheat Sheet ($0) →</a>
+            </div>
           </div>
         </div>
       </div>
     </section>
   </main>
+  <script type="module">
+    const chips = document.querySelectorAll('.filter-chip');
+    const cards = document.querySelectorAll('#calcGrid [data-category]');
+    chips.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const cat = btn.getAttribute('data-filter');
+        chips.forEach((c) => c.setAttribute('aria-pressed', c === btn ? 'true' : 'false'));
+        cards.forEach((card) => {
+          card.style.display = cat === 'all' || card.getAttribute('data-category') === cat ? 'flex' : 'none';
+        });
+      });
+    });
+  </script>
   
   <footer class="site-footer">
     <div class="container">
-      <div style="display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin-bottom:1.5rem">
+      <div style="display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));margin-bottom:1.5rem">
         <div>
           <strong style="color:var(--text);font-size:1rem">ShopMarginLab</strong>
-          <p style="margin-top:0.4rem">Free, ultra-accurate 2026 fee &amp; margin calculators plus spreadsheet operating systems for Etsy, Shopify, POD, and TikTok Shop sellers.</p>
+          <p style="margin-top:0.4rem">12 free, ultra-accurate 2026 fee, ROAS &amp; tax calculators plus Excel operating systems for Etsy, Shopify, Amazon, eBay, POD, and TikTok Shop sellers.</p>
         </div>
         <div>
-          <strong style="color:var(--text)">Free Seller Calculators</strong>
+          <strong style="color:var(--text)">Etsy, Shopify &amp; POD Tools</strong>
           <ul style="list-style:none;padding:0;margin:0.5rem 0 0">
-            <li style="margin-bottom:0.35rem"><a href="/etsy-fee-calculator/" style="color:var(--text-muted);text-decoration:none">Etsy Fee Calculator</a></li><li style="margin-bottom:0.35rem"><a href="/shopify-vs-etsy-calculator/" style="color:var(--text-muted);text-decoration:none">Shopify vs Etsy</a></li><li style="margin-bottom:0.35rem"><a href="/tiktok-shop-fee-calculator/" style="color:var(--text-muted);text-decoration:none">TikTok Shop Fees</a></li><li style="margin-bottom:0.35rem"><a href="/print-on-demand-profit-calculator/" style="color:var(--text-muted);text-decoration:none">POD Profit Calc</a></li><li style="margin-bottom:0.35rem"><a href="/roas-break-even-calculator/" style="color:var(--text-muted);text-decoration:none">Break-Even ROAS</a></li><li style="margin-bottom:0.35rem"><a href="/wholesale-retail-markup-calculator/" style="color:var(--text-muted);text-decoration:none">Wholesale &amp; Markup</a></li>
+            <li style="margin-bottom:0.32rem"><a href="/etsy-fee-calculator/" style="color:var(--text-muted);text-decoration:none">Etsy Fee Calculator</a></li><li style="margin-bottom:0.32rem"><a href="/shopify-vs-etsy-calculator/" style="color:var(--text-muted);text-decoration:none">Shopify vs Etsy</a></li><li style="margin-bottom:0.32rem"><a href="/tiktok-shop-fee-calculator/" style="color:var(--text-muted);text-decoration:none">TikTok Shop Fees</a></li><li style="margin-bottom:0.32rem"><a href="/print-on-demand-profit-calculator/" style="color:var(--text-muted);text-decoration:none">POD Profit Calc</a></li><li style="margin-bottom:0.32rem"><a href="/roas-break-even-calculator/" style="color:var(--text-muted);text-decoration:none">Break-Even ROAS</a></li><li style="margin-bottom:0.32rem"><a href="/wholesale-retail-markup-calculator/" style="color:var(--text-muted);text-decoration:none">Wholesale &amp; Markup</a></li>
           </ul>
         </div>
         <div>
-          <strong style="color:var(--text)">Spreadsheets &amp; Legal</strong>
+          <strong style="color:var(--text)">Marketplace &amp; Tax Tools</strong>
           <ul style="list-style:none;padding:0;margin:0.5rem 0 0">
-            <li style="margin-bottom:0.35rem"><a href="/templates/" style="color:var(--text-muted);text-decoration:none">2026 Seller Excel Bundles ($17–$24)</a></li>
-            <li style="margin-bottom:0.35rem"><a href="/legal/#affiliate-disclosure" style="color:var(--text-muted);text-decoration:none">FTC Affiliate Disclosure</a></li>
-            <li style="margin-bottom:0.35rem"><a href="/legal/#privacy" style="color:var(--text-muted);text-decoration:none">Privacy &amp; Terms</a></li>
+            <li style="margin-bottom:0.32rem"><a href="/amazon-fba-fee-calculator/" style="color:var(--text-muted);text-decoration:none">Amazon FBA Calc</a></li><li style="margin-bottom:0.32rem"><a href="/ebay-fee-calculator/" style="color:var(--text-muted);text-decoration:none">eBay Fee Calc</a></li><li style="margin-bottom:0.32rem"><a href="/shopify-fee-calculator/" style="color:var(--text-muted);text-decoration:none">Shopify Fee Calc</a></li><li style="margin-bottom:0.32rem"><a href="/etsy-offsite-ads-calculator/" style="color:var(--text-muted);text-decoration:none">Etsy Offsite Ads</a></li><li style="margin-bottom:0.32rem"><a href="/printful-vs-printify-calculator/" style="color:var(--text-muted);text-decoration:none">Printify vs Printful</a></li><li style="margin-bottom:0.32rem"><a href="/ecommerce-tax-calculator/" style="color:var(--text-muted);text-decoration:none">Seller Tax Calc</a></li>
+          </ul>
+        </div>
+        <div>
+          <strong style="color:var(--text)">Guides, Bundles &amp; Legal</strong>
+          <ul style="list-style:none;padding:0;margin:0.5rem 0 0">
+            <li style="margin-bottom:0.32rem"><a href="/templates/" style="color:var(--text-muted);text-decoration:none">2026 Seller Excel Bundles ($0–$24)</a></li>
+            <li style="margin-bottom:0.32rem"><a href="/guides/" style="color:var(--text-muted);text-decoration:none">2026 E-Commerce Fee &amp; Tax Guides</a></li>
+            <li style="margin-bottom:0.32rem"><a href="/legal/#affiliate-disclosure" style="color:var(--text-muted);text-decoration:none">FTC Affiliate Disclosure</a></li>
+            <li style="margin-bottom:0.32rem"><a href="/legal/#privacy" style="color:var(--text-muted);text-decoration:none">Privacy &amp; Terms</a></li>
           </ul>
         </div>
       </div>
       <div style="border-top:1px solid var(--border);padding-top:1rem;font-size:0.8rem">
-        © 2026 ShopMarginLab. Independent seller toolset; not endorsed by Etsy, Inc., Shopify Inc., or TikTok. Verify final tax figures with a licensed CPA.
+        © 2026 ShopMarginLab. Independent seller toolset; not endorsed by Etsy, Inc., Shopify Inc., Amazon, eBay, or TikTok. Verify final tax figures with a licensed CPA.
       </div>
     </div>
   </footer>

@@ -1,17 +1,19 @@
 /**
  * CENTRAL MONETIZATION & BRAND CONFIGURATION
- * Update your live domain, Affiliate Tracking Links, and Payhip/Gumroad Product URLs here,
- * then run `npm run build` to update all calculators, CTAs, sitemaps, and disclosures automatically!
+ * Replace affiliate partner URLs with your approved Impact / PartnerStack / Printify / Link My Books tracking URLs,
+ * then run `npm run build` and redeploy to update all 12 calculators, 4 SEO guides, sitemaps, and disclosures automatically!
  */
 
 export const SITE_CONFIG = {
   brandName: 'ShopMarginLab',
-  tagline: 'Free 2026 E-Commerce Fee, ROAS & Profit Calculators',
+  tagline: 'Free 2026 E-Commerce Fee, ROAS, POD & Tax Calculators',
   domain: process.env.PUBLIC_SITE_URL || 'https://shopmarginlab.pages.dev',
   supportEmail: 'digitalnomadstep@gmail.com',
 
   // =========================================================================
-  // 1. AFFILIATE PARTNER LINKS (Replace with your Impact / PartnerStack URLs)
+  // 1. AFFILIATE PARTNER LINKS
+  // Clean official URLs are used prior to partner approval (never expose placeholder IDs publicly).
+  // Once approved, paste your Impact.com / Printify / Link My Books tracking URL below.
   // =========================================================================
   affiliates: {
     shopify: {
@@ -22,7 +24,8 @@ export const SITE_CONFIG = {
         'Launch your own high-converting storefront with 0% marketplace transaction fees when using Shopify Payments. Start your trial and lock in full customer ownership.',
       ctaLabel: 'Try Shopify Free Trial →',
       commissionNote: 'Up to $150/referral via Impact.com',
-      url: 'https://www.shopify.com/free-trial?ref=YOUR_IMPACT_SHOPIFY_ID'
+      // REPLACE WITH APPROVED IMPACT.COM SHOPIFY AFFILIATE LINK:
+      url: 'https://www.shopify.com/free-trial?utm_source=shopmarginlab&utm_medium=calculator&utm_campaign=shopify_partner'
     },
     printify: {
       name: 'Printify',
@@ -32,22 +35,24 @@ export const SITE_CONFIG = {
         'Compare 90+ global print providers and unlock up to 20% lower blank costs with Printify Premium—integrates in 1 click with Etsy, Shopify, and TikTok Shop US.',
       ctaLabel: 'Start Selling Free on Printify →',
       commissionNote: '5% recurring for 12 months',
-      url: 'https://printify.com/?ref=YOUR_PRINTIFY_AFFILIATE_ID'
+      // REPLACE WITH APPROVED PRINTIFY AFFILIATE LINK:
+      url: 'https://printify.com/?utm_source=shopmarginlab&utm_medium=calculator&utm_campaign=printify_partner'
     },
     linkMyBooks: {
       name: 'Link My Books',
       badge: 'Automate Seller Bookkeeping',
-      headline: 'Tired of Reconciling Etsy, Shopify & TikTok Payouts by Hand?',
+      headline: 'Tired of Reconciling Etsy, Amazon, eBay & Shopify Payouts by Hand?',
       pitch:
-        'Automatically split lump-sum payouts into exact gross sales, platform fees, refunds, and sales tax inside QuickBooks or Xero in 10 minutes a month.',
+        'Automatically split lump-sum payouts into exact gross sales, marketplace fees, refunds, and sales tax inside QuickBooks or Xero in 10 minutes a month.',
       ctaLabel: 'Start 14-Day Free Trial →',
       commissionNote: '20% lifetime recurring commission',
-      url: 'https://linkmybooks.com/?ref=YOUR_LINKMYBOOKS_ID'
+      // REPLACE WITH APPROVED LINK MY BOOKS AFFILIATE LINK:
+      url: 'https://linkmybooks.com/?utm_source=shopmarginlab&utm_medium=calculator&utm_campaign=linkmybooks_partner'
     }
   },
 
   // =========================================================================
-  // 2. DIGITAL PRODUCTS (Hosted on Payhip / Gumroad — 90%+ Net Profit Margin)
+  // 2. LIVE DIGITAL PRODUCTS (Hosted on Payhip — 95%+ Net Margin + 20% Auto Cross-Sell)
   // =========================================================================
   products: {
     freeCheatSheet: {

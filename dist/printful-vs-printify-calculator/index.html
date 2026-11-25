@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>2026 Printify vs. Printful Profit Margin &amp; Monthly Savings Calculator | ShopMarginLab</title>
+  <meta name="description" content="Compare exact per-shirt and annual profit between Printify Standard, Printify Premium ($29/mo), and Printful across your monthly Print-on-Demand order volume.">
+  <link rel="canonical" href="https://shopmarginlab.pages.dev/printful-vs-printify-calculator/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="2026 Printify vs. Printful Profit Margin &amp; Monthly Savings Calculator | ShopMarginLab">
+  <meta property="og:description" content="Compare exact per-shirt and annual profit between Printify Standard, Printify Premium ($29/mo), and Printful across your monthly Print-on-Demand order volume.">
+  <meta property="og:url" content="https://shopmarginlab.pages.dev/printful-vs-printify-calculator/">
+  <meta property="og:image" content="https://shopmarginlab.pages.dev/og-card.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="/styles.css">
+  <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"2026 Printify vs. Printful Profit Margin & Monthly Savings Calculator","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Compare exact per-shirt and annual profit between Printify Standard, Printify Premium ($29/mo), and Printful across your monthly Print-on-Demand order volume."},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why is Printify typically cheaper per garment than Printful?","acceptedAnswer":{"@type":"Answer","text":"Printify connects you to 90+ competing print providers (such as Monster Digital and SwiftPOD) instead of owning single in-house factories, allowing Printify Premium members to save $2.50–$5.50 per apparel order."}},{"@type":"Question","name":"How many monthly orders justify Printify Premium ($29/month)?","acceptedAnswer":{"@type":"Answer","text":"With an average $2.30 savings per tee or $4.00 per hoodie, Printify Premium pays for itself at roughly 8 to 13 orders per month."}}]}]</script>
+</head>
+<body>
+  
+  <div class="disclosure-bar">
+    Reader-supported seller tools: When you try software via links on our site, we may earn an affiliate commission at zero extra cost to you. <a href="/legal/#affiliate-disclosure" style="color:inherit">Learn more</a>.
+  </div>
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="/" class="brand-link">
+        <span class="brand-icon" aria-hidden="true">SM</span>
+        <span>ShopMarginLab</span>
+      </a>
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li><a href="/etsy-fee-calculator/">Etsy Fees</a></li>
+          <li><a href="/shopify-vs-etsy-calculator/">Shopify vs Etsy</a></li>
+          <li><a href="/tiktok-shop-fee-calculator/">TikTok Shop</a></li>
+          <li><a href="/amazon-fba-fee-calculator/">Amazon FBA</a></li>
+          <li><a href="/guides/">2026 Guides</a></li>
+          <li><a href="/templates/"><strong>📊 Excel Bundles ($0–$24)</strong></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main class="container" style="padding-block: 2rem;">
+    <span class="pill">POD Supplier Showdown</span>
+    <h1 style="font-size:clamp(1.75rem,3.6vw,2.5rem);margin-top:0.55rem">Printify vs. Printful Monthly Profit Comparison Calculator</h1>
+    <p style="color:var(--text-muted);max-inline-size:68ch;font-size:1.05rem">Choosing the right Print-on-Demand supplier can add $3–$5 pure profit to every hoodie or t-shirt. Compare Printify Standard, Printify Premium (20% blank discount), and Printful side-by-side.</p>
+
+    <div class="calc-layout">
+      <!-- Left: Inputs -->
+      <section class="card" aria-label="Calculator Inputs">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:0.5rem;margin-bottom:1rem">
+          <h2 style="font-size:1.15rem;margin:0">1. Enter Your Numbers</h2>
+          <button type="button" class="btn btn-secondary btn-sm" id="resetCalcBtn">Reset</button>
+        </div>
+        <form id="calcForm" onsubmit="return false">
+          
+      <div class="field">
+        <label for="inp_monthlyOrders">Monthly POD Units Sold</label>
+        <input type="number" id="inp_monthlyOrders" data-calc-input="monthlyOrders" value="80" step="10" min="1">
+      </div>
+      <div class="field">
+        <label for="inp_customerPaid">Customer Total Paid (Price + Shipping $)</label>
+        <input type="number" id="inp_customerPaid" data-calc-input="customerPaid" value="33.99" step="0.5" min="1">
+      </div>
+      <div class="field">
+        <label for="inp_printifyStdCost">Printify Standard Blank + Print + Ship ($)</label>
+        <input type="number" id="inp_printifyStdCost" data-calc-input="printifyStdCost" value="15.25" step="0.25" min="1">
+      </div>
+      <div class="field">
+        <label for="inp_printifyPremCost">Printify Premium Blank + Print + Ship ($)</label>
+        <input type="number" id="inp_printifyPremCost" data-calc-input="printifyPremCost" value="12.95" step="0.25" min="1">
+      </div>
+      <div class="field">
+        <label for="inp_printfulCost">Printful Equivalent Blank + Print + Ship ($)</label>
+        <input type="number" id="inp_printfulCost" data-calc-input="printfulCost" value="18.65" step="0.25" min="1">
+      </div>
+        <div class="field">
+          <label for="inp_channelFeeRate">Storefront Channel Fee</label>
+          <select id="inp_channelFeeRate" data-calc-input="channelFeeRate">
+            <option value="0.095" selected>Etsy US (~9.5% + $0.45)</option><option value="0.029" >Shopify Payments (~2.9% + $0.30)</option><option value="0.06" >TikTok Shop US (6.0%)</option>
+          </select>
+        </div>
+        </form>
+      </section>
+
+      <!-- Right: Instant Results + Breakdown Table + Viral Share/CSV Toolbar -->
+      <section aria-live="polite">
+        <div class="result-hero">
+          <div id="resPrimaryLabel" style="font-size:0.88rem;color:#cbd5e1;font-weight:600">Net Profit</div>
+          <div id="resPrimaryVal" class="result-big" data-tone="positive">$0.00</div>
+          <div class="kpi-row" id="resKpiRow"></div>
+        </div>
+
+        <div id="resAdviceBanner" class="card" style="margin-bottom:1rem;background:#f0fdfa;border-color:#99f6e4;font-size:0.92rem;font-weight:600;color:#115e59"></div>
+
+        <div class="toolbar" style="margin-bottom:1rem">
+          <button type="button" class="btn btn-secondary btn-sm" id="copySummaryBtn">📋 Copy Breakdown</button>
+          <button type="button" class="btn btn-secondary btn-sm" id="copyShareLinkBtn">🔗 Copy Shareable Link</button>
+          <button type="button" class="btn btn-secondary btn-sm" id="exportCsvBtn">⬇️ Export CSV</button>
+        </div>
+
+        <div tabindex="0" role="region" aria-labelledby="breakdownCaption" class="table-wrapper">
+          <table style="--label-2:'Amount'; --label-3:'Share';">
+            <caption id="breakdownCaption">Line-by-Line Fee &amp; Margin Breakdown</caption>
+            <thead>
+              <tr>
+                <th>Cost / Revenue Line</th>
+                <th>USD Amount</th>
+                <th>% / Note</th>
+              </tr>
+            </thead>
+            <tbody id="resTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <!-- Dual Monetization Engine: Contextual Affiliate (Model 1) + Digital Excel Bundle (Model 2) -->
+    <section aria-label="Recommended Seller Upgrades" class="monetize-grid">
+      <article class="card affiliate-box">
+        <span class="pill">Top POD Margin Partner • Partner Tool</span>
+        <h2 style="font-size:1.3rem;margin-top:0.55rem">Boost Your Print-on-Demand Margins by Up to 34%</h2>
+        <p style="color:var(--text-muted);font-size:0.93rem">Compare 90+ global print providers and unlock up to 20% lower blank costs with Printify Premium—integrates in 1 click with Etsy, Shopify, and TikTok Shop US.</p>
+        <div class="toolbar" style="margin-top:1rem">
+          <a href="https://printify.com/?utm_source=shopmarginlab&amp;utm_medium=calculator&amp;utm_campaign=printify_partner" target="_blank" rel="sponsored noopener" class="btn btn-primary">Start Selling Free on Printify →</a>
+          <a href="https://www.shopify.com/free-trial?utm_source=shopmarginlab&amp;utm_medium=calculator&amp;utm_campaign=shopify_partner" target="_blank" rel="sponsored noopener" class="btn btn-secondary btn-sm">Also see: Shopify →</a>
+        </div>
+      </article>
+
+      <article class="card product-box">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:0.5rem">
+          <span class="pill pill-gold">Instant .XLSX Download</span>
+          <div>
+            <del style="color:var(--text-muted);font-size:0.9rem">$35</del>
+            <strong style="font-size:1.35rem;margin-left:0.3rem">$17</strong>
+          </div>
+        </div>
+        <h2 style="font-size:1.28rem;margin-top:0.55rem">2026 Print-on-Demand &amp; Etsy Bulk Pricing Matrix (.xlsx)</h2>
+        <ul style="padding-left:1.15rem;font-size:0.9rem;color:var(--text-muted)">
+          <li>Compare 50 SKUs side-by-side with Offsite Ads (12%/15%) &amp; Sale Discount protection</li><li>Printify Standard vs. Printify Premium break-even threshold calculator</li><li>Target ROAS &amp; Daily Ad Budget Planner + 100-Listing SEO Keyword Tracker</li>
+        </ul>
+        <div class="toolbar" style="margin-top:1rem">
+          <a href="https://payhip.com/b/u1UYJ" target="_blank" rel="noopener" class="btn btn-accent">Download Excel Bundle ($17) →</a>
+          <a href="https://payhip.com/b/MGRn9" target="_blank" rel="noopener" class="btn btn-secondary btn-sm">Free Cheat Sheet ($0) →</a>
+          <button type="button" class="btn btn-secondary btn-sm" id="openSheetPreviewBtn">Preview Tabs Inside</button>
+        </div>
+      </article>
+    </section>
+
+    <!-- SEO FAQ & Methodology -->
+    <section class="card" style="margin-block: 2rem;">
+      <h2 style="font-size:1.4rem">Frequently Asked Questions (Printify vs Printful)</h2>
+      <div style="display:grid;gap:1.1rem;margin-top:1rem">
+        
+          <div style="border-bottom:1px solid #e2e8f0;padding-bottom:0.9rem">
+            <h3 style="font-size:1.05rem">Why is Printify typically cheaper per garment than Printful?</h3>
+            <p style="color:var(--text-muted);margin-bottom:0">Printify connects you to 90+ competing print providers (such as Monster Digital and SwiftPOD) instead of owning single in-house factories, allowing Printify Premium members to save $2.50–$5.50 per apparel order.</p>
+          </div>
+          <div style="border-bottom:1px solid #e2e8f0;padding-bottom:0.9rem">
+            <h3 style="font-size:1.05rem">How many monthly orders justify Printify Premium ($29/month)?</h3>
+            <p style="color:var(--text-muted);margin-bottom:0">With an average $2.30 savings per tee or $4.00 per hoodie, Printify Premium pays for itself at roughly 8 to 13 orders per month.</p>
+          </div>
+      </div>
+    </section>
+
+    <!-- Internal SEO Cross-Links -->
+    <section style="margin-top:2.5rem">
+      <h2 style="font-size:1.3rem">Explore More Free 2026 Seller Calculators</h2>
+      <div class="grid-cards" style="margin-top:1rem">
+        
+          <a href="/etsy-fee-calculator/" class="card" style="text-decoration:none;color:inherit;display:block">
+            <span class="pill">Updated for 2026 US Rates</span>
+            <h3 style="font-size:1.08rem;margin-top:0.5rem">Etsy Fee Calculator</h3>
+            <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0">Calculate exact 2026 Etsy seller fees ($0.20 listing, 6.5% transaction, 3% + $0.25 Etsy Payments, and 12%–15% Offsite Ads), net profit, and break-even price.</p>
+          </a>
+          <a href="/shopify-vs-etsy-calculator/" class="card" style="text-decoration:none;color:inherit;display:block">
+            <span class="pill">Platform Fee Showdown</span>
+            <h3 style="font-size:1.08rem;margin-top:0.5rem">Shopify vs Etsy</h3>
+            <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0">Compare monthly Etsy fees vs. Shopify Basic ($39/mo + 2.9% + $0.30) at your exact order volume and average order value to find your exact savings switch point.</p>
+          </a>
+          <a href="/tiktok-shop-fee-calculator/" class="card" style="text-decoration:none;color:inherit;display:block">
+            <span class="pill">Includes Creator % Cut</span>
+            <h3 style="font-size:1.08rem;margin-top:0.5rem">TikTok Shop Fees</h3>
+            <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0">Calculate true TikTok Shop US margins after the 6% referral fee (or 3% new seller promo), 10%–25% creator affiliate cuts, FBT shipping, and GMV Max ads.</p>
+          </a>
+          <a href="/print-on-demand-profit-calculator/" class="card" style="text-decoration:none;color:inherit;display:block">
+            <span class="pill">Printify &amp; Etsy/Shopify</span>
+            <h3 style="font-size:1.08rem;margin-top:0.5rem">POD Profit Calc</h3>
+            <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0">Calculate real Print-on-Demand profit margins on Printify &amp; Printful across Etsy or Shopify—including Printify Premium 20% blank discounts and sale pricing.</p>
+          </a>
+          <a href="/roas-break-even-calculator/" class="card" style="text-decoration:none;color:inherit;display:block">
+            <span class="pill">Meta &amp; TikTok Ads</span>
+            <h3 style="font-size:1.08rem;margin-top:0.5rem">Break-Even ROAS</h3>
+            <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0">Calculate your exact Break-Even Return on Ad Spend (ROAS), maximum allowable CPA, and net profit at 2x, 3x, and 4x ROAS for Meta, Google, and TikTok Ads.</p>
+          </a>
+          <a href="/wholesale-retail-markup-calculator/" class="card" style="text-decoration:none;color:inherit;display:block">
+            <span class="pill">DTC &amp; B2B Pricing</span>
+            <h3 style="font-size:1.08rem;margin-top:0.5rem">Wholesale &amp; Markup</h3>
+            <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0">Calculate landed unit cost (manufacturing + freight + import tariffs + packaging) and set profitable wholesale (50% keystone) and DTC retail prices.</p>
+          </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Native Light-Dismiss Spreadsheet Preview Modal -->
+  <dialog id="sheetPreviewDialog" closedby="any" aria-labelledby="previewDialogTitle">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:0.9rem">
+      <div>
+        <span class="pill pill-gold">Microsoft Excel &amp; Google Sheets Compatible</span>
+        <h2 id="previewDialogTitle" style="font-size:1.25rem;margin-top:0.4rem">Inside POD &amp; Etsy Pricing Matrix ($17)</h2>
+      </div>
+      <button type="button" class="btn btn-secondary btn-sm" id="closeSheetPreviewBtn" aria-label="Close preview">✕</button>
+    </div>
+    <ol style="padding-left:1.2rem;font-size:0.92rem;color:var(--text-muted)">
+      <li><strong>Executive Profit Dashboard:</strong> Automatic 12-month revenue, marketplace fee bleed, ad spend, and net take-home profit rollup.</li>
+      <li><strong>Multi-Channel SKU Pricing Matrix:</strong> Compare your exact margin on Etsy, Shopify, and TikTok Shop US side-by-side before running a sale.</li>
+      <li><strong>Monthly Order &amp; Payout Log:</strong> Drop your monthly totals and see exact net margins instantly.</li>
+      <li><strong>Inventory &amp; Reorder Alert Sheet:</strong> Flags SKUs automatically when units dip below safety stock.</li>
+      <li><strong>US IRS Schedule-C Deduction Tracker:</strong> Organize home office, postage, supplies, and software write-offs cleanly for tax season.</li>
+    </ol>
+    <div class="toolbar" style="justify-content:space-between;margin-top:1.1rem">
+      <a href="https://payhip.com/b/MGRn9" target="_blank" rel="noopener" class="btn btn-secondary btn-sm">Start With $0 Cheat Sheet →</a>
+      <a href="https://payhip.com/b/u1UYJ" target="_blank" rel="noopener" class="btn btn-accent">Instant Download ($17) →</a>
+    </div>
+  </dialog>
+
+  <script type="module">
+    const fmtUsd = (n) => (n < 0 ? '-$' + Math.abs(n).toFixed(2) : '$' + Number(n).toFixed(2));
+    const pct = (part, whole) => (whole > 0 ? ((part / whole) * 100).toFixed(1) + '%' : '0.0%');
+    const CALC_NAME = "Printify vs. Printful Monthly Profit Comparison Calculator";
+    const CALC_SLUG = "printful-vs-printify-calculator";
+    let lastOut = null;
+
+    function compute(v) {
+      
+      const fixedFee = v.channelFeeRate === 0.095 ? 0.45 : v.channelFeeRate === 0.029 ? 0.30 : 0;
+      const channelFeePerOrder = v.customerPaid * v.channelFeeRate + fixedFee;
+      const netRevPerOrder = v.customerPaid - channelFeePerOrder;
+
+      const profitPrintifyStd = (netRevPerOrder - v.printifyStdCost) * v.monthlyOrders;
+      const profitPrintifyPrem = (netRevPerOrder - v.printifyPremCost) * v.monthlyOrders - 29;
+      const profitPrintful = (netRevPerOrder - v.printfulCost) * v.monthlyOrders;
+
+      const bestMonthly = Math.max(profitPrintifyStd, profitPrintifyPrem, profitPrintful);
+      const bestLabel = bestMonthly === profitPrintifyPrem ? 'Printify Premium' : bestMonthly === profitPrintifyStd ? 'Printify Standard' : 'Printful';
+      const annualAdvantage = (profitPrintifyPrem - profitPrintful) * 12;
+
+      return {
+        primaryLabel: 'Annual Profit Gain (Printify Premium vs. Printful)',
+        primaryValue: (annualAdvantage >= 0 ? '+' : '-') + fmtUsd(Math.abs(annualAdvantage)) + '/yr',
+        primaryTone: annualAdvantage >= 0 ? 'positive' : 'neutral',
+        kpis: [
+          { label: 'Best Profit Winner', value: bestLabel },
+          { label: 'Printify Premium / Mo', value: fmtUsd(profitPrintifyPrem) },
+          { label: 'Printful / Mo', value: fmtUsd(profitPrintful) }
+        ],
+        rows: [
+          ['Monthly Net Sales After Store Fees', fmtUsd(netRevPerOrder * v.monthlyOrders), v.monthlyOrders + ' units'],
+          ['Printify Standard Monthly Net Profit', fmtUsd(profitPrintifyStd), fmtUsd(netRevPerOrder - v.printifyStdCost) + '/unit'],
+          ['Printify Premium Net Profit (incl. $29/mo)', fmtUsd(profitPrintifyPrem), fmtUsd((profitPrintifyPrem / Math.max(1, v.monthlyOrders))) + '/unit'],
+          ['Printful Monthly Net Profit', fmtUsd(profitPrintful), fmtUsd(netRevPerOrder - v.printfulCost) + '/unit'],
+          ['12-Month Profit Difference (Premium vs Printful)', (annualAdvantage >= 0 ? '+' : '-') + fmtUsd(Math.abs(annualAdvantage)), 'Per Year']
+        ],
+        dynamicAdvice: bestLabel + ' generates the highest take-home profit at ' + v.monthlyOrders + ' orders/month (' + fmtUsd(bestMonthly) + '/mo net)—saving ' + fmtUsd(Math.abs(profitPrintifyPrem - profitPrintful)) + '/month compared to Printful!'
+      };
+    
+    }
+
+    function readInputs() {
+      const v = {};
+      document.querySelectorAll('[data-calc-input]').forEach((el) => {
+        const key = el.getAttribute('data-calc-input');
+        const raw = el.value;
+        v[key] = el.tagName === 'SELECT' && isNaN(Number(raw)) ? raw : Number(raw || 0);
+      });
+      return v;
+    }
+
+    function applyQueryParams() {
+      const params = new URLSearchParams(window.location.search);
+      document.querySelectorAll('[data-calc-input]').forEach((el) => {
+        const key = el.getAttribute('data-calc-input');
+        if (params.has(key)) el.value = params.get(key);
+      });
+    }
+
+    function runCalc() {
+      const v = readInputs();
+      const out = compute(v);
+      lastOut = out;
+      document.getElementById('resPrimaryLabel').textContent = out.primaryLabel;
+      const big = document.getElementById('resPrimaryVal');
+      big.textContent = out.primaryValue;
+      big.setAttribute('data-tone', out.primaryTone || 'positive');
+
+      document.getElementById('resKpiRow').innerHTML = out.kpis
+        .map((k) => '<div><div style="font-size:0.78rem;color:#94a3b8">' + k.label + '</div><div style="font-size:1.1rem;font-weight:700;margin-top:0.15rem">' + k.value + '</div></div>')
+        .join('');
+
+      document.getElementById('resAdviceBanner').textContent = out.dynamicAdvice;
+
+      document.getElementById('resTableBody').innerHTML = out.rows
+        .map((r) => '<tr><th>' + r[0] + '</th><td style="font-weight:700">' + r[1] + '</td><td>' + r[2] + '</td></tr>')
+        .join('');
+    }
+
+    applyQueryParams();
+    document.querySelectorAll('[data-calc-input]').forEach((el) => {
+      el.addEventListener('input', runCalc);
+      el.addEventListener('change', runCalc);
+    });
+    runCalc();
+
+    document.getElementById('resetCalcBtn').addEventListener('click', () => {
+      document.getElementById('calcForm').reset();
+      if (window.location.search) history.replaceState(null, '', window.location.pathname);
+      runCalc();
+      window.showToast?.('Inputs reset to 2026 defaults');
+    });
+
+    document.getElementById('copyShareLinkBtn').addEventListener('click', async () => {
+      const params = new URLSearchParams();
+      document.querySelectorAll('[data-calc-input]').forEach((el) => {
+        params.set(el.getAttribute('data-calc-input'), el.value);
+      });
+      const shareUrl = window.location.origin + window.location.pathname + '?' + params.toString();
+      try {
+        await navigator.clipboard.writeText(shareUrl);
+        window.showToast?.('Shareable calculator link copied!');
+      } catch {
+        window.showToast?.(shareUrl);
+      }
+    });
+
+    document.getElementById('copySummaryBtn').addEventListener('click', async () => {
+      if (!lastOut) return;
+      const lines = [
+        CALC_NAME,
+        lastOut.primaryLabel + ': ' + lastOut.primaryValue,
+        ...lastOut.rows.map((r) => '- ' + r[0] + ': ' + r[1] + ' (' + r[2] + ')'),
+        '',
+        'Calculated free at ' + window.location.origin + window.location.pathname
+      ];
+      try {
+        await navigator.clipboard.writeText(lines.join('\n'));
+        window.showToast?.('Profit breakdown copied to clipboard!');
+      } catch {
+        window.showToast?.('Copy failed — select table text manually');
+      }
+    });
+
+    document.getElementById('exportCsvBtn').addEventListener('click', () => {
+      if (!lastOut) return;
+      const csvRows = [
+        ['Line Item', 'Amount', 'Share / Note'],
+        ...lastOut.rows
+      ].map((r) => r.map((cell) => '"' + String(cell).replace(/"/g, '""') + '"').join(',')).join('\n');
+      const blob = new Blob([csvRows], { type: 'text/csv;charset=utf-8;' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = CALC_SLUG + '-breakdown.csv';
+      a.click();
+      URL.revokeObjectURL(a.href);
+      window.showToast?.('CSV downloaded! Need 50+ SKUs? Try our Excel OS.');
+    });
+
+    const dlg = document.getElementById('sheetPreviewDialog');
+    document.getElementById('openSheetPreviewBtn').addEventListener('click', () => dlg.showModal());
+    document.getElementById('closeSheetPreviewBtn').addEventListener('click', () => dlg.close());
+  </script>
+  
+  <footer class="site-footer">
+    <div class="container">
+      <div style="display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));margin-bottom:1.5rem">
+        <div>
+          <strong style="color:var(--text);font-size:1rem">ShopMarginLab</strong>
+          <p style="margin-top:0.4rem">12 free, ultra-accurate 2026 fee, ROAS &amp; tax calculators plus Excel operating systems for Etsy, Shopify, Amazon, eBay, POD, and TikTok Shop sellers.</p>
+        </div>
+        <div>
+          <strong style="color:var(--text)">Etsy, Shopify &amp; POD Tools</strong>
+          <ul style="list-style:none;padding:0;margin:0.5rem 0 0">
+            <li style="margin-bottom:0.32rem"><a href="/etsy-fee-calculator/" style="color:var(--text-muted);text-decoration:none">Etsy Fee Calculator</a></li><li style="margin-bottom:0.32rem"><a href="/shopify-vs-etsy-calculator/" style="color:var(--text-muted);text-decoration:none">Shopify vs Etsy</a></li><li style="margin-bottom:0.32rem"><a href="/tiktok-shop-fee-calculator/" style="color:var(--text-muted);text-decoration:none">TikTok Shop Fees</a></li><li style="margin-bottom:0.32rem"><a href="/print-on-demand-profit-calculator/" style="color:var(--text-muted);text-decoration:none">POD Profit Calc</a></li><li style="margin-bottom:0.32rem"><a href="/roas-break-even-calculator/" style="color:var(--text-muted);text-decoration:none">Break-Even ROAS</a></li><li style="margin-bottom:0.32rem"><a href="/wholesale-retail-markup-calculator/" style="color:var(--text-muted);text-decoration:none">Wholesale &amp; Markup</a></li>
+          </ul>
+        </div>
+        <div>
+          <strong style="color:var(--text)">Marketplace &amp; Tax Tools</strong>
+          <ul style="list-style:none;padding:0;margin:0.5rem 0 0">
+            <li style="margin-bottom:0.32rem"><a href="/amazon-fba-fee-calculator/" style="color:var(--text-muted);text-decoration:none">Amazon FBA Calc</a></li><li style="margin-bottom:0.32rem"><a href="/ebay-fee-calculator/" style="color:var(--text-muted);text-decoration:none">eBay Fee Calc</a></li><li style="margin-bottom:0.32rem"><a href="/shopify-fee-calculator/" style="color:var(--text-muted);text-decoration:none">Shopify Fee Calc</a></li><li style="margin-bottom:0.32rem"><a href="/etsy-offsite-ads-calculator/" style="color:var(--text-muted);text-decoration:none">Etsy Offsite Ads</a></li><li style="margin-bottom:0.32rem"><a href="/printful-vs-printify-calculator/" style="color:var(--text-muted);text-decoration:none">Printify vs Printful</a></li><li style="margin-bottom:0.32rem"><a href="/ecommerce-tax-calculator/" style="color:var(--text-muted);text-decoration:none">Seller Tax Calc</a></li>
+          </ul>
+        </div>
+        <div>
+          <strong style="color:var(--text)">Guides, Bundles &amp; Legal</strong>
+          <ul style="list-style:none;padding:0;margin:0.5rem 0 0">
+            <li style="margin-bottom:0.32rem"><a href="/templates/" style="color:var(--text-muted);text-decoration:none">2026 Seller Excel Bundles ($0–$24)</a></li>
+            <li style="margin-bottom:0.32rem"><a href="/guides/" style="color:var(--text-muted);text-decoration:none">2026 E-Commerce Fee &amp; Tax Guides</a></li>
+            <li style="margin-bottom:0.32rem"><a href="/legal/#affiliate-disclosure" style="color:var(--text-muted);text-decoration:none">FTC Affiliate Disclosure</a></li>
+            <li style="margin-bottom:0.32rem"><a href="/legal/#privacy" style="color:var(--text-muted);text-decoration:none">Privacy &amp; Terms</a></li>
+          </ul>
+        </div>
+      </div>
+      <div style="border-top:1px solid var(--border);padding-top:1rem;font-size:0.8rem">
+        © 2026 ShopMarginLab. Independent seller toolset; not endorsed by Etsy, Inc., Shopify Inc., Amazon, eBay, or TikTok. Verify final tax figures with a licensed CPA.
+      </div>
+    </div>
+  </footer>
+  <script type="module" src="/shared.js"></script>
+</body>
+</html>

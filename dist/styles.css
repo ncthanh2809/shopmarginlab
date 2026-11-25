@@ -87,7 +87,7 @@ p, li {
 :where(nav, nav ul, .toolbar) {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
+  gap: 0.55rem;
   align-items: center;
 }
 
@@ -163,8 +163,8 @@ p, li {
   text-decoration: none;
   color: var(--text-muted);
   font-weight: 600;
-  font-size: 0.9rem;
-  padding: 0.35rem 0.65rem;
+  font-size: 0.88rem;
+  padding: 0.35rem 0.6rem;
   border-radius: 8px;
 }
 
@@ -222,8 +222,26 @@ p, li {
 }
 
 .btn-sm {
-  padding: 0.42rem 0.8rem;
-  font-size: 0.84rem;
+  padding: 0.4rem 0.78rem;
+  font-size: 0.83rem;
+}
+
+.filter-chip {
+  background: var(--surface);
+  color: var(--text-muted);
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.filter-chip[aria-pressed='true'] {
+  background: var(--text);
+  color: #fff;
+  border-color: var(--text);
 }
 
 .pill {
@@ -274,13 +292,6 @@ p, li {
   margin-block-end: 0.25rem;
 }
 
-.hint {
-  display: block;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  margin-block-end: 0.3rem;
-}
-
 .field input,
 .field select {
   inline-size: 100%;
@@ -299,22 +310,6 @@ p, li {
   border-color: var(--brand);
 }
 
-.error-msg {
-  display: none;
-  color: var(--danger);
-  font-size: 0.84rem;
-  margin-block-start: 0.3rem;
-}
-
-:is(:user-invalid, .user-invalid-fallback) {
-  border-color: var(--danger) !important;
-  background-color: var(--danger-bg) !important;
-}
-
-:is(:user-invalid, .user-invalid-fallback) + .error-msg {
-  display: block;
-}
-
 .result-hero {
   background: #0f172a;
   color: #f8fafc;
@@ -324,7 +319,7 @@ p, li {
 }
 
 .result-big {
-  font-size: clamp(2rem, 4vw, 2.65rem);
+  font-size: clamp(1.85rem, 4vw, 2.55rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   margin-block: 0.2rem 0.85rem;
@@ -451,14 +446,14 @@ p, li {
 .grid-cards {
   display: grid;
   gap: 1.25rem;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 310px), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
 }
 
 dialog {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: clamp(1.25rem, 3vw, 1.8rem);
-  max-inline-size: min(560px, calc(100vw - 2rem));
+  max-inline-size: min(600px, calc(100vw - 2rem));
   inline-size: 100%;
   background: var(--surface);
   color: var(--text);
@@ -468,6 +463,29 @@ dialog {
 dialog::backdrop {
   background: rgba(15, 23, 42, 0.55);
   backdrop-filter: blur(3px);
+}
+
+.toast {
+  position: fixed;
+  inset-block-end: 1.25rem;
+  inset-inline-end: 1.25rem;
+  z-index: 60;
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 0.75rem 1.15rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.toast[data-visible='true'] {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .disclosure-bar {

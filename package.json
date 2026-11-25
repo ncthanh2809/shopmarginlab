@@ -9,7 +9,7 @@
   "scripts": {
     "build:site": "node src/build-site.mjs",
     "build:products": "node scripts/build-xlsx-products.mjs",
-    "build:pins": "node scripts/build-pinterest-pins.mjs",
+    "build:pins": "node scripts/build-pinterest-pins.mjs && powershell -ExecutionPolicy Bypass -File scripts/render-pinterest-pngs.ps1",
     "build": "npm run build:site && npm run build:products && npm run build:pins",
     "start": "node scripts/preview-server.mjs",
     "test": "node tests/verify-all.mjs"

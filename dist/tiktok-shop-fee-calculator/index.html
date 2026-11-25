@@ -27,10 +27,14 @@
         <span class="brand-icon" aria-hidden="true">SM</span>
         <span>ShopMarginLab</span>
       </a>
-      <nav aria-label="Calculator Navigation">
+      <nav aria-label="Primary Navigation">
         <ul class="nav-list">
-          <li><a href="/etsy-fee-calculator/">Etsy Fee Calculator</a></li><li><a href="/shopify-vs-etsy-calculator/">Shopify vs Etsy</a></li><li><a href="/tiktok-shop-fee-calculator/">TikTok Shop Fees</a></li><li><a href="/print-on-demand-profit-calculator/">POD Profit Calc</a></li>
-          <li><a href="/templates/"><strong>📊 Excel Profit Bundles</strong></a></li>
+          <li><a href="/etsy-fee-calculator/">Etsy Fees</a></li>
+          <li><a href="/shopify-vs-etsy-calculator/">Shopify vs Etsy</a></li>
+          <li><a href="/tiktok-shop-fee-calculator/">TikTok Shop</a></li>
+          <li><a href="/amazon-fba-fee-calculator/">Amazon FBA</a></li>
+          <li><a href="/guides/">2026 Guides</a></li>
+          <li><a href="/templates/"><strong>📊 Excel Bundles ($0–$24)</strong></a></li>
         </ul>
       </nav>
     </div>
@@ -43,7 +47,10 @@
     <div class="calc-layout">
       <!-- Left: Inputs -->
       <section class="card" aria-label="Calculator Inputs">
-        <h2 style="font-size:1.15rem;margin-bottom:1rem">1. Enter Your Order Numbers</h2>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:0.5rem;margin-bottom:1rem">
+          <h2 style="font-size:1.15rem;margin:0">1. Enter Your Numbers</h2>
+          <button type="button" class="btn btn-secondary btn-sm" id="resetCalcBtn">Reset</button>
+        </div>
         <form id="calcForm" onsubmit="return false">
           
       <div class="field">
@@ -75,7 +82,7 @@
         </form>
       </section>
 
-      <!-- Right: Instant Results + Breakdown Table -->
+      <!-- Right: Instant Results + Breakdown Table + Viral Share/CSV Toolbar -->
       <section aria-live="polite">
         <div class="result-hero">
           <div id="resPrimaryLabel" style="font-size:0.88rem;color:#cbd5e1;font-weight:600">Net Profit</div>
@@ -83,7 +90,13 @@
           <div class="kpi-row" id="resKpiRow"></div>
         </div>
 
-        <div id="resAdviceBanner" class="card" style="margin-bottom:1.1rem;background:#f0fdfa;border-color:#99f6e4;font-size:0.92rem;font-weight:600;color:#115e59"></div>
+        <div id="resAdviceBanner" class="card" style="margin-bottom:1rem;background:#f0fdfa;border-color:#99f6e4;font-size:0.92rem;font-weight:600;color:#115e59"></div>
+
+        <div class="toolbar" style="margin-bottom:1rem">
+          <button type="button" class="btn btn-secondary btn-sm" id="copySummaryBtn">📋 Copy Breakdown</button>
+          <button type="button" class="btn btn-secondary btn-sm" id="copyShareLinkBtn">🔗 Copy Shareable Link</button>
+          <button type="button" class="btn btn-secondary btn-sm" id="exportCsvBtn">⬇️ Export CSV</button>
+        </div>
 
         <div tabindex="0" role="region" aria-labelledby="breakdownCaption" class="table-wrapper">
           <table style="--label-2:'Amount'; --label-3:'Share';">
@@ -92,7 +105,7 @@
               <tr>
                 <th>Cost / Revenue Line</th>
                 <th>USD Amount</th>
-                <th>% of Gross</th>
+                <th>% / Note</th>
               </tr>
             </thead>
             <tbody id="resTableBody"></tbody>
@@ -108,8 +121,8 @@
         <h2 style="font-size:1.3rem;margin-top:0.55rem">Boost Your Print-on-Demand Margins by Up to 34%</h2>
         <p style="color:var(--text-muted);font-size:0.93rem">Compare 90+ global print providers and unlock up to 20% lower blank costs with Printify Premium—integrates in 1 click with Etsy, Shopify, and TikTok Shop US.</p>
         <div class="toolbar" style="margin-top:1rem">
-          <a href="https://printify.com/?ref=YOUR_PRINTIFY_AFFILIATE_ID" target="_blank" rel="sponsored noopener" class="btn btn-primary">Start Selling Free on Printify →</a>
-          <a href="https://linkmybooks.com/?ref=YOUR_LINKMYBOOKS_ID" target="_blank" rel="sponsored noopener" class="btn btn-secondary btn-sm">Also see: Link My Books →</a>
+          <a href="https://printify.com/?utm_source=shopmarginlab&amp;utm_medium=calculator&amp;utm_campaign=printify_partner" target="_blank" rel="sponsored noopener" class="btn btn-primary">Start Selling Free on Printify →</a>
+          <a href="https://linkmybooks.com/?utm_source=shopmarginlab&amp;utm_medium=calculator&amp;utm_campaign=linkmybooks_partner" target="_blank" rel="sponsored noopener" class="btn btn-secondary btn-sm">Also see: Link My Books →</a>
         </div>
       </article>
 
@@ -128,7 +141,7 @@
         <div class="toolbar" style="margin-top:1rem">
           <a href="https://payhip.com/b/rgL6o" target="_blank" rel="noopener" class="btn btn-accent">Download Excel Bundle ($24) →</a>
           <a href="https://payhip.com/b/MGRn9" target="_blank" rel="noopener" class="btn btn-secondary btn-sm">Free Cheat Sheet ($0) →</a>
-          <button type="button" class="btn btn-secondary btn-sm" id="openSheetPreviewBtn">Preview 5 Tabs Inside</button>
+          <button type="button" class="btn btn-secondary btn-sm" id="openSheetPreviewBtn">Preview Tabs Inside</button>
         </div>
       </article>
     </section>
@@ -149,7 +162,7 @@
       </div>
     </section>
 
-    <!-- Internal SEO Cross-Links to Other Calculators -->
+    <!-- Internal SEO Cross-Links -->
     <section style="margin-top:2.5rem">
       <h2 style="font-size:1.3rem">Explore More Free 2026 Seller Calculators</h2>
       <div class="grid-cards" style="margin-top:1rem">
@@ -179,6 +192,11 @@
             <h3 style="font-size:1.08rem;margin-top:0.5rem">Wholesale &amp; Markup</h3>
             <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0">Calculate landed unit cost (manufacturing + freight + import tariffs + packaging) and set profitable wholesale (50% keystone) and DTC retail prices.</p>
           </a>
+          <a href="/amazon-fba-fee-calculator/" class="card" style="text-decoration:none;color:inherit;display:block">
+            <span class="pill">2026 Amazon US FBA</span>
+            <h3 style="font-size:1.08rem;margin-top:0.5rem">Amazon FBA Calc</h3>
+            <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0">Calculate exact 2026 Amazon US FBA profit margins including referral fees (8%–17%), FBA pick-and-pack fees, monthly storage, PPC ACoS, and ROI %.</p>
+          </a>
       </div>
     </section>
   </main>
@@ -188,7 +206,7 @@
     <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:0.9rem">
       <div>
         <span class="pill pill-gold">Microsoft Excel &amp; Google Sheets Compatible</span>
-        <h2 id="previewDialogTitle" style="font-size:1.25rem;margin-top:0.4rem">What's Inside Seller Profit &amp; Tax Excel OS ($24)</h2>
+        <h2 id="previewDialogTitle" style="font-size:1.25rem;margin-top:0.4rem">Inside Seller Profit &amp; Tax Excel OS ($24)</h2>
       </div>
       <button type="button" class="btn btn-secondary btn-sm" id="closeSheetPreviewBtn" aria-label="Close preview">✕</button>
     </div>
@@ -199,7 +217,8 @@
       <li><strong>Inventory &amp; Reorder Alert Sheet:</strong> Flags SKUs automatically when units dip below safety stock.</li>
       <li><strong>US IRS Schedule-C Deduction Tracker:</strong> Organize home office, postage, supplies, and software write-offs cleanly for tax season.</li>
     </ol>
-    <div class="toolbar" style="justify-content:flex-end;margin-top:1.1rem">
+    <div class="toolbar" style="justify-content:space-between;margin-top:1.1rem">
+      <a href="https://payhip.com/b/MGRn9" target="_blank" rel="noopener" class="btn btn-secondary btn-sm">Start With $0 Cheat Sheet →</a>
       <a href="https://payhip.com/b/rgL6o" target="_blank" rel="noopener" class="btn btn-accent">Instant Download ($24) →</a>
     </div>
   </dialog>
@@ -207,6 +226,9 @@
   <script type="module">
     const fmtUsd = (n) => (n < 0 ? '-$' + Math.abs(n).toFixed(2) : '$' + Number(n).toFixed(2));
     const pct = (part, whole) => (whole > 0 ? ((part / whole) * 100).toFixed(1) + '%' : '0.0%');
+    const CALC_NAME = "TikTok Shop US Seller Profit & Affiliate Cut Calculator";
+    const CALC_SLUG = "tiktok-shop-fee-calculator";
+    let lastOut = null;
 
     function compute(v) {
       
@@ -242,19 +264,35 @@
     
     }
 
-    function runCalc() {
+    function readInputs() {
       const v = {};
       document.querySelectorAll('[data-calc-input]').forEach((el) => {
-        v[el.getAttribute('data-calc-input')] = Number(el.value || 0);
+        const key = el.getAttribute('data-calc-input');
+        const raw = el.value;
+        v[key] = el.tagName === 'SELECT' && isNaN(Number(raw)) ? raw : Number(raw || 0);
       });
+      return v;
+    }
+
+    function applyQueryParams() {
+      const params = new URLSearchParams(window.location.search);
+      document.querySelectorAll('[data-calc-input]').forEach((el) => {
+        const key = el.getAttribute('data-calc-input');
+        if (params.has(key)) el.value = params.get(key);
+      });
+    }
+
+    function runCalc() {
+      const v = readInputs();
       const out = compute(v);
+      lastOut = out;
       document.getElementById('resPrimaryLabel').textContent = out.primaryLabel;
       const big = document.getElementById('resPrimaryVal');
       big.textContent = out.primaryValue;
       big.setAttribute('data-tone', out.primaryTone || 'positive');
 
       document.getElementById('resKpiRow').innerHTML = out.kpis
-        .map((k) => '<div><div style="font-size:0.78rem;color:#94a3b8">' + k.label + '</div><div style="font-size:1.12rem;font-weight:700;margin-top:0.15rem">' + k.value + '</div></div>')
+        .map((k) => '<div><div style="font-size:0.78rem;color:#94a3b8">' + k.label + '</div><div style="font-size:1.1rem;font-weight:700;margin-top:0.15rem">' + k.value + '</div></div>')
         .join('');
 
       document.getElementById('resAdviceBanner').textContent = out.dynamicAdvice;
@@ -264,8 +302,65 @@
         .join('');
     }
 
-    document.querySelectorAll('[data-calc-input]').forEach((el) => el.addEventListener('input', runCalc));
+    applyQueryParams();
+    document.querySelectorAll('[data-calc-input]').forEach((el) => {
+      el.addEventListener('input', runCalc);
+      el.addEventListener('change', runCalc);
+    });
     runCalc();
+
+    document.getElementById('resetCalcBtn').addEventListener('click', () => {
+      document.getElementById('calcForm').reset();
+      if (window.location.search) history.replaceState(null, '', window.location.pathname);
+      runCalc();
+      window.showToast?.('Inputs reset to 2026 defaults');
+    });
+
+    document.getElementById('copyShareLinkBtn').addEventListener('click', async () => {
+      const params = new URLSearchParams();
+      document.querySelectorAll('[data-calc-input]').forEach((el) => {
+        params.set(el.getAttribute('data-calc-input'), el.value);
+      });
+      const shareUrl = window.location.origin + window.location.pathname + '?' + params.toString();
+      try {
+        await navigator.clipboard.writeText(shareUrl);
+        window.showToast?.('Shareable calculator link copied!');
+      } catch {
+        window.showToast?.(shareUrl);
+      }
+    });
+
+    document.getElementById('copySummaryBtn').addEventListener('click', async () => {
+      if (!lastOut) return;
+      const lines = [
+        CALC_NAME,
+        lastOut.primaryLabel + ': ' + lastOut.primaryValue,
+        ...lastOut.rows.map((r) => '- ' + r[0] + ': ' + r[1] + ' (' + r[2] + ')'),
+        '',
+        'Calculated free at ' + window.location.origin + window.location.pathname
+      ];
+      try {
+        await navigator.clipboard.writeText(lines.join('\n'));
+        window.showToast?.('Profit breakdown copied to clipboard!');
+      } catch {
+        window.showToast?.('Copy failed — select table text manually');
+      }
+    });
+
+    document.getElementById('exportCsvBtn').addEventListener('click', () => {
+      if (!lastOut) return;
+      const csvRows = [
+        ['Line Item', 'Amount', 'Share / Note'],
+        ...lastOut.rows
+      ].map((r) => r.map((cell) => '"' + String(cell).replace(/"/g, '""') + '"').join(',')).join('\n');
+      const blob = new Blob([csvRows], { type: 'text/csv;charset=utf-8;' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = CALC_SLUG + '-breakdown.csv';
+      a.click();
+      URL.revokeObjectURL(a.href);
+      window.showToast?.('CSV downloaded! Need 50+ SKUs? Try our Excel OS.');
+    });
 
     const dlg = document.getElementById('sheetPreviewDialog');
     document.getElementById('openSheetPreviewBtn').addEventListener('click', () => dlg.showModal());
@@ -274,28 +369,35 @@
   
   <footer class="site-footer">
     <div class="container">
-      <div style="display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin-bottom:1.5rem">
+      <div style="display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));margin-bottom:1.5rem">
         <div>
           <strong style="color:var(--text);font-size:1rem">ShopMarginLab</strong>
-          <p style="margin-top:0.4rem">Free, ultra-accurate 2026 fee &amp; margin calculators plus spreadsheet operating systems for Etsy, Shopify, POD, and TikTok Shop sellers.</p>
+          <p style="margin-top:0.4rem">12 free, ultra-accurate 2026 fee, ROAS &amp; tax calculators plus Excel operating systems for Etsy, Shopify, Amazon, eBay, POD, and TikTok Shop sellers.</p>
         </div>
         <div>
-          <strong style="color:var(--text)">Free Seller Calculators</strong>
+          <strong style="color:var(--text)">Etsy, Shopify &amp; POD Tools</strong>
           <ul style="list-style:none;padding:0;margin:0.5rem 0 0">
-            <li style="margin-bottom:0.35rem"><a href="/etsy-fee-calculator/" style="color:var(--text-muted);text-decoration:none">Etsy Fee Calculator</a></li><li style="margin-bottom:0.35rem"><a href="/shopify-vs-etsy-calculator/" style="color:var(--text-muted);text-decoration:none">Shopify vs Etsy</a></li><li style="margin-bottom:0.35rem"><a href="/tiktok-shop-fee-calculator/" style="color:var(--text-muted);text-decoration:none">TikTok Shop Fees</a></li><li style="margin-bottom:0.35rem"><a href="/print-on-demand-profit-calculator/" style="color:var(--text-muted);text-decoration:none">POD Profit Calc</a></li><li style="margin-bottom:0.35rem"><a href="/roas-break-even-calculator/" style="color:var(--text-muted);text-decoration:none">Break-Even ROAS</a></li><li style="margin-bottom:0.35rem"><a href="/wholesale-retail-markup-calculator/" style="color:var(--text-muted);text-decoration:none">Wholesale &amp; Markup</a></li>
+            <li style="margin-bottom:0.32rem"><a href="/etsy-fee-calculator/" style="color:var(--text-muted);text-decoration:none">Etsy Fee Calculator</a></li><li style="margin-bottom:0.32rem"><a href="/shopify-vs-etsy-calculator/" style="color:var(--text-muted);text-decoration:none">Shopify vs Etsy</a></li><li style="margin-bottom:0.32rem"><a href="/tiktok-shop-fee-calculator/" style="color:var(--text-muted);text-decoration:none">TikTok Shop Fees</a></li><li style="margin-bottom:0.32rem"><a href="/print-on-demand-profit-calculator/" style="color:var(--text-muted);text-decoration:none">POD Profit Calc</a></li><li style="margin-bottom:0.32rem"><a href="/roas-break-even-calculator/" style="color:var(--text-muted);text-decoration:none">Break-Even ROAS</a></li><li style="margin-bottom:0.32rem"><a href="/wholesale-retail-markup-calculator/" style="color:var(--text-muted);text-decoration:none">Wholesale &amp; Markup</a></li>
           </ul>
         </div>
         <div>
-          <strong style="color:var(--text)">Spreadsheets &amp; Legal</strong>
+          <strong style="color:var(--text)">Marketplace &amp; Tax Tools</strong>
           <ul style="list-style:none;padding:0;margin:0.5rem 0 0">
-            <li style="margin-bottom:0.35rem"><a href="/templates/" style="color:var(--text-muted);text-decoration:none">2026 Seller Excel Bundles ($17–$24)</a></li>
-            <li style="margin-bottom:0.35rem"><a href="/legal/#affiliate-disclosure" style="color:var(--text-muted);text-decoration:none">FTC Affiliate Disclosure</a></li>
-            <li style="margin-bottom:0.35rem"><a href="/legal/#privacy" style="color:var(--text-muted);text-decoration:none">Privacy &amp; Terms</a></li>
+            <li style="margin-bottom:0.32rem"><a href="/amazon-fba-fee-calculator/" style="color:var(--text-muted);text-decoration:none">Amazon FBA Calc</a></li><li style="margin-bottom:0.32rem"><a href="/ebay-fee-calculator/" style="color:var(--text-muted);text-decoration:none">eBay Fee Calc</a></li><li style="margin-bottom:0.32rem"><a href="/shopify-fee-calculator/" style="color:var(--text-muted);text-decoration:none">Shopify Fee Calc</a></li><li style="margin-bottom:0.32rem"><a href="/etsy-offsite-ads-calculator/" style="color:var(--text-muted);text-decoration:none">Etsy Offsite Ads</a></li><li style="margin-bottom:0.32rem"><a href="/printful-vs-printify-calculator/" style="color:var(--text-muted);text-decoration:none">Printify vs Printful</a></li><li style="margin-bottom:0.32rem"><a href="/ecommerce-tax-calculator/" style="color:var(--text-muted);text-decoration:none">Seller Tax Calc</a></li>
+          </ul>
+        </div>
+        <div>
+          <strong style="color:var(--text)">Guides, Bundles &amp; Legal</strong>
+          <ul style="list-style:none;padding:0;margin:0.5rem 0 0">
+            <li style="margin-bottom:0.32rem"><a href="/templates/" style="color:var(--text-muted);text-decoration:none">2026 Seller Excel Bundles ($0–$24)</a></li>
+            <li style="margin-bottom:0.32rem"><a href="/guides/" style="color:var(--text-muted);text-decoration:none">2026 E-Commerce Fee &amp; Tax Guides</a></li>
+            <li style="margin-bottom:0.32rem"><a href="/legal/#affiliate-disclosure" style="color:var(--text-muted);text-decoration:none">FTC Affiliate Disclosure</a></li>
+            <li style="margin-bottom:0.32rem"><a href="/legal/#privacy" style="color:var(--text-muted);text-decoration:none">Privacy &amp; Terms</a></li>
           </ul>
         </div>
       </div>
       <div style="border-top:1px solid var(--border);padding-top:1rem;font-size:0.8rem">
-        © 2026 ShopMarginLab. Independent seller toolset; not endorsed by Etsy, Inc., Shopify Inc., or TikTok. Verify final tax figures with a licensed CPA.
+        © 2026 ShopMarginLab. Independent seller toolset; not endorsed by Etsy, Inc., Shopify Inc., Amazon, eBay, or TikTok. Verify final tax figures with a licensed CPA.
       </div>
     </div>
   </footer>

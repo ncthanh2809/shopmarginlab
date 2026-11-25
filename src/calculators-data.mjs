@@ -1,11 +1,12 @@
 /**
- * 6 High-Intent 2026 E-Commerce SEO Calculators
- * Verified against 2026 US Marketplace Fee Schedules (Etsy, Shopify, TikTok Shop US, POD, ROAS, Markup).
+ * 12 High-Intent 2026 E-Commerce SEO Calculators
+ * Verified against 2026 US Marketplace Fee Schedules (Etsy, Shopify, TikTok Shop US, Amazon FBA, eBay, POD, ROAS, Markup, Schedule-C Tax).
  */
 
 export const CALCULATORS = [
   {
     slug: 'etsy-fee-calculator',
+    category: 'etsy-pod',
     shortName: 'Etsy Fee Calculator',
     badge: 'Updated for 2026 US Rates',
     title: '2026 Etsy Fee & Profit Margin Calculator (With Offsite Ads)',
@@ -90,6 +91,7 @@ export const CALCULATORS = [
 
   {
     slug: 'shopify-vs-etsy-calculator',
+    category: 'shopify-dtc',
     shortName: 'Shopify vs Etsy',
     badge: 'Platform Fee Showdown',
     title: 'Shopify vs. Etsy Fee Comparison Calculator (2026 Break-Even Tool)',
@@ -156,6 +158,7 @@ export const CALCULATORS = [
 
   {
     slug: 'tiktok-shop-fee-calculator',
+    category: 'marketplaces',
     shortName: 'TikTok Shop Fees',
     badge: 'Includes Creator % Cut',
     title: '2026 TikTok Shop US Seller Fee & Creator Commission Calculator',
@@ -230,6 +233,7 @@ export const CALCULATORS = [
 
   {
     slug: 'print-on-demand-profit-calculator',
+    category: 'etsy-pod',
     shortName: 'POD Profit Calc',
     badge: 'Printify & Etsy/Shopify',
     title: 'Print-on-Demand (POD) Pricing & Profit Margin Calculator (2026)',
@@ -309,6 +313,7 @@ export const CALCULATORS = [
 
   {
     slug: 'roas-break-even-calculator',
+    category: 'ads-tax',
     shortName: 'Break-Even ROAS',
     badge: 'Meta & TikTok Ads',
     title: 'Break-Even ROAS & Target CPA Calculator for E-Commerce Ads',
@@ -374,6 +379,7 @@ export const CALCULATORS = [
 
   {
     slug: 'wholesale-retail-markup-calculator',
+    category: 'shopify-dtc',
     shortName: 'Wholesale & Markup',
     badge: 'DTC & B2B Pricing',
     title: 'Landed COGS, Wholesale & Retail Markup Margin Calculator',
@@ -429,6 +435,498 @@ export const CALCULATORS = [
       {
         q: 'Why must DTC brands calculate wholesale margin from Day 1?',
         a: 'If you price a $10 landed item at $22 DTC, you cannot later offer retailers a standard 50% wholesale price ($11) without wiping out your profit. Aiming for 4x–4.5x landed COGS keeps both DTC and wholesale doors open.'
+      }
+    ]
+  },
+
+  // =========================================================================
+  // NEW HIGH-INTENT 2026 CALCULATORS (#7 – #12)
+  // =========================================================================
+
+  {
+    slug: 'amazon-fba-fee-calculator',
+    category: 'marketplaces',
+    shortName: 'Amazon FBA Calc',
+    badge: '2026 Amazon US FBA',
+    title: '2026 Amazon FBA Fee, PPC ACoS & Net Profit Margin Calculator',
+    metaDescription:
+      'Calculate exact 2026 Amazon US FBA profit margins including referral fees (8%–17%), FBA pick-and-pack fees, monthly storage, PPC ACoS, and ROI %.',
+    h1: '2026 Amazon FBA Fee & Net Profit Calculator',
+    intro:
+      'Model Amazon US FBA unit economics before sending inventory to fulfillment centers—factoring in category referral fees, FBA fulfillment, inbound freight, storage, and Amazon PPC ACoS.',
+    primaryAffiliate: 'linkMyBooks',
+    secondaryAffiliate: 'shopify',
+    recommendedProduct: 'flagshipOs',
+    inputs: [
+      { id: 'salePrice', label: 'Amazon Listing Price ($)', type: 'number', value: 34.99, step: 0.5, min: 1 },
+      {
+        id: 'referralPct',
+        label: 'Amazon Category Referral Fee (%)',
+        type: 'select',
+        value: '0.15',
+        options: [
+          { value: '0.15', label: '15% Standard (Home, Kitchen, Sports, Toys, Beauty $10+)' },
+          { value: '0.17', label: '17% Clothing & Apparel ($20+)' },
+          { value: '0.08', label: '8% Consumer Electronics / Computers' },
+          { value: '0.12', label: '12% Industrial & Scientific' }
+        ]
+      },
+      { id: 'fbaFulfillmentFee', label: 'FBA Pick & Pack Fulfillment Fee ($)', type: 'number', value: 4.75, step: 0.25, min: 0 },
+      { id: 'storageInbound', label: 'Monthly Storage + Inbound Placement ($/unit)', type: 'number', value: 0.85, step: 0.05, min: 0 },
+      { id: 'landedCogs', label: 'Landed Product COGS ($)', type: 'number', value: 8.2, step: 0.25, min: 0 },
+      { id: 'ppcAcosPct', label: 'Blended PPC Ad Spend / TACoS (% of Price)', type: 'number', value: 12, step: 1, min: 0 }
+    ],
+    computeFnBody: `
+      const referralFee = Math.max(0.30, v.salePrice * v.referralPct);
+      const totalAmazonFees = referralFee + v.fbaFulfillmentFee + v.storageInbound;
+      const adSpendUnit = v.salePrice * (v.ppcAcosPct / 100);
+      const totalCost = totalAmazonFees + v.landedCogs + adSpendUnit;
+      const netProfit = v.salePrice - totalCost;
+      const netMarginPct = v.salePrice > 0 ? (netProfit / v.salePrice) * 100 : 0;
+      const roiPct = v.landedCogs > 0 ? (netProfit / v.landedCogs) * 100 : 0;
+      const breakEvenAcos = v.salePrice > 0 ? Math.max(0, ((v.salePrice - totalAmazonFees - v.landedCogs) / v.salePrice) * 100) : 0;
+
+      return {
+        primaryLabel: 'Net FBA Profit Per Unit',
+        primaryValue: fmtUsd(netProfit),
+        primaryTone: netProfit >= 5 ? 'positive' : netProfit >= 0 ? 'neutral' : 'negative',
+        kpis: [
+          { label: 'Net Profit Margin', value: netMarginPct.toFixed(1) + '%' },
+          { label: 'Cash-on-Cash ROI', value: roiPct.toFixed(0) + '%' },
+          { label: 'Break-Even PPC ACoS', value: breakEvenAcos.toFixed(1) + '%' }
+        ],
+        rows: [
+          ['Amazon US Listing Price', fmtUsd(v.salePrice), '100.0%'],
+          ['Amazon Referral Fee (' + (v.referralPct * 100).toFixed(0) + '%)', '-' + fmtUsd(referralFee), pct(referralFee, v.salePrice)],
+          ['FBA Fulfillment + Storage / Inbound', '-' + fmtUsd(v.fbaFulfillmentFee + v.storageInbound), pct(v.fbaFulfillmentFee + v.storageInbound, v.salePrice)],
+          ['Landed Product Cost (COGS)', '-' + fmtUsd(v.landedCogs), pct(v.landedCogs, v.salePrice)],
+          ['Amazon PPC Ad Cost (' + v.ppcAcosPct + '% TACoS)', '-' + fmtUsd(adSpendUnit), pct(adSpendUnit, v.salePrice)],
+          ['Net Seller Profit Per Unit', fmtUsd(netProfit), netMarginPct.toFixed(1) + '%']
+        ],
+        dynamicAdvice: netMarginPct >= 20
+          ? 'Strong FBA unit economics (' + netMarginPct.toFixed(1) + '% net margin, ' + roiPct.toFixed(0) + '% ROI). Keep PPC ACoS under ' + breakEvenAcos.toFixed(1) + '% to stay profitable on every sale.'
+          : 'Margin alert (' + netMarginPct.toFixed(1) + '%): Amazon fees + PPC consume ' + pct(totalAmazonFees + adSpendUnit, v.salePrice) + '. Consider raising price by $3–$5 or cutting package weight tier.'
+      };
+    `,
+    faqs: [
+      {
+        q: 'What is a good net profit margin for Amazon FBA in 2026?',
+        a: 'Experienced US FBA sellers target at least 20%–30% net margin after referral fees, FBA fulfillment, storage, and blended PPC (TACoS), alongside 80%–100%+ ROI on landed inventory cost.'
+      },
+      {
+        q: 'How do I reconcile Amazon bi-weekly FBA settlements cleanly for taxes?',
+        a: 'Amazon bundles gross sales, refunds, FBA fees, storage, and PPC charges into one lump-sum deposit. Bookkeeping sync tools like Link My Books split every settlement into exact QuickBooks/Xero lines automatically.'
+      }
+    ]
+  },
+
+  {
+    slug: 'ebay-fee-calculator',
+    category: 'marketplaces',
+    shortName: 'eBay Fee Calc',
+    badge: '2026 eBay US Rates',
+    title: '2026 eBay US Seller Fee & Profit Margin Calculator (With Promoted Listings)',
+    metaDescription:
+      'Calculate exact 2026 eBay US final value fees (13.6% + $0.40 per order), eBay Store discounts, Promoted Listings ad fees, and true net profit.',
+    h1: '2026 eBay US Seller Fee & Net Profit Calculator',
+    intro:
+      'Stop getting surprised by eBay final value fees on shipping and sales tax. Enter your sale price, shipping, COGS, and Promoted Listings % to see exact take-home profit.',
+    primaryAffiliate: 'linkMyBooks',
+    secondaryAffiliate: 'shopify',
+    recommendedProduct: 'flagshipOs',
+    inputs: [
+      { id: 'itemPrice', label: 'Item Sale Price ($)', type: 'number', value: 48.0, step: 1, min: 0 },
+      { id: 'shippingCharged', label: 'Shipping Charged to Buyer ($)', type: 'number', value: 6.95, step: 0.5, min: 0 },
+      { id: 'estSalesTaxPct', label: 'Est. Buyer State Sales Tax (% — eBay fees apply to total)', type: 'number', value: 7.0, step: 0.5, min: 0 },
+      {
+        id: 'fvfRate',
+        label: 'eBay Final Value Fee Category Tier',
+        type: 'select',
+        value: '0.136',
+        options: [
+          { value: '0.136', label: '13.6% + $0.40 Standard Most Categories (No Store)' },
+          { value: '0.1235', label: '12.35% + $0.40 Basic+ eBay Store Subscriber' },
+          { value: '0.15', label: '15.0% + $0.40 Books, Movies & Music' },
+          { value: '0.0935', label: '9.35% + $0.40 Computers / Electronics (Store)' }
+        ]
+      },
+      { id: 'promotedPct', label: 'Promoted Listings Standard Ad Rate (%)', type: 'number', value: 5, step: 1, min: 0 },
+      { id: 'itemCost', label: 'Product Cost / COGS ($)', type: 'number', value: 14.0, step: 0.5, min: 0 },
+      { id: 'actualShipping', label: 'Actual Shipping Label Cost ($)', type: 'number', value: 6.2, step: 0.25, min: 0 }
+    ],
+    computeFnBody: `
+      const buyerSubTotal = v.itemPrice + v.shippingCharged;
+      const buyerTax = buyerSubTotal * (v.estSalesTaxPct / 100);
+      const feeBasis = buyerSubTotal + buyerTax;
+      const perOrderFee = buyerSubTotal > 10 ? 0.40 : 0.30;
+      const finalValueFee = feeBasis * v.fvfRate + perOrderFee;
+      const promotedFee = feeBasis * (v.promotedPct / 100);
+      const totalEbayFees = finalValueFee + promotedFee;
+      const netProfit = buyerSubTotal - totalEbayFees - v.itemCost - v.actualShipping;
+      const marginPct = buyerSubTotal > 0 ? (netProfit / buyerSubTotal) * 100 : 0;
+      const effectiveFeePct = buyerSubTotal > 0 ? (totalEbayFees / buyerSubTotal) * 100 : 0;
+
+      return {
+        primaryLabel: 'Net eBay Seller Profit',
+        primaryValue: fmtUsd(netProfit),
+        primaryTone: netProfit >= 0 ? 'positive' : 'negative',
+        kpis: [
+          { label: 'Net Profit Margin', value: marginPct.toFixed(1) + '%' },
+          { label: 'Total eBay Fees', value: fmtUsd(totalEbayFees) + ' (' + effectiveFeePct.toFixed(1) + '%)' },
+          { label: 'Payout Before COGS', value: fmtUsd(buyerSubTotal - totalEbayFees - v.actualShipping) }
+        ],
+        rows: [
+          ['Buyer Subtotal (Item + Shipping)', fmtUsd(buyerSubTotal), '100.0%'],
+          ['Fee Basis incl. Est. ' + v.estSalesTaxPct + '% Sales Tax', fmtUsd(feeBasis), 'eBay Fee Basis'],
+          ['eBay Final Value Fee + Per-Order Fee', '-' + fmtUsd(finalValueFee), pct(finalValueFee, buyerSubTotal)],
+          ['Promoted Listings Ad Fee (' + v.promotedPct + '%)', '-' + fmtUsd(promotedFee), pct(promotedFee, buyerSubTotal)],
+          ['Item COGS + Actual Shipping Label', '-' + fmtUsd(v.itemCost + v.actualShipping), pct(v.itemCost + v.actualShipping, buyerSubTotal)],
+          ['Net Seller Take-Home Profit', fmtUsd(netProfit), marginPct.toFixed(1) + '%']
+        ],
+        dynamicAdvice: effectiveFeePct > 18
+          ? 'Warning: eBay Final Value + Promoted Listings fees are taking ' + effectiveFeePct.toFixed(1) + '% of your revenue! Cross-list repeat SKUs on a 0%-commission Shopify store.'
+          : 'Solid margin (' + marginPct.toFixed(1) + '%). Remember eBay calculates Final Value Fees on item + shipping + buyer sales tax—always price with a 15%+ fee buffer.'
+      };
+    `,
+    faqs: [
+      {
+        q: 'Does eBay charge final value fees on sales tax and shipping in 2026?',
+        a: 'Yes. eBay calculates its Final Value Fee percentage (commonly 13.6% for non-store accounts) on the total amount of the sale—including item price, shipping charged, and buyer sales tax—plus $0.40 per order over $10.'
+      },
+      {
+        q: 'When does an eBay Basic Store subscription pay for itself?',
+        a: 'A Basic Store (~$21.95/mo billed annually) lowers most category fees by ~1.25%, paying for itself once your shop sells roughly $1,800+ per month.'
+      }
+    ]
+  },
+
+  {
+    slug: 'shopify-fee-calculator',
+    category: 'shopify-dtc',
+    shortName: 'Shopify Fee Calc',
+    badge: 'Basic vs Grow vs Advanced',
+    title: '2026 Shopify Plan & Payment Fee Calculator (Basic vs. Grow vs. Advanced)',
+    metaDescription:
+      'Calculate exact 2026 Shopify Payments fees and compare Basic ($39/mo), Grow ($105/mo), and Advanced ($399/mo) to find the cheapest plan for your monthly revenue.',
+    h1: '2026 Shopify Plan & Credit Card Fee Calculator',
+    intro:
+      'Find out which Shopify plan saves you the most money at your monthly sales volume—and see how much third-party payment gateways cost if you do not use Shopify Payments.',
+    primaryAffiliate: 'shopify',
+    secondaryAffiliate: 'linkMyBooks',
+    recommendedProduct: 'flagshipOs',
+    inputs: [
+      { id: 'monthlyRevenue', label: 'Monthly Gross Store Revenue ($)', type: 'number', value: 18000, step: 1000, min: 100 },
+      { id: 'monthlyOrders', label: 'Monthly Order Count', type: 'number', value: 300, step: 10, min: 1 },
+      {
+        id: 'billingCycle',
+        label: 'Shopify Billing Cycle',
+        type: 'select',
+        value: 'monthly',
+        options: [
+          { value: 'monthly', label: 'Monthly Billing ($39 / $105 / $399)' },
+          { value: 'annual', label: 'Annual Billing (~25% Off: $29 / $79 / $299)' }
+        ]
+      },
+      {
+        id: 'gatewayType',
+        label: 'Payment Gateway Used',
+        type: 'select',
+        value: 'shopify_payments',
+        options: [
+          { value: 'shopify_payments', label: 'Shopify Payments (0% Extra Transaction Fee)' },
+          { value: 'third_party', label: '3rd-Party Gateway (Adds 2.0% / 1.0% / 0.6% Penalty)' }
+        ]
+      }
+    ],
+    computeFnBody: `
+      const isAnnual = v.billingCycle === 'annual';
+      const isThirdParty = v.gatewayType === 'third_party';
+
+      const basicSub = isAnnual ? 29 : 39;
+      const growSub = isAnnual ? 79 : 105;
+      const advSub = isAnnual ? 299 : 399;
+
+      const basicCard = v.monthlyRevenue * 0.029 + v.monthlyOrders * 0.30 + (isThirdParty ? v.monthlyRevenue * 0.02 : 0);
+      const growCard = v.monthlyRevenue * 0.027 + v.monthlyOrders * 0.30 + (isThirdParty ? v.monthlyRevenue * 0.01 : 0);
+      const advCard = v.monthlyRevenue * 0.025 + v.monthlyOrders * 0.30 + (isThirdParty ? v.monthlyRevenue * 0.006 : 0);
+
+      const basicTotal = basicSub + basicCard;
+      const growTotal = growSub + growCard;
+      const advTotal = advSub + advCard;
+
+      const plans = [
+        { name: 'Shopify Basic', total: basicTotal },
+        { name: 'Shopify Grow', total: growTotal },
+        { name: 'Shopify Advanced', total: advTotal }
+      ].sort((a, b) => a.total - b.total);
+
+      const best = plans[0];
+      const worst = plans[2];
+      const annualDiff = (worst.total - best.total) * 12;
+
+      return {
+        primaryLabel: 'Lowest-Cost Shopify Plan For You',
+        primaryValue: best.name + ' (' + fmtUsd(best.total) + '/mo)',
+        primaryTone: 'positive',
+        kpis: [
+          { label: 'Effective Fee Rate', value: pct(best.total, v.monthlyRevenue) },
+          { label: 'Basic Total / Mo', value: fmtUsd(basicTotal) },
+          { label: 'Grow Total / Mo', value: fmtUsd(growTotal) }
+        ],
+        rows: [
+          ['Monthly Gross Store Sales', fmtUsd(v.monthlyRevenue), v.monthlyOrders + ' orders'],
+          ['Shopify Basic Total (Plan + Processing)', '-' + fmtUsd(basicTotal), pct(basicTotal, v.monthlyRevenue)],
+          ['Shopify Grow Total (Plan + Processing)', '-' + fmtUsd(growTotal), pct(growTotal, v.monthlyRevenue)],
+          ['Shopify Advanced Total (Plan + Processing)', '-' + fmtUsd(advTotal), pct(advTotal, v.monthlyRevenue)],
+          ['Annual Savings vs. Highest-Cost Tier', '+' + fmtUsd(annualDiff) + '/yr', 'Optimized Plan']
+        ],
+        dynamicAdvice: isThirdParty
+          ? 'Using a third-party gateway adds ' + fmtUsd(v.monthlyRevenue * 0.02) + '/mo in avoidable surcharges on Basic! Switching to Shopify Payments eliminates the extra 0.6%–2.0% fee.'
+          : best.name + ' is your mathematical sweet spot at ' + fmtUsd(v.monthlyRevenue) + '/mo revenue (effective all-in platform + card cost: ' + pct(best.total, v.monthlyRevenue) + ').'
+      };
+    `,
+    faqs: [
+      {
+        q: 'At what monthly revenue should I upgrade from Shopify Basic to Shopify Grow?',
+        a: 'On Shopify Payments, the card rate drops by 0.2% (2.9% to 2.7%) while the monthly plan rises by $50–$66/mo—meaning Grow breaks even on processing fees around $25,000–$33,000/month in revenue.'
+      },
+      {
+        q: 'Does Shopify charge a marketplace commission like Etsy or Amazon?',
+        a: 'No. When using Shopify Payments, Shopify charges 0% marketplace referral commission—you only pay the flat monthly subscription and standard credit card processing.'
+      }
+    ]
+  },
+
+  {
+    slug: 'etsy-offsite-ads-calculator',
+    category: 'etsy-pod',
+    shortName: 'Etsy Offsite Ads',
+    badge: '12% & 15% Survival Tool',
+    title: '2026 Etsy Offsite Ads Calculator — Exact Price Buffer Formula',
+    metaDescription:
+      'Protect your Etsy shop from 12% mandatory or 15% Offsite Ads fees. Calculate your exact worst-case profit, blended margin, and safe price adjustment.',
+    h1: 'Etsy Offsite Ads Survival & Price Adjustment Calculator',
+    intro:
+      'Once your shop passes $10,000/year, Etsy permanently enrolls you in 12% Offsite Ads. Calculate your exact price increase needed so an attributed ad click never wipes out your profit.',
+    primaryAffiliate: 'shopify',
+    secondaryAffiliate: 'linkMyBooks',
+    recommendedProduct: 'flagshipOs',
+    inputs: [
+      { id: 'currentPrice', label: 'Current Item + Shipping Total ($)', type: 'number', value: 40.0, step: 1, min: 1 },
+      { id: 'unitDirectCost', label: 'Product COGS + Actual Postage ($)', type: 'number', value: 16.5, step: 0.5, min: 0 },
+      {
+        id: 'offsiteTier',
+        label: 'Your Etsy Offsite Ads Fee Rate',
+        type: 'select',
+        value: '0.12',
+        options: [
+          { value: '0.12', label: '12% Mandatory Tier (Shop Over $10k/yr)' },
+          { value: '0.15', label: '15% Standard Tier (Shop Under $10k/yr)' }
+        ]
+      },
+      { id: 'offsiteOrderSharePct', label: '% of Your Total Orders Coming From Offsite Ads', type: 'number', value: 18, step: 2, min: 0 },
+      { id: 'targetNetProfit', label: 'Minimum Net Profit Wanted on Worst-Case Ad Order ($)', type: 'number', value: 8.0, step: 0.5, min: 0 }
+    ],
+    computeFnBody: `
+      const baseFeeRate = 0.095;
+      const organicFees = 0.45 + v.currentPrice * baseFeeRate;
+      const organicProfit = v.currentPrice - v.unitDirectCost - organicFees;
+
+      const offsiteFee = Math.min(100, v.currentPrice * v.offsiteTier);
+      const worstCaseProfit = organicProfit - offsiteFee;
+
+      const share = Math.min(100, Math.max(0, v.offsiteOrderSharePct)) / 100;
+      const blendedProfit = organicProfit * (1 - share) + worstCaseProfit * share;
+      const blendedBufferPrice = v.currentPrice + offsiteFee * share / Math.max(0.1, 1 - baseFeeRate - v.offsiteTier * share);
+      const safeWorstCasePrice = (v.unitDirectCost + 0.45 + v.targetNetProfit) / Math.max(0.1, 1 - baseFeeRate - v.offsiteTier);
+
+      return {
+        primaryLabel: 'Worst-Case Profit (When Offsite Ad Triggers)',
+        primaryValue: fmtUsd(worstCaseProfit),
+        primaryTone: worstCaseProfit >= v.targetNetProfit ? 'positive' : worstCaseProfit >= 0 ? 'neutral' : 'negative',
+        kpis: [
+          { label: 'Organic Order Profit', value: fmtUsd(organicProfit) },
+          { label: 'Blended Avg Profit', value: fmtUsd(blendedProfit) },
+          { label: 'Price to Keep $' + v.targetNetProfit.toFixed(0) + ' Profit', value: fmtUsd(safeWorstCasePrice) }
+        ],
+        rows: [
+          ['Current Buyer Order Total', fmtUsd(v.currentPrice), '100.0%'],
+          ['Base Etsy Fees (6.5% + 3% + $0.45)', '-' + fmtUsd(organicFees), pct(organicFees, v.currentPrice)],
+          ['Offsite Ads Surcharge (' + (v.offsiteTier * 100).toFixed(0) + '%, max $100)', '-' + fmtUsd(offsiteFee), pct(offsiteFee, v.currentPrice)],
+          ['Direct Cost (COGS + Postage)', '-' + fmtUsd(v.unitDirectCost), pct(v.unitDirectCost, v.currentPrice)],
+          ['Net Profit on Offsite-Attributed Order', fmtUsd(worstCaseProfit), pct(worstCaseProfit, v.currentPrice)],
+          ['Recommended Blended Buffer Price (+' + v.offsiteOrderSharePct + '% share)', fmtUsd(blendedBufferPrice), 'Protects Avg Margin']
+        ],
+        dynamicAdvice: worstCaseProfit < 0
+          ? 'DANGER: You LOSE ' + fmtUsd(Math.abs(worstCaseProfit)) + ' every time an Offsite Ad converts! Raise your price to at least ' + fmtUsd(blendedBufferPrice) + ' (or ' + fmtUsd(safeWorstCasePrice) + ' for full protection).'
+          : 'To keep your average margin intact across ' + v.offsiteOrderSharePct + '% attributed orders, raise your listing price by just ' + fmtUsd(Math.max(0, blendedBufferPrice - v.currentPrice)) + ' (to ' + fmtUsd(blendedBufferPrice) + ').'
+      };
+    `,
+    faqs: [
+      {
+        q: 'Should I raise my Etsy prices by the full 12% to cover Offsite Ads?',
+        a: 'Usually no—if only 15%–20% of your orders come from Offsite Ads, raising every listing by just 2.5%–3.5% mathematically absorbs the blended cost without hurting your organic conversion rate.'
+      },
+      {
+        q: 'Can a repeat customer trigger Etsy Offsite Ads again?',
+        a: 'Yes! Any click on an Etsy Offsite Ad within 30 days attaches the 12%/15% fee to ALL orders that buyer places from your shop in that window—which is why moving repeat customers to Shopify protects your margins.'
+      }
+    ]
+  },
+
+  {
+    slug: 'printful-vs-printify-calculator',
+    category: 'etsy-pod',
+    shortName: 'Printify vs Printful',
+    badge: 'POD Supplier Showdown',
+    title: '2026 Printify vs. Printful Profit Margin & Monthly Savings Calculator',
+    metaDescription:
+      'Compare exact per-shirt and annual profit between Printify Standard, Printify Premium ($29/mo), and Printful across your monthly Print-on-Demand order volume.',
+    h1: 'Printify vs. Printful Monthly Profit Comparison Calculator',
+    intro:
+      'Choosing the right Print-on-Demand supplier can add $3–$5 pure profit to every hoodie or t-shirt. Compare Printify Standard, Printify Premium (20% blank discount), and Printful side-by-side.',
+    primaryAffiliate: 'printify',
+    secondaryAffiliate: 'shopify',
+    recommendedProduct: 'podMatrix',
+    inputs: [
+      { id: 'monthlyOrders', label: 'Monthly POD Units Sold', type: 'number', value: 80, step: 10, min: 1 },
+      { id: 'customerPaid', label: 'Customer Total Paid (Price + Shipping $)', type: 'number', value: 33.99, step: 0.5, min: 1 },
+      { id: 'printifyStdCost', label: 'Printify Standard Blank + Print + Ship ($)', type: 'number', value: 15.25, step: 0.25, min: 1 },
+      { id: 'printifyPremCost', label: 'Printify Premium Blank + Print + Ship ($)', type: 'number', value: 12.95, step: 0.25, min: 1 },
+      { id: 'printfulCost', label: 'Printful Equivalent Blank + Print + Ship ($)', type: 'number', value: 18.65, step: 0.25, min: 1 },
+      {
+        id: 'channelFeeRate',
+        label: 'Storefront Channel Fee',
+        type: 'select',
+        value: '0.095',
+        options: [
+          { value: '0.095', label: 'Etsy US (~9.5% + $0.45)' },
+          { value: '0.029', label: 'Shopify Payments (~2.9% + $0.30)' },
+          { value: '0.06', label: 'TikTok Shop US (6.0%)' }
+        ]
+      }
+    ],
+    computeFnBody: `
+      const fixedFee = v.channelFeeRate === 0.095 ? 0.45 : v.channelFeeRate === 0.029 ? 0.30 : 0;
+      const channelFeePerOrder = v.customerPaid * v.channelFeeRate + fixedFee;
+      const netRevPerOrder = v.customerPaid - channelFeePerOrder;
+
+      const profitPrintifyStd = (netRevPerOrder - v.printifyStdCost) * v.monthlyOrders;
+      const profitPrintifyPrem = (netRevPerOrder - v.printifyPremCost) * v.monthlyOrders - 29;
+      const profitPrintful = (netRevPerOrder - v.printfulCost) * v.monthlyOrders;
+
+      const bestMonthly = Math.max(profitPrintifyStd, profitPrintifyPrem, profitPrintful);
+      const bestLabel = bestMonthly === profitPrintifyPrem ? 'Printify Premium' : bestMonthly === profitPrintifyStd ? 'Printify Standard' : 'Printful';
+      const annualAdvantage = (profitPrintifyPrem - profitPrintful) * 12;
+
+      return {
+        primaryLabel: 'Annual Profit Gain (Printify Premium vs. Printful)',
+        primaryValue: (annualAdvantage >= 0 ? '+' : '-') + fmtUsd(Math.abs(annualAdvantage)) + '/yr',
+        primaryTone: annualAdvantage >= 0 ? 'positive' : 'neutral',
+        kpis: [
+          { label: 'Best Profit Winner', value: bestLabel },
+          { label: 'Printify Premium / Mo', value: fmtUsd(profitPrintifyPrem) },
+          { label: 'Printful / Mo', value: fmtUsd(profitPrintful) }
+        ],
+        rows: [
+          ['Monthly Net Sales After Store Fees', fmtUsd(netRevPerOrder * v.monthlyOrders), v.monthlyOrders + ' units'],
+          ['Printify Standard Monthly Net Profit', fmtUsd(profitPrintifyStd), fmtUsd(netRevPerOrder - v.printifyStdCost) + '/unit'],
+          ['Printify Premium Net Profit (incl. $29/mo)', fmtUsd(profitPrintifyPrem), fmtUsd((profitPrintifyPrem / Math.max(1, v.monthlyOrders))) + '/unit'],
+          ['Printful Monthly Net Profit', fmtUsd(profitPrintful), fmtUsd(netRevPerOrder - v.printfulCost) + '/unit'],
+          ['12-Month Profit Difference (Premium vs Printful)', (annualAdvantage >= 0 ? '+' : '-') + fmtUsd(Math.abs(annualAdvantage)), 'Per Year']
+        ],
+        dynamicAdvice: bestLabel + ' generates the highest take-home profit at ' + v.monthlyOrders + ' orders/month (' + fmtUsd(bestMonthly) + '/mo net)—saving ' + fmtUsd(Math.abs(profitPrintifyPrem - profitPrintful)) + '/month compared to Printful!'
+      };
+    `,
+    faqs: [
+      {
+        q: 'Why is Printify typically cheaper per garment than Printful?',
+        a: 'Printify connects you to 90+ competing print providers (such as Monster Digital and SwiftPOD) instead of owning single in-house factories, allowing Printify Premium members to save $2.50–$5.50 per apparel order.'
+      },
+      {
+        q: 'How many monthly orders justify Printify Premium ($29/month)?',
+        a: 'With an average $2.30 savings per tee or $4.00 per hoodie, Printify Premium pays for itself at roughly 8 to 13 orders per month.'
+      }
+    ]
+  },
+
+  {
+    slug: 'ecommerce-tax-calculator',
+    category: 'ads-tax',
+    shortName: 'Seller Tax Calc',
+    badge: '2026 IRS Schedule-C',
+    title: '2026 US E-Commerce Self-Employment & Quarterly Tax Estimator',
+    metaDescription:
+      'Estimate 2026 US Schedule-C net profit, 15.3% self-employment tax, federal income tax, and quarterly IRS 1040-ES payments for Etsy, Shopify, and Amazon sellers.',
+    h1: '2026 US E-Commerce Seller Tax & Quarterly 1040-ES Estimator',
+    intro:
+      'Never get blindsided in April. Estimate your IRS Schedule-C taxable profit, 15.3% self-employment tax, quarterly set-aside percentage, and how much every $1,000 in tracked deductions saves you.',
+    primaryAffiliate: 'linkMyBooks',
+    secondaryAffiliate: 'shopify',
+    recommendedProduct: 'flagshipOs',
+    inputs: [
+      { id: 'annualGrossSales', label: 'Projected Annual Gross Sales ($)', type: 'number', value: 60000, step: 2500, min: 0 },
+      { id: 'cogsAndShipping', label: 'Annual COGS, Materials & Postage ($)', type: 'number', value: 21000, step: 1000, min: 0 },
+      { id: 'platformAndAdFees', label: 'Annual Marketplace Fees & Ad Spend ($)', type: 'number', value: 11500, step: 500, min: 0 },
+      { id: 'writeOffs', label: 'Schedule-C Write-Offs (Home Office, Software, Supplies $)', type: 'number', value: 4500, step: 250, min: 0 },
+      {
+        id: 'fedTaxBracket',
+        label: 'Estimated Federal Marginal Income Tax Rate',
+        type: 'select',
+        value: '0.12',
+        options: [
+          { value: '0.10', label: '10% Federal Bracket' },
+          { value: '0.12', label: '12% Federal Bracket (Most Solo Sellers)' },
+          { value: '0.22', label: '22% Federal Bracket' },
+          { value: '0.24', label: '24% Federal Bracket' }
+        ]
+      },
+      { id: 'stateTaxPct', label: 'State Income Tax Rate (0% for TX/FL/WA/NV)', type: 'number', value: 5.0, step: 0.5, min: 0 }
+    ],
+    computeFnBody: `
+      const totalDeductions = v.cogsAndShipping + v.platformAndAdFees + v.writeOffs;
+      const netScheduleC = Math.max(0, v.annualGrossSales - totalDeductions);
+      const seTaxable = netScheduleC * 0.9235;
+      const seTax = seTaxable * 0.153;
+      const halfSeDeduction = seTax * 0.5;
+      const qbiEligible = Math.max(0, netScheduleC - halfSeDeduction);
+      const qbiDeduction = qbiEligible * 0.20;
+      const fedTaxable = Math.max(0, qbiEligible - qbiDeduction);
+      const estFedTax = fedTaxable * v.fedTaxBracket;
+      const estStateTax = netScheduleC * (v.stateTaxPct / 100);
+      const totalEstTax = seTax + estFedTax + estStateTax;
+      const quarterlyPayment = totalEstTax / 4;
+      const savePctOfProfit = netScheduleC > 0 ? (totalEstTax / netScheduleC) * 100 : 0;
+      const deductionTaxSavings = v.writeOffs * (0.1413 + v.fedTaxBracket * 0.8 + v.stateTaxPct / 100);
+
+      return {
+        primaryLabel: 'Estimated Quarterly IRS + State Tax Set-Aside',
+        primaryValue: fmtUsd(quarterlyPayment) + '/qtr',
+        primaryTone: 'neutral',
+        kpis: [
+          { label: 'Net Schedule-C Profit', value: fmtUsd(netScheduleC) },
+          { label: 'Est. Annual Total Tax', value: fmtUsd(totalEstTax) },
+          { label: 'Set Aside % of Profit', value: savePctOfProfit.toFixed(1) + '%' }
+        ],
+        rows: [
+          ['Annual Gross Marketplace & Store Sales', fmtUsd(v.annualGrossSales), '100.0%'],
+          ['Deductible COGS + Fees + Ads + Write-Offs', '-' + fmtUsd(totalDeductions), pct(totalDeductions, v.annualGrossSales)],
+          ['Net Schedule-C Business Profit', fmtUsd(netScheduleC), pct(netScheduleC, v.annualGrossSales)],
+          ['Self-Employment Tax (15.3% on 92.35% net)', '-' + fmtUsd(seTax), pct(seTax, netScheduleC)],
+          ['Est. Federal + State Income Tax (after 20% QBI)', '-' + fmtUsd(estFedTax + estStateTax), pct(estFedTax + estStateTax, netScheduleC)],
+          ['Estimated Tax Saved by Logging $' + v.writeOffs.toLocaleString() + ' Write-Offs', '+' + fmtUsd(deductionTaxSavings), 'Cash Kept']
+        ],
+        dynamicAdvice: 'Set aside ' + savePctOfProfit.toFixed(0) + '% of net profit (' + fmtUsd(quarterlyPayment) + ' every quarter) into a separate tax savings account. Logging your ' + fmtUsd(v.writeOffs) + ' in Schedule-C deductions saves roughly ' + fmtUsd(deductionTaxSavings) + ' in taxes!'
+      };
+    `,
+    faqs: [
+      {
+        q: 'How much should an Etsy or Shopify seller set aside for US taxes?',
+        a: 'Most US sole proprietors set aside 25%–30% of their net business profit (after COGS, platform fees, shipping, and expenses) to cover the 15.3% self-employment tax plus federal and state income tax.'
+      },
+      {
+        q: 'Do marketplace fees and shipping labels count as Schedule-C deductions?',
+        a: 'Yes! Every 1099-K reports gross unadjusted sales—so you must deduct your Etsy/Shopify/Amazon fees, shipping labels, packaging, product COGS, ad spend, software, and home office expenses on Schedule C so you never overpay tax.'
       }
     ]
   }
