@@ -701,7 +701,7 @@ function renderFooter() {
       </div>
     </div>
   </footer>
-  <script type="module" src="/shared.js"></script>${
+  <script type="module" src="/shared.js?v=3"></script>${
     SITE_CONFIG.cloudflareAnalyticsToken
       ? `\n  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"${esc(SITE_CONFIG.cloudflareAnalyticsToken)}"}'></script>`
       : ''
@@ -726,7 +726,8 @@ function buildHead({ title, description, canonicalPath, jsonLd = null }) {
   <meta property="og:url" content="${esc(fullUrl)}">
   <meta property="og:image" content="${esc(SITE_CONFIG.domain.replace(/\/$/, ''))}/og-card.svg">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles.css?v=3">
+  <script>if(location.search.indexOf('embed=1')!==-1)document.documentElement.classList.add('embed-mode');</script>
   ${jsonLd ? `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>` : ''}
 </head>`;
 }

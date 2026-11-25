@@ -69,7 +69,7 @@ const ASSETS={
 };
 for(const c of CALCULATORS)ASSETS['/'+c.slug+'/index.html']={ct:'text/html; charset=utf-8',body:buildCalculatorPage(c)};
 for(const g of GUIDES)ASSETS['/guides/'+g.slug+'/index.html']={ct:'text/html; charset=utf-8',body:buildGuidePage(g)};
-export default{async fetch(request){const u=new URL(request.url);let p=u.pathname;if(p.endsWith('/'))p+='index.html';else if(!p.includes('.'))return Response.redirect(u.origin+p+'/'+u.search,301);const h=ASSETS[p];if(!h)return new Response('404 Not Found',{status:404});return new Response(h.body,{headers:{'Content-Type':h.ct,'Cache-Control':'public, max-age=3600','X-Content-Type-Options':'nosniff'}});}};
+export default{async fetch(request){const u=new URL(request.url);let p=u.pathname;if(p.endsWith('/'))p+='index.html';else if(!p.includes('.'))return Response.redirect(u.origin+p+'/'+u.search,301);const h=ASSETS[p];if(!h)return new Response('404 Not Found',{status:404});const cc=p.endsWith('.html')?'public, max-age=300, must-revalidate':'public, max-age=86400';return new Response(h.body,{headers:{'Content-Type':h.ct,'Cache-Control':cc,'X-Content-Type-Options':'nosniff'}});}};
 `;
 
 const outFile = 'C:/Users/Admin/.gemini/antigravity/brain/ae4b040c-3405-4a40-b16a-0636ae5d6470/scratch/pages-worker-compact.mjs';
