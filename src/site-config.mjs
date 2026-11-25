@@ -50,6 +50,20 @@ export const SITE_CONFIG = {
   // 2. DIGITAL PRODUCTS (Hosted on Payhip / Gumroad — 90%+ Net Profit Margin)
   // =========================================================================
   products: {
+    freeCheatSheet: {
+      id: 'free-seller-fee-tax-cheat-sheet-2026',
+      title: 'FREE: 2026 US Seller Fee & IRS Schedule-C Tax Write-Off Cheat Sheet (.xlsx)',
+      shortTitle: 'Free 2026 Fee & Tax Cheat Sheet',
+      priceUsd: 0,
+      originalPriceUsd: 12,
+      fileName: 'FREE-2026-Seller-Fee-Tax-Cheat-Sheet.xlsx',
+      bullets: [
+        'Side-by-side 2026 US fee table: Etsy vs. Shopify Basic vs. TikTok Shop US',
+        'Top overlooked IRS Schedule-C seller write-offs (home office, postage, samples, software)',
+        'Instant $0 download — opens in Microsoft Excel & Google Sheets'
+      ],
+      checkoutUrl: 'https://payhip.com/b/YOUR_FREE_CHEATSHEET_CODE'
+    },
     flagshipOs: {
       id: 'seller-profit-os-2026',
       title: '2026 Multi-Channel Seller Profit, Inventory & Schedule-C Tax Excel OS',

@@ -1,6 +1,5 @@
 import { readdirSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join, relative, extname, dirname } from 'node:path';
-import { gzipSync } from 'node:zlib';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -26,8 +25,8 @@ for (const file of walk(DIST)) {
   const relPath = '/' + relative(DIST, file).replace(/\\/g, '/');
   const ext = extname(file).toLowerCase();
   assetMap[relPath] = {
-    ct: MIMES[ext] || 'application/octet-stream',
-    gz: gzipSync(readFileSync(file), { level: 9 }).toString('base64')
+    ct: MIMES[ext] || 'text/plain; charset=utf-8',
+    body: readFileSync(file, 'utf8')
   };
 }
 
@@ -40,11 +39,7 @@ export default {
     else if (!p.includes('.')) return Response.redirect(url.origin + p + '/' + url.search, 301);
     const hit = ASSETS[p];
     if (!hit) return new Response('404 Not Found', { status: 404 });
-    const bin = atob(hit.gz);
-    const bytes = new Uint8Array(bin.length);
-    for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
-    const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
-    return new Response(stream, {
+    return new Response(hit.body, {
       headers: {
         'Content-Type': hit.ct,
         'Cache-Control': 'public, max-age=3600',
@@ -55,7 +50,7 @@ export default {
 };
 `;
 
-const outFile = 'C:/Users/Admin/.gemini/antigravity/brain/ae4b040c-3405-4a40-b16a-0636ae5d6470/scratch/pages-worker.js';
+const outFile = 'C:/Users/Admin/.gemini/antigravity/brain/ae4b040c-3405-4a40-b16a-0636ae5d6470/scratch/pages-worker-fast.js';
 mkdirSync(dirname(outFile), { recursive: true });
 writeFileSync(outFile, workerSource, 'utf8');
 console.log(JSON.stringify({ files: Object.keys(assetMap).length, bundleBytes: Buffer.byteLength(workerSource) }));

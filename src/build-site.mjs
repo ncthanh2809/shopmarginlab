@@ -632,6 +632,7 @@ function buildCalculatorPage(calc) {
   const aff = SITE_CONFIG.affiliates[calc.primaryAffiliate];
   const aff2 = SITE_CONFIG.affiliates[calc.secondaryAffiliate];
   const prod = SITE_CONFIG.products[calc.recommendedProduct];
+  const freebie = SITE_CONFIG.products.freeCheatSheet;
   const canonicalPath = `/${calc.slug}/`;
 
   const jsonLd = [
@@ -743,6 +744,7 @@ function buildCalculatorPage(calc) {
         </ul>
         <div class="toolbar" style="margin-top:1rem">
           <a href="${esc(prod.checkoutUrl)}" target="_blank" rel="noopener" class="btn btn-accent">Download Excel Bundle ($${prod.priceUsd}) →</a>
+          <a href="${esc(freebie.checkoutUrl)}" target="_blank" rel="noopener" class="btn btn-secondary btn-sm">Free Cheat Sheet ($0) →</a>
           <button type="button" class="btn btn-secondary btn-sm" id="openSheetPreviewBtn">Preview 5 Tabs Inside</button>
         </div>
       </article>
@@ -846,6 +848,7 @@ function buildCalculatorPage(calc) {
 }
 
 function buildHomePage() {
+  const freebie = SITE_CONFIG.products.freeCheatSheet;
   const flagship = SITE_CONFIG.products.flagshipOs;
   const pod = SITE_CONFIG.products.podMatrix;
   return `${buildHead({
@@ -868,8 +871,8 @@ function buildHomePage() {
         </p>
         <div class="toolbar" style="margin-top:1.35rem">
           <a href="/etsy-fee-calculator/" class="btn btn-primary">Open 2026 Etsy Fee Calculator →</a>
-          <a href="/shopify-vs-etsy-calculator/" class="btn btn-secondary">Compare Shopify vs. Etsy Fees</a>
-          <a href="/templates/" class="btn btn-accent">Browse Excel Toolkits ($17–$24)</a>
+          <a href="${esc(freebie.checkoutUrl)}" target="_blank" rel="noopener" class="btn btn-secondary">Free 2026 Fee Cheat Sheet ($0)</a>
+          <a href="/templates/" class="btn btn-accent">Browse Excel Toolkits ($0–$24)</a>
         </div>
       </div>
     </section>
@@ -926,7 +929,7 @@ function buildHomePage() {
 }
 
 function buildTemplatesPage() {
-  const { flagshipOs, podMatrix } = SITE_CONFIG.products;
+  const { freeCheatSheet, flagshipOs, podMatrix } = SITE_CONFIG.products;
   return `${buildHead({
     title: `2026 E-Commerce Excel Profit & Tax Spreadsheets | ${SITE_CONFIG.brandName}`,
     description:
@@ -942,7 +945,19 @@ function buildTemplatesPage() {
       One-time purchase, zero monthly subscriptions. Works immediately in Microsoft Excel, Google Sheets, and Apple Numbers with unlocked formulas.
     </p>
 
-    <div class="monetize-grid" style="margin-top:2rem">
+    <article class="card affiliate-box" style="margin-top:1.75rem">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:0.75rem">
+        <span class="pill">Free Seller Lead Magnet • $0.00</span>
+        <strong>100% Free Instant .XLSX Download</strong>
+      </div>
+      <h2 style="margin-top:0.55rem">${esc(freeCheatSheet.title)}</h2>
+      <ul style="padding-left:1.15rem;color:var(--text-muted)">
+        ${freeCheatSheet.bullets.map((b) => `<li>${esc(b)}</li>`).join('')}
+      </ul>
+      <a href="${esc(freeCheatSheet.checkoutUrl)}" target="_blank" rel="noopener" class="btn btn-primary">Download Free Cheat Sheet ($0) →</a>
+    </article>
+
+    <div class="monetize-grid" style="margin-top:1.5rem">
       <article class="card product-box">
         <span class="pill pill-gold">Flagship 5-Tab Bundle • $${flagshipOs.priceUsd}</span>
         <h2 style="margin-top:0.55rem">${esc(flagshipOs.title)}</h2>
