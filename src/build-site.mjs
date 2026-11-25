@@ -626,7 +626,11 @@ function renderFooter() {
       </div>
     </div>
   </footer>
-  <script type="module" src="/shared.js"></script>`;
+  <script type="module" src="/shared.js"></script>${
+    SITE_CONFIG.cloudflareAnalyticsToken
+      ? `\n  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"${esc(SITE_CONFIG.cloudflareAnalyticsToken)}"}'></script>`
+      : ''
+  }`;
 }
 
 function buildHead({ title, description, canonicalPath, jsonLd = null }) {

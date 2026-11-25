@@ -9,6 +9,7 @@ export const SITE_CONFIG = {
   tagline: 'Free 2026 E-Commerce Fee, ROAS, POD & Tax Calculators',
   domain: process.env.PUBLIC_SITE_URL || 'https://shopmarginlab.pages.dev',
   supportEmail: 'digitalnomadstep@gmail.com',
+  cloudflareAnalyticsToken: 'cad1da804f7b4d96a19ba0c6a11ac227',
 
   // =========================================================================
   // 1. AFFILIATE PARTNER LINKS
