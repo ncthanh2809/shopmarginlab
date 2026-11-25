@@ -13,10 +13,10 @@ const ROOT = join(__dirname, '..');
 const DIST = join(ROOT, 'dist');
 const PROD_DIST = join(ROOT, 'products', 'dist');
 
-console.log('🧪 Running ShopMarginLab v3.2 End-to-End Verification...');
+console.log('🧪 Running ShopMarginLab v3.3 End-to-End Verification...');
 
 assert.equal(CALCULATORS.length, 20, 'Expected 20 calculators');
-assert.equal(GUIDES.length, 8, 'Expected 8 SEO guides');
+assert.equal(GUIDES.length, 10, 'Expected 10 SEO guides');
 
 // 1. Verify all 18 SEO calculator pages + JSON-LD + CRO features + live formula math execution
 const fmtUsd = (n) => (n < 0 ? '-$' + Math.abs(n).toFixed(2) : '$' + Number(n).toFixed(2));
@@ -62,9 +62,15 @@ for (const calc of CALCULATORS) {
   }
 }
 
-// 2. Verify /compare/, all 8 SEO Guides + /guides/ + Legal + Templates + Home + Sitemap + llms.txt + feed.xml
+// 2. Verify /compare/, all 10 SEO Guides + /guides/ + Legal + Templates + Home + Sitemap + llms.txt + feed.xml
 const compareHtml = readFileSync(join(DIST, 'compare', 'index.html'), 'utf8');
 assert.ok(compareHtml.includes('Shopify Basic') && compareHtml.includes('Poshmark US') && compareHtml.includes('Whatnot Live'), 'Compare page missing platforms');
+assert.ok(compareHtml.includes('/depop-fee-calculator/') && compareHtml.includes('/etsy-vs-tiktok-shop-calculator/'), 'Compare page missing Depop / Etsy vs TikTok cross-links');
+
+const depopHtml = readFileSync(join(DIST, 'depop-fee-calculator', 'index.html'), 'utf8');
+assert.ok(depopHtml.includes('/guides/depop-fees-2026-guide/'), 'Depop calculator missing guide cross-link');
+const evttHtml = readFileSync(join(DIST, 'etsy-vs-tiktok-shop-calculator', 'index.html'), 'utf8');
+assert.ok(evttHtml.includes('/guides/etsy-vs-tiktok-shop-2026-guide/'), 'Etsy vs TikTok calculator missing guide cross-link');
 
 assert.ok(existsSync(join(DIST, 'guides', 'index.html')), 'Missing /guides/ index');
 for (const g of GUIDES) {
@@ -83,7 +89,7 @@ assert.ok(!/YOUR_[A-Z0-9_]+/.test(homeHtml), 'Found placeholder on home page');
 
 const sitemap = readFileSync(join(DIST, 'sitemap.xml'), 'utf8');
 const urlCount = (sitemap.match(/<url>/g) || []).length;
-assert.equal(urlCount, 33, `Expected 33 URLs in sitemap.xml, got ${urlCount}`);
+assert.equal(urlCount, 35, `Expected 35 URLs in sitemap.xml, got ${urlCount}`);
 
 assert.ok(existsSync(join(DIST, `${SITE_CONFIG.indexNowKey}.txt`)), 'Missing IndexNow key txt file');
 assert.equal(readFileSync(join(DIST, `${SITE_CONFIG.indexNowKey}.txt`), 'utf8').trim(), SITE_CONFIG.indexNowKey);
@@ -92,7 +98,7 @@ const llmsTxt = readFileSync(join(DIST, 'llms.txt'), 'utf8');
 assert.ok(llmsTxt.includes('ShopMarginLab') && llmsTxt.includes('/compare/') && llmsTxt.includes('poshmark-fee-calculator'), 'llms.txt incomplete');
 
 const feedXml = readFileSync(join(DIST, 'feed.xml'), 'utf8');
-assert.ok(feedXml.includes('<rss version="2.0">') && (feedXml.match(/<item>/g) || []).length === 9, 'feed.xml should have 9 items');
+assert.ok(feedXml.includes('<rss version="2.0">') && (feedXml.match(/<item>/g) || []).length === 11, 'feed.xml should have 11 items');
 
 const legalHtml = readFileSync(join(DIST, 'legal', 'index.html'), 'utf8');
 assert.ok(legalHtml.includes('FTC Affiliate Disclosure'));
@@ -157,6 +163,8 @@ try {
     '/etsy-vs-tiktok-shop-calculator/',
     '/guides/',
     '/guides/reseller-platform-fees-compared-2026/',
+    '/guides/depop-fees-2026-guide/',
+    '/guides/etsy-vs-tiktok-shop-2026-guide/',
     '/templates/',
     '/llms.txt',
     '/feed.xml',
@@ -169,4 +177,4 @@ try {
   await new Promise((r) => srv.close(r));
 }
 
-console.log('✅ All 5 v3.2 verification suites (20 Calculators + Math Unit Tests, /compare/, 8 Guides, 33-URL Sitemap + IndexNow + llms.txt + feed.xml, 3 .XLSX Workbooks, 22 SVG+PNG Pinterest Pins + CSV, Preview Server) passed!');
+console.log('✅ All 5 v3.3 verification suites (20 Calculators + Math Unit Tests, /compare/, 10 Guides, 35-URL Sitemap + IndexNow + llms.txt + feed.xml, 3 .XLSX Workbooks, 22 SVG+PNG Pinterest Pins + CSV, Preview Server) passed!');

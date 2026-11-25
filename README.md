@@ -2,7 +2,7 @@
 
 **Live Free Web App (No Signup, 100% Client-Side):** https://shopmarginlab.pages.dev/
 
-ShopMarginLab is an open-source, zero-signup suite of **20 interactive 2026 US marketplace fee, POD, ROAS, and Schedule-C tax calculators** plus a live **7-Channel Fee Showdown** (`/compare/`) and **8 in-depth 2026 seller guides** (`/guides/`).
+ShopMarginLab is an open-source, zero-signup suite of **20 interactive 2026 US marketplace fee, POD, ROAS, and Schedule-C tax calculators** plus a live **7-Channel Fee Showdown** (`/compare/`) and **10 in-depth 2026 seller guides** (`/guides/`).
 
 ---
 
@@ -34,7 +34,7 @@ npm test
 # Start local preview server on http://localhost:4000
 npm start
 
-# Submit all 33 URLs to IndexNow (Bing, DuckDuckGo, Yandex, Seznam, Naver)
+# Submit all 35 URLs to IndexNow (Bing, DuckDuckGo, Yandex, Seznam, Naver)
 node scripts/submit-indexnow.mjs
 ```
 

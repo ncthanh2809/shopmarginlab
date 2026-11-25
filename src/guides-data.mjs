@@ -1,7 +1,7 @@
 /**
- * 8 High-Intent 2026 Editorial SEO Pillar Guides
+ * 10 High-Intent 2026 Editorial SEO Pillar Guides
  * Built to capture commercial-investigation search traffic, strengthen topical authority,
- * improve Affiliate program approval rates, and funnel readers into our 18 calculators + Payhip Excel Bundles.
+ * improve Affiliate program approval rates, and funnel readers into our 20 calculators + Payhip Excel Bundles.
  */
 
 export const GUIDES = [
@@ -247,6 +247,76 @@ export const GUIDES = [
         heading: '2. The Smart Cross-Listing Playbook for Resellers & Brands',
         paragraphs: [
           'Use high-fee marketplaces (Poshmark, eBay, Whatnot, Etsy) to capture high-intent marketplace shoppers you could not reach organically—then cross-list inventory dynamically and build your own repeat buyer list on a 0%-commission Shopify store.'
+        ]
+      }
+    ]
+  },
+  {
+    slug: 'depop-fees-2026-guide',
+    badge: '2026 Depop US Guide',
+    title: '2026 Depop US Seller Fees Explained: 0% Commission, 3.3% + $0.45 & Boosted Listings Math',
+    metaDescription:
+      'Complete 2026 breakdown of Depop US seller fees (0% selling commission, 3.3% + $0.45 Depop Payments on item + shipping + tax, and 12% Boosted Listings) vs. Poshmark.',
+    readTime: '6 min read',
+    relatedCalcSlug: 'depop-fee-calculator',
+    relatedCalcLabel: 'Open Interactive 2026 Depop Fee Calculator →',
+    primaryAffiliate: 'shopify',
+    recommendedProduct: 'flagshipOs',
+    sections: [
+      {
+        heading: '1. Depop US Fee Structure in 2026: Why 0% Commission Is Not 0% Total Fees',
+        paragraphs: [
+          'Depop removed its old 10% marketplace selling commission for eligible US listings—making it dramatically cheaper than Poshmark’s 20% fee or eBay’s 13.6%+ Final Value Fee.',
+          'However, every US order still incurs Depop Payments processing of 3.3% + $0.45 calculated on the ENTIRE buyer checkout total (item sale price + buyer-paid shipping + estimated state sales tax), plus an optional 12% Boosted Listings fee (on item price + shipping) whenever a buyer purchases via a boosted view.'
+        ]
+      },
+      {
+        heading: '2. Real Order Math: $38 Vintage Tee + $5.99 Shipping (Organic vs. Boosted vs. Poshmark)',
+        paragraphs: [
+          'On an organic $38.00 Depop US sale with $5.99 buyer-paid shipping and 7% estimated sales tax ($47.07 total processing basis), Depop Payments deducts $2.00 (just 5.3% of your $38 item price) and $0.00 selling commission. With $11.00 sourcing COGS, your true net profit is $25.00 (65.8% margin)—keeping $5.60 more per flip than Poshmark’s $7.60 (20%) fee!',
+          'If that same order converts via a 12% Boosted Listing, Depop adds $5.28 (12% × $43.99 item + shipping), pushing total fees to $7.28 (19.2%) and shrinking net profit to $19.72. Offering $5.99 free shipping on top drops net profit further to $13.73 (36.1%).'
+        ]
+      },
+      {
+        heading: '3. How Top Vintage & Streetwear Resellers Protect Depop Margins',
+        paragraphs: [
+          'First, never auto-boost high-demand brands (Carhartt, Nike vintage, Y2K denim) that sell organically—reserve 12% Boosted Listings for stale inventory past 30 days or build a 12% buffer into boosted prices. Even on sub-$15 flips ($12 + $4.50 ship), Depop’s ~$1.03 fee still beats Poshmark’s $2.95 minimum.',
+          'Second, log every thrift receipt, poly mailer, and Depop processing fee in a unified Schedule-C Profit & Tax OS so you never pay self-employment tax on gross 1099-K numbers—and move repeat buyers to your own 0%-commission Shopify boutique once you pass 30+ orders/month.'
+        ]
+      }
+    ]
+  },
+  {
+    slug: 'etsy-vs-tiktok-shop-2026-guide',
+    badge: '2026 Channel Showdown',
+    title: 'Etsy vs. TikTok Shop US in 2026: Exact Net Profit, Offsite Ads & Creator Commission Math',
+    metaDescription:
+      'Compare 2026 Etsy US fees (9.5% + $0.45 + 12%/15% Offsite Ads) against TikTok Shop US (6% referral + 10%–20% creator affiliate cuts) at 60 orders/month with real math.',
+    readTime: '6 min read',
+    relatedCalcSlug: 'etsy-vs-tiktok-shop-calculator',
+    relatedCalcLabel: 'Run Your Etsy vs. TikTok Shop Profit Comparison →',
+    primaryAffiliate: 'printify',
+    recommendedProduct: 'flagshipOs',
+    sections: [
+      {
+        heading: '1. Base Fees vs. Acquisition Cuts: Why 6% Can Cost More Than 9.5%',
+        paragraphs: [
+          'On paper, TikTok Shop US looks cheaper: a flat 6.0% referral fee (including card processing, or 3.0% during new sellers’ first 30 days) vs. Etsy US’s stacked $0.20 listing + 6.5% transaction + 3.0% + $0.25 Etsy Payments (~9.5% + $0.45).',
+          'In practice, attribution shifts the winner. On Etsy, if 15% of orders come from 15% Offsite Ads, your blended effective fee across all sales rises to ~12.9%. On TikTok Shop US, scaling through Affiliate Creators typically adds 10%–20% creator commission—pushing blended TikTok fees to 16%–26% when creators drive most volume.'
+        ]
+      },
+      {
+        heading: '2. Real 60-Order/Month Comparison ($38 Order Total, $14.50 COGS + Postage)',
+        paragraphs: [
+          'At 60 orders/month × $38.00 ($2,280 gross revenue, $870 COGS + postage), Etsy US with 15% Offsite Ads share takes $294.90 in total fees ($243.60 base + $51.30 Offsite Ads), leaving $1,115.10/month net profit (48.9% margin).',
+          'On TikTok Shop US at the exact same 60 orders, 0% creator share (100% shop-owned short video or LIVE) pays only $136.80 (6.0%), netting $1,273.20/month (+$158.10/mo or +$1,897/yr ahead of Etsy!). Even at a 5% blended creator rate, TikTok nets $1,159.20/mo. Once blended creator commission crosses ~6.9% across total orders (for example, 12% blended = $410.40 total fees), Etsy wins by $115.50/month ($1,115.10 vs. $999.60).'
+        ]
+      },
+      {
+        heading: '3. The 2026 Dual-Channel POD Playbook: $40+ Bundles, Printify & Shopify',
+        paragraphs: [
+          'Keep fulfillment costs under 12% of AOV by selling $40+ 2-pack bundles on TikTok Shop so you can profitably offer 15%–20% creator affiliate rates alongside 6% referral fees.',
+          'Sync one product catalog across Etsy, TikTok Shop US, and Shopify via Printify (Printify Premium’s ~20% blank discount adds $2.30–$4.00 net profit per apparel order after ~12 units/month), and insert a QR offer card inside packages to capture repeat buyers at 0% marketplace commission on Shopify.'
         ]
       }
     ]

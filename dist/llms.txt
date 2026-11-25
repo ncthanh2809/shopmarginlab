@@ -26,7 +26,7 @@
 - [2026 Depop US Seller Fee, Boosted Listing & Profit Calculator](https://shopmarginlab.pages.dev/depop-fee-calculator/): Calculate exact 2026 Depop US seller fees (0% selling fee, 3.3% + $0.45 Depop Payments on item + shipping + tax, and optional 12% Boosted Listings fee) vs. Poshmark.
 - [2026 Etsy vs. TikTok Shop US Profit & Creator Commission Calculator](https://shopmarginlab.pages.dev/etsy-vs-tiktok-shop-calculator/): Compare monthly take-home profit between Etsy US (9.5% + $0.45 + Offsite Ads) and TikTok Shop US (6% referral + creator affiliate %) at your exact AOV and order volume.
 
-## 2026 Seller Fee & Tax Playbooks (8)
+## 2026 Seller Fee & Tax Playbooks (10)
 - [2026 Etsy Seller Fees Explained: Exact Math, Shipping Traps & Offsite Ads](https://shopmarginlab.pages.dev/guides/etsy-fees-2026-complete-breakdown/): Complete 2026 breakdown of every Etsy US seller fee ($0.20 listing, 6.5% transaction on item + shipping, 3% + $0.25 payments, and 12%/15% Offsite Ads) with real order examples.
 - [Shopify vs. Etsy in 2026: The Exact Order Volume Where Shopify Saves You Money](https://shopmarginlab.pages.dev/guides/when-to-switch-etsy-to-shopify/): Discover the exact monthly order break-even point where Shopify Basic ($39/mo) becomes cheaper than Etsy’s 6.5% + Offsite Ads fees—and how to run both channels together.
 - [TikTok Shop US Seller Fees & Creator Affiliate Margins: 2026 Profitability Guide](https://shopmarginlab.pages.dev/guides/tiktok-shop-us-fees-creator-margins-2026/): Why TikTok Shop US’s 6% referral fee is only half the story—learn how to price products for 15%–20% creator commissions, FBT shipping, and GMV Max ads profitably.
@@ -35,6 +35,8 @@
 - [2026 eBay US Seller Fees Explained: Final Value Fees on Sales Tax & Promoted Listings](https://shopmarginlab.pages.dev/guides/ebay-fees-2026-final-value-promoted-listings/): Why eBay’s 13.6% Final Value Fee often takes 15%–20% of your actual item price—learn how buyer sales tax, shipping, Store subscriptions, and Promoted Listings impact real profit.
 - [Printify vs. Printful in 2026: Exact Per-Shirt Profit & Printify Premium Break-Even Math](https://shopmarginlab.pages.dev/guides/printify-vs-printful-2026-profit-comparison/): Side-by-side 2026 profit comparison of Printify Standard, Printify Premium ($29/mo), and Printful for Etsy and Shopify POD sellers—with real Bella+Canvas 3001 & Gildan 18500 numbers.
 - [2026 Reseller & Marketplace Fees Compared: Shopify vs. TikTok vs. Etsy vs. Mercari vs. Whatnot vs. eBay vs. Poshmark](https://shopmarginlab.pages.dev/guides/reseller-platform-fees-compared-2026/): Compare exact 2026 US seller fees across all 7 major platforms side-by-side on a $40 order—find out where resellers and brands keep the most net profit per sale.
+- [2026 Depop US Seller Fees Explained: 0% Commission, 3.3% + $0.45 & Boosted Listings Math](https://shopmarginlab.pages.dev/guides/depop-fees-2026-guide/): Complete 2026 breakdown of Depop US seller fees (0% selling commission, 3.3% + $0.45 Depop Payments on item + shipping + tax, and 12% Boosted Listings) vs. Poshmark.
+- [Etsy vs. TikTok Shop US in 2026: Exact Net Profit, Offsite Ads & Creator Commission Math](https://shopmarginlab.pages.dev/guides/etsy-vs-tiktok-shop-2026-guide/): Compare 2026 Etsy US fees (9.5% + $0.45 + 12%/15% Offsite Ads) against TikTok Shop US (6% referral + 10%–20% creator affiliate cuts) at 60 orders/month with real math.
 
 ## Unlocked Excel & Google Sheets Seller Workbooks
 - [All Templates ($0–$24)](https://shopmarginlab.pages.dev/templates/)

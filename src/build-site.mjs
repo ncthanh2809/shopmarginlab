@@ -443,6 +443,20 @@ p, li {
     font-weight: 700;
     color: var(--text-muted);
   }
+  .compare-table td:nth-child(4)::before {
+    content: var(--label-4) ': ';
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+  .compare-table td:nth-child(5)::before {
+    content: var(--label-5) ': ';
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+}
+
+.guide-prose p {
+  max-inline-size: 68ch;
 }
 
 .monetize-grid {
@@ -724,7 +738,7 @@ function renderFooter() {
       </div>
     </div>
   </footer>
-  <script type="module" src="/shared.js?v=4"></script>${
+  <script type="module" src="/shared.js?v=5"></script>${
     SITE_CONFIG.cloudflareAnalyticsToken
       ? `\n  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"${esc(SITE_CONFIG.cloudflareAnalyticsToken)}"}'></script>`
       : ''
@@ -749,7 +763,7 @@ function buildHead({ title, description, canonicalPath, jsonLd = null }) {
   <meta property="og:url" content="${esc(fullUrl)}">
   <meta property="og:image" content="${esc(SITE_CONFIG.domain.replace(/\/$/, ''))}/og-card.svg">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="/styles.css?v=4">
+  <link rel="stylesheet" href="/styles.css?v=5">
   <script>if(location.search.indexOf('embed=1')!==-1)document.documentElement.classList.add('embed-mode');</script>
   ${jsonLd ? `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>` : ''}
 </head>`;
@@ -761,7 +775,13 @@ function buildCalculatorPage(calc) {
   const prod = SITE_CONFIG.products[calc.recommendedProduct];
   const freebie = SITE_CONFIG.products.freeCheatSheet;
   const canonicalPath = `/${calc.slug}/`;
-  const relatedCalcs = CALCULATORS.filter((c) => c.slug !== calc.slug).slice(0, 6);
+  const matchingGuide = GUIDES.find((g) => g.relatedCalcSlug === calc.slug);
+  const calcIdx = CALCULATORS.findIndex((c) => c.slug === calc.slug);
+  const rotatedCalcs = [...CALCULATORS.slice(calcIdx + 1), ...CALCULATORS.slice(0, calcIdx)];
+  const relatedCalcs = [
+    ...rotatedCalcs.filter((c) => c.category === calc.category),
+    ...rotatedCalcs.filter((c) => c.category !== calc.category)
+  ].slice(0, 6);
 
   const jsonLd = [
     {
@@ -844,7 +864,11 @@ function buildCalculatorPage(calc) {
           <div class="action-strip">
             <a href="${esc(aff.url)}" target="_blank" rel="sponsored noopener" class="btn btn-primary btn-sm">${esc(aff.ctaLabel)}</a>
             <a href="${esc(freebie.checkoutUrl)}" target="_blank" rel="noopener" class="btn btn-secondary btn-sm">Free $0 Cheat Sheet →</a>
-            <a href="/compare/" class="btn btn-secondary btn-sm">Compare 7 Channels →</a>
+            <a href="/compare/" class="btn btn-secondary btn-sm">Compare 7 Channels →</a>${
+              matchingGuide
+                ? `\n            <a href="/guides/${matchingGuide.slug}/" class="btn btn-secondary btn-sm">2026 Fee Guide →</a>`
+                : ''
+            }
           </div>
         </div>
 
@@ -1193,7 +1217,7 @@ function buildComparePage() {
     </div>
 
     <div tabindex="0" role="region" aria-labelledby="cmpCaption" class="table-wrapper">
-      <table style="--label-2:'Fees'; --label-3:'Net Profit';">
+      <table class="compare-table" style="--label-2:'Fees'; --label-3:'Net Profit'; --label-4:'Margin'; --label-5:'Calculator';">
         <caption id="cmpCaption">2026 Side-by-Side US Platform Fee &amp; Net Profit Ranking</caption>
         <thead>
           <tr>
@@ -1207,6 +1231,37 @@ function buildComparePage() {
         <tbody id="cmpBody"></tbody>
       </table>
     </div>
+
+    <section aria-label="Additional 2026 Channel Comparisons" style="margin-top:1.5rem">
+      <div class="grid-cards">
+        <article class="card">
+          <span class="pill">0% US Selling Fee</span>
+          <h2 style="font-size:1.12rem;margin-top:0.5rem">Selling Vintage or Streetwear on Depop?</h2>
+          <p style="font-size:0.88rem;color:var(--text-muted)">Depop US charges 0% commission + 3.3% + $0.45 processing (and optional 12% Boosted Listings)—saving $5+ vs. Poshmark on a $38 flip.</p>
+          <div class="toolbar">
+            <a href="/depop-fee-calculator/" class="btn btn-secondary btn-sm">Depop Calculator →</a>
+            <a href="/guides/depop-fees-2026-guide/" class="btn btn-secondary btn-sm">Depop 2026 Guide →</a>
+          </div>
+        </article>
+        <article class="card">
+          <span class="pill">Creator % vs. Offsite Ads</span>
+          <h2 style="font-size:1.12rem;margin-top:0.5rem">Etsy vs. TikTok Shop US Volume Battle</h2>
+          <p style="font-size:0.88rem;color:var(--text-muted)">Compare 60+ monthly orders across Etsy (9.5% + $0.45 + Offsite Ads) and TikTok Shop US (6% referral + 10%–20% creator cuts).</p>
+          <div class="toolbar">
+            <a href="/etsy-vs-tiktok-shop-calculator/" class="btn btn-secondary btn-sm">Etsy vs. TikTok Calc →</a>
+            <a href="/guides/etsy-vs-tiktok-shop-2026-guide/" class="btn btn-secondary btn-sm">Channel Guide →</a>
+          </div>
+        </article>
+        <article class="card">
+          <span class="pill">Full Reseller Playbook</span>
+          <h2 style="font-size:1.12rem;margin-top:0.5rem">Cross-Listing Strategy Across All Channels</h2>
+          <p style="font-size:0.88rem;color:var(--text-muted)">Read our 2026 reseller fee breakdown and see when moving repeat marketplace buyers to Shopify saves thousands.</p>
+          <div class="toolbar">
+            <a href="/guides/reseller-platform-fees-compared-2026/" class="btn btn-secondary btn-sm">Read Full Breakdown →</a>
+          </div>
+        </article>
+      </div>
+    </section>
 
     <section class="monetize-grid" style="margin-top:2rem">
       <article class="card affiliate-box">
@@ -1571,6 +1626,8 @@ function buildGuidePage(guide) {
   const prod = SITE_CONFIG.products[guide.recommendedProduct];
   const freebie = SITE_CONFIG.products.freeCheatSheet;
   const canonicalPath = `/guides/${guide.slug}/`;
+  const guideIdx = GUIDES.findIndex((g) => g.slug === guide.slug);
+  const relatedGuides = [...GUIDES.slice(guideIdx + 1), ...GUIDES.slice(0, guideIdx)].slice(0, 3);
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -1588,8 +1645,8 @@ function buildGuidePage(guide) {
       <a href="/" style="color:inherit">Home</a> / <a href="/guides/" style="color:inherit">2026 Guides</a>
     </p>
     <span class="pill">${esc(guide.badge)} • ${esc(guide.readTime)}</span>
-    <h1 style="font-size:clamp(1.8rem,3.6vw,2.5rem);margin-top:0.55rem">${esc(guide.title)}</h1>
-    <p style="font-size:1.08rem;color:var(--text-muted)">${esc(guide.metaDescription)}</p>
+    <h1 style="font-size:clamp(1.75rem,1rem + 2vw,2.5rem);margin-top:0.55rem">${esc(guide.title)}</h1>
+    <p style="font-size:1.08rem;color:var(--text-muted);max-inline-size:68ch">${esc(guide.metaDescription)}</p>
 
     <div class="card affiliate-box" style="margin-block:1.5rem;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem">
       <div>
@@ -1602,7 +1659,7 @@ function buildGuidePage(guide) {
     ${guide.sections
       .map(
         (sec) => `
-      <section class="card" style="margin-bottom:1.25rem">
+      <section class="card guide-prose" style="margin-bottom:1.25rem">
         <h2 style="font-size:1.35rem">${esc(sec.heading)}</h2>
         ${sec.paragraphs.map((p) => `<p style="color:var(--text-muted);font-size:0.98rem">${esc(p)}</p>`).join('')}
       </section>`
@@ -1625,6 +1682,28 @@ function buildGuidePage(guide) {
           <a href="${esc(prod.checkoutUrl)}" target="_blank" rel="noopener" class="btn btn-accent btn-sm">Full Excel OS ($${prod.priceUsd}) →</a>
         </div>
       </article>
+    </section>
+
+    <section style="margin-top:2rem">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:0.75rem;margin-bottom:1rem">
+        <h2 style="font-size:1.3rem;margin:0">More 2026 Seller Fee &amp; Margin Guides</h2>
+        <div class="toolbar">
+          <a href="/compare/" style="font-weight:700;color:var(--brand-dark);text-decoration:none">Compare 7 Channels →</a>
+          <a href="/guides/" style="font-weight:700;color:var(--brand-dark);text-decoration:none">All ${GUIDES.length} Guides →</a>
+        </div>
+      </div>
+      <div class="grid-cards">
+        ${relatedGuides
+          .map(
+            (other) => `
+          <a href="/guides/${other.slug}/" class="card" style="text-decoration:none;color:inherit;display:block">
+            <span class="pill">${esc(other.badge)} • ${esc(other.readTime)}</span>
+            <h3 style="font-size:1.05rem;margin-top:0.5rem">${esc(other.title)}</h3>
+            <p style="font-size:0.86rem;color:var(--text-muted);margin-bottom:0">${esc(other.metaDescription)}</p>
+          </a>`
+          )
+          .join('')}
+      </div>
     </section>
   </main>
   ${renderFooter()}

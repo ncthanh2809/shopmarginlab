@@ -424,6 +424,20 @@ p, li {
     font-weight: 700;
     color: var(--text-muted);
   }
+  .compare-table td:nth-child(4)::before {
+    content: var(--label-4) ': ';
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+  .compare-table td:nth-child(5)::before {
+    content: var(--label-5) ': ';
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+}
+
+.guide-prose p {
+  max-inline-size: 68ch;
 }
 
 .monetize-grid {
