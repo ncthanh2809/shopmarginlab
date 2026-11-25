@@ -4,6 +4,16 @@ Upload the generated `.xlsx` files in this folder (`products/dist/`) to your fre
 
 ---
 
+## Product 0 (Lead Magnet — $0.00 Freebie + Cross-Sell Upsell!)
+- **File to Upload:** `FREE-2026-Seller-Fee-Tax-Cheat-Sheet.xlsx`
+- **Price:** `$0+` (or `$0.00` Free Download — collects buyer email!)
+- **Product Title:** `FREE: 2026 US Seller Fee & IRS Schedule-C Tax Write-Off Cheat Sheet (.xlsx)`
+- **Payhip Cross-Sell Setting:** Turn ON **Cross-Sell / Upgrade Discount (20% OFF)** pointing to **Product 1 ($24 Flagship OS)**!
+- **Description (Copy-Paste):**
+Grab our 1-page 2026 US Marketplace Fee & IRS Schedule-C Deduction Cheat Sheet (Etsy, Shopify, TikTok Shop US + top overlooked seller tax write-offs). Opens in Excel & Google Sheets!
+
+---
+
 ## Product 1: Flagship Bundle ($24 USD)
 - **File to Upload:** `Ultimate-Seller-Profit-Inventory-Tax-OS-2026.xlsx`
 - **Cover Image:** `cover-flagship-os.svg`

@@ -494,6 +494,30 @@ const podPath = join(OUT_DIR, 'POD-Etsy-Launch-Pricing-Matrix-2026.xlsx');
 writeFileSync(podPath, podBuffer);
 
 // =========================================================================
+// PRODUCT 3: $0 Lead Magnet — 2026 US Seller Fee & IRS Tax Write-Off Cheat Sheet (.xlsx)
+// Used on Payhip as a $0 Freebie to collect verified seller emails + trigger 20% Upsell!
+// =========================================================================
+const freebieRows = [
+  [{ v: '2026 US E-COMMERCE FEE RATES & IRS SCHEDULE-C WRITE-OFF CHEAT SHEET', s: 1 }],
+  ['Free Quick-Reference Guide by ShopMarginLab (https://shopmarginlab.pages.dev) — Keep for Tax Season!'],
+  [hdr('Platform / Expense Item'), hdr('2026 Rate / Rule'), hdr('Applies To'), hdr('Tax Deductible?'), hdr('Pro Margin Tip')],
+  ['Etsy Listing Fee', '$0.20 flat', 'Per listing / quantity sold', 'Yes (Schedule C)', 'Bundle 2–3 items to dilute $0.20 fee'],
+  ['Etsy Transaction Fee', '6.5%', 'Item price + Buyer shipping', 'Yes (Schedule C)', 'Free shipping rolls into item price—same 6.5%'],
+  ['Etsy Payments (US)', '3.0% + $0.25', 'Total order incl. tax', 'Yes (Schedule C)', 'Reconcile monthly from Etsy CSV'],
+  ['Etsy Offsite Ads', '15% (<$10k) / 12% ($10k+)', 'Attributed orders (30d)', 'Yes (Advertising)', 'Mandatory once rolling 12m sales pass $10k'],
+  ['Shopify Basic Plan', '$39/mo + 2.9% + $0.30', '0% marketplace fee', 'Yes (Software/Fees)', 'Cheaper than Etsy past ~14 orders/mo ($40 AOV)'],
+  ['TikTok Shop US Referral', '6.0% (3% promo 30d)', 'Buyer paid total', 'Yes (Commissions)', 'Stack creator % carefully (aim 65%+ gross margin)'],
+  ['Home Office Deduction', '$5/sq ft (up to 300 sq ft)', 'Dedicated workspace', 'Yes (Form 8829)', 'Simplified method saves up to $1,500 deduction'],
+  ['Business Mileage (IRS)', 'Standard IRS cents/mile', 'Post office & supply runs', 'Yes (Car & Truck)', 'Keep a date + purpose mileage log'],
+  ['Packaging, Labels & Thermal Printer', '100% of cost', 'Boxes, tape, mailers', 'Yes (Supplies)', 'Buy mailers in 250+ bulk to cut unit cost 40%']
+];
+
+const freebieBuffer = buildXlsxWorkbook([
+  { name: '2026_Fee_Tax_CheatSheet', rows: freebieRows, widths: [30, 24, 26, 20, 44] }
+]);
+writeFileSync(join(OUT_DIR, 'FREE-2026-Seller-Fee-Tax-Cheat-Sheet.xlsx'), freebieBuffer);
+
+// =========================================================================
 // 3D Product Cover Graphics & Copy-Paste Payhip/Gumroad Listing Sheet
 // =========================================================================
 writeFileSync(
@@ -518,6 +542,16 @@ writeFileSync(
   `# Ready-to-Paste Product Listings for Payhip / Gumroad
 
 Upload the generated \`.xlsx\` files in this folder (\`products/dist/\`) to your free **Payhip.com** or **Gumroad.com** account using the exact titles, prices, and descriptions below:
+
+---
+
+## Product 0 (Lead Magnet — $0.00 Freebie + Cross-Sell Upsell!)
+- **File to Upload:** \`FREE-2026-Seller-Fee-Tax-Cheat-Sheet.xlsx\`
+- **Price:** \`$0+\` (or \`$0.00\` Free Download — collects buyer email!)
+- **Product Title:** \`FREE: 2026 US Seller Fee & IRS Schedule-C Tax Write-Off Cheat Sheet (.xlsx)\`
+- **Payhip Cross-Sell Setting:** Turn ON **Cross-Sell / Upgrade Discount (20% OFF)** pointing to **Product 1 ($24 Flagship OS)**!
+- **Description (Copy-Paste):**
+Grab our 1-page 2026 US Marketplace Fee & IRS Schedule-C Deduction Cheat Sheet (Etsy, Shopify, TikTok Shop US + top overlooked seller tax write-offs). Opens in Excel & Google Sheets!
 
 ---
 

@@ -7,8 +7,8 @@
 export const SITE_CONFIG = {
   brandName: 'ShopMarginLab',
   tagline: 'Free 2026 E-Commerce Fee, ROAS & Profit Calculators',
-  domain: process.env.PUBLIC_SITE_URL || 'https://shopmarginlab.com',
-  supportEmail: 'hello@shopmarginlab.com',
+  domain: process.env.PUBLIC_SITE_URL || 'https://shopmarginlab.pages.dev',
+  supportEmail: 'digitalnomadstep@gmail.com',
 
   // =========================================================================
   // 1. AFFILIATE PARTNER LINKS (Replace with your Impact / PartnerStack URLs)
