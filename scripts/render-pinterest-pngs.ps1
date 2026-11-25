@@ -4,7 +4,9 @@ $manifestPath = Join-Path $root "products\dist\pins\pins-manifest.json"
 $outDir = Join-Path $root "products\dist\pins-png"
 New-Item -ItemType Directory -Force -Path $outDir | Out-Null
 
-$pins = Get-Content -Raw -Path $manifestPath | ConvertFrom-Json
+$pinsJson = [System.IO.File]::ReadAllText($manifestPath, [System.Text.Encoding]::UTF8)
+$pins = $pinsJson | ConvertFrom-Json
+$bulletSep = [char]0x2022
 
 foreach ($p in $pins) {
   $bmp = New-Object System.Drawing.Bitmap(1000, 1500)
@@ -61,7 +63,7 @@ foreach ($p in $pins) {
   $fFoot = New-Object System.Drawing.Font("Segoe UI", 23, [System.Drawing.FontStyle]::Bold)
   $mutedBrush = New-Object System.Drawing.SolidBrush([System.Drawing.ColorTranslator]::FromHtml("#94a3b8"))
   $footRect = New-Object System.Drawing.RectangleF(80, 1340, 840, 60)
-  $g.DrawString("$($p.brandName)  •  100% Free 2026 Interactive Tool", $fFoot, $mutedBrush, $footRect, $sf)
+  $g.DrawString("$($p.brandName)  $bulletSep  100% Free 2026 Interactive Tool", $fFoot, $mutedBrush, $footRect, $sf)
 
   $outPath = Join-Path $outDir $p.pngName
   $bmp.Save($outPath, [System.Drawing.Imaging.ImageFormat]::Png)
