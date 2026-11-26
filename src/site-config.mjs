@@ -42,14 +42,14 @@ export const SITE_CONFIG = {
     },
     linkMyBooks: {
       name: 'Link My Books',
-      badge: 'Automate Seller Bookkeeping',
+      badge: 'Save 50% • Automated Bookkeeping',
       headline: 'Tired of Reconciling Etsy, Amazon, eBay & Shopify Payouts by Hand?',
       pitch:
-        'Automatically split lump-sum payouts into exact gross sales, marketplace fees, refunds, and sales tax inside QuickBooks or Xero in 10 minutes a month.',
-      ctaLabel: 'Start 14-Day Free Trial →',
-      commissionNote: '20% lifetime recurring commission',
-      // REPLACE WITH APPROVED LINK MY BOOKS AFFILIATE LINK:
-      url: 'https://linkmybooks.com/?utm_source=shopmarginlab&utm_medium=calculator&utm_campaign=linkmybooks_partner'
+        'Automatically split lump-sum payouts into exact gross sales, marketplace fees, refunds, and sales tax inside QuickBooks or Xero in 10 minutes a month—plus claim 50% off via our partner link.',
+      ctaLabel: 'Claim 50% Off + 14-Day Free Trial →',
+      commissionNote: '$50 bounty + 20% recurring (up to $1,000/referral) via Cello',
+      // Approved Link My Books affiliate/referral link (Cello):
+      url: 'https://linkmybooks.cello.so/mqa9XBXQElJ'
     }
   },
 
