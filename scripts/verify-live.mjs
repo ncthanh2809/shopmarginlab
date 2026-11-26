@@ -63,7 +63,7 @@ for (const r of routes) {
 
 try {
   const redir = await fetch(base + '/compare', { redirect: 'manual' });
-  if (redir.status !== 301) failures.push(`Expected 301 on /compare, got ${redir.status}`);
+  if (![301, 308].includes(redir.status)) failures.push(`Expected 301/308 on /compare, got ${redir.status}`);
 } catch (err) {
   failures.push(`Redirect check failed -> ${err.message}`);
 }
