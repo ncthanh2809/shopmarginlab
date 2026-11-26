@@ -752,6 +752,7 @@ function buildHead({ title, description, canonicalPath, jsonLd = null }) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name='impact-site-verification' value='975518e3-1930-489b-92d5-0d5098d74b8e'>
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(description)}">
   <link rel="canonical" href="${esc(fullUrl)}">
