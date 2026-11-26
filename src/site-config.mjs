@@ -54,7 +54,7 @@ export const SITE_CONFIG = {
   },
 
   // =========================================================================
-  // 2. LIVE DIGITAL PRODUCTS (Hosted on Payhip — 95%+ Net Margin + 20% Auto Cross-Sell)
+  // 2. LIVE DIGITAL PRODUCTS (Hosted on Gumroad — Direct VN Bank Payout + 20% Upsell)
   // =========================================================================
   products: {
     freeCheatSheet: {
@@ -69,7 +69,7 @@ export const SITE_CONFIG = {
         'Top overlooked IRS Schedule-C seller write-offs (home office, postage, samples, software)',
         'Instant $0 download — opens in Microsoft Excel & Google Sheets'
       ],
-      checkoutUrl: 'https://payhip.com/b/MGRn9'
+      checkoutUrl: 'https://nomadstep.gumroad.com/l/ioyene'
     },
     flagshipOs: {
       id: 'seller-profit-os-2026',
@@ -84,7 +84,7 @@ export const SITE_CONFIG = {
         '12-Month Order, Ad Spend & Net Profit Automated Dashboard',
         'Low-Stock Reorder Alert Tracker + US IRS Schedule-C Tax Deduction Log'
       ],
-      checkoutUrl: 'https://payhip.com/b/rgL6o'
+      checkoutUrl: 'https://nomadstep.gumroad.com/l/yihnkv'
     },
     podMatrix: {
       id: 'pod-pricing-matrix-2026',
@@ -98,7 +98,7 @@ export const SITE_CONFIG = {
         'Printify Standard vs. Printify Premium break-even threshold calculator',
         'Target ROAS & Daily Ad Budget Planner + 100-Listing SEO Keyword Tracker'
       ],
-      checkoutUrl: 'https://payhip.com/b/u1UYJ'
+      checkoutUrl: 'https://nomadstep.gumroad.com/l/mkjzky'
     }
   }
 };

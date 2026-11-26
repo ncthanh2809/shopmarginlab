@@ -36,8 +36,10 @@ for (const r of routes) {
     }
     if (r === '/') {
       if (body.includes('YOUR_')) failures.push('HOME contains YOUR_ placeholder');
-      for (const code of ['MGRn9', 'rgL6o', 'u1UYJ']) {
-        if (!body.includes(code)) failures.push(`HOME missing Payhip code ${code}`);
+      for (const product of Object.values(SITE_CONFIG.products)) {
+        if (!body.includes(product.checkoutUrl)) {
+          failures.push(`HOME missing product checkoutUrl ${product.checkoutUrl}`);
+        }
       }
       if (!body.includes('poshmark-fee-calculator')) failures.push('HOME missing v3 calculator links');
       if (!body.includes('cad1da804f7b4d96a19ba0c6a11ac227')) failures.push('HOME missing Cloudflare Web Analytics beacon');

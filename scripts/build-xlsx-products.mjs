@@ -545,11 +545,14 @@ Upload the generated \`.xlsx\` files in this folder (\`products/dist/\`) to your
 
 ---
 
-## Product 0 (Lead Magnet — $0.00 Freebie + Cross-Sell Upsell!)
+## Product 0 (Lead Magnet — $0.00 Freebie + 20% Upsell!)
 - **File to Upload:** \`FREE-2026-Seller-Fee-Tax-Cheat-Sheet.xlsx\`
-- **Price:** \`$0+\` (or \`$0.00\` Free Download — collects buyer email!)
+- **Cover Image (PNG 1200x900 for Gumroad):** \`cover-free-cheatsheet.png\`
+- **Price:** \`$0\` (or \`$0+\` Free Download — collects buyer email!)
 - **Product Title:** \`FREE: 2026 US Seller Fee & IRS Schedule-C Tax Write-Off Cheat Sheet (.xlsx)\`
-- **Payhip Cross-Sell Setting:** Turn ON **Cross-Sell / Upgrade Discount (20% OFF)** pointing to **Product 1 ($24 Flagship OS)**!
+- **Upsell / Cross-Sell Setting:**
+  - **Gumroad:** In **Checkout -> Upsells**, add a 20% OFF upsell pointing to **Product 1 ($24 Flagship OS)** (final upsell price: \`$19.20\`).
+  - **Payhip:** Turn ON **Cross-Sell / Upgrade Discount (20% OFF)** pointing to **Product 1 ($24 Flagship OS)**!
 - **Description (Copy-Paste):**
 Grab our 1-page 2026 US Marketplace Fee & IRS Schedule-C Deduction Cheat Sheet (Etsy, Shopify, TikTok Shop US + top overlooked seller tax write-offs). Opens in Excel & Google Sheets!
 
@@ -557,7 +560,7 @@ Grab our 1-page 2026 US Marketplace Fee & IRS Schedule-C Deduction Cheat Sheet (
 
 ## Product 1: Flagship Bundle ($24 USD)
 - **File to Upload:** \`Ultimate-Seller-Profit-Inventory-Tax-OS-2026.xlsx\`
-- **Cover Image:** \`cover-flagship-os.svg\`
+- **Cover Image (PNG 1200x900 for Gumroad):** \`cover-flagship-os.png\` (SVG: \`cover-flagship-os.svg\`)
 - **Price:** \`$24.00\` (Compare-at price: \`$49.00\`)
 - **Product Title:** \`2026 Multi-Channel Seller Profit, Inventory & Schedule-C Tax Excel OS\`
 - **Description (Copy-Paste):**
@@ -574,6 +577,7 @@ This **5-Tab Microsoft Excel & Google Sheets Operating System** gives handmade, 
 
 ## Product 2: Print-on-Demand Edition ($17 USD)
 - **File to Upload:** \`POD-Etsy-Launch-Pricing-Matrix-2026.xlsx\`
+- **Cover Image (PNG 1200x900 for Gumroad):** \`cover-pod-matrix.png\`
 - **Price:** \`$17.00\` (Compare-at price: \`$35.00\`)
 - **Product Title:** \`2026 Print-on-Demand (Printify & Etsy) Bulk Pricing & Offsite Ads Matrix (.xlsx)\`
 - **Description (Copy-Paste):**

@@ -38,7 +38,10 @@ for (const calc of CALCULATORS) {
   assert.ok(html.includes('openEmbedBtn'), `Missing Embed Free button on ${calc.slug}`);
   assert.ok(html.includes('class="action-strip"'), `Missing above-the-fold conversion strip on ${calc.slug}`);
   assert.ok(!/YOUR_[A-Z0-9_]+/.test(html), `Found unresolved YOUR_* placeholder on ${calc.slug}`);
-  assert.ok(html.includes('https://payhip.com/b/MGRn9'), `Missing $0 Payhip lead magnet link on ${calc.slug}`);
+  assert.ok(
+    html.includes(SITE_CONFIG.products.freeCheatSheet.checkoutUrl),
+    `Missing $0 lead magnet checkoutUrl on ${calc.slug}`
+  );
   assert.ok(html.includes('cad1da804f7b4d96a19ba0c6a11ac227'), `Missing Cloudflare Web Analytics token on ${calc.slug}`);
 
   // Execute calculator computeFnBody with default inputs + every select option to verify zero NaN!
@@ -82,7 +85,12 @@ for (const g of GUIDES) {
 }
 
 const homeHtml = readFileSync(join(DIST, 'index.html'), 'utf8');
-assert.ok(homeHtml.includes('https://payhip.com/b/MGRn9') && homeHtml.includes('https://payhip.com/b/rgL6o') && homeHtml.includes('https://payhip.com/b/u1UYJ'));
+assert.ok(
+  homeHtml.includes(SITE_CONFIG.products.freeCheatSheet.checkoutUrl) &&
+    homeHtml.includes(SITE_CONFIG.products.flagshipOs.checkoutUrl) &&
+    homeHtml.includes(SITE_CONFIG.products.podMatrix.checkoutUrl),
+  'Homepage missing configured product checkout URLs'
+);
 assert.ok(homeHtml.includes('id="calcSearch"'), 'Missing instant search box on homepage');
 assert.ok(homeHtml.includes('"@type":"ItemList"'), 'Missing ItemList JSON-LD on homepage');
 assert.ok(!/YOUR_[A-Z0-9_]+/.test(homeHtml), 'Found placeholder on home page');

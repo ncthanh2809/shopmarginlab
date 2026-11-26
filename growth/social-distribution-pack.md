@@ -1,5 +1,5 @@
 # Bộ Kéo Khách Đa Kênh & Tự Động Hóa Doanh Thu — ShopMarginLab v3
-**Mục tiêu:** Đưa lưu lượng miễn phí chất lượng cao (người bán Mỹ trên Etsy, Shopify, TikTok Shop, Amazon, eBay, Poshmark, Mercari, Whatnot) về `https://shopmarginlab.pages.dev/` → chuyển đổi sang **Affiliate B2B (Shopify / Printify / Link My Books)** và **Payhip (\$0 Cheat Sheet → \$19.20/\$24 Excel OS)**.
+**Mục tiêu:** Đưa lưu lượng miễn phí chất lượng cao (người bán Mỹ trên Etsy, Shopify, TikTok Shop, Amazon, eBay, Poshmark, Mercari, Whatnot) về `https://shopmarginlab.pages.dev/` → chuyển đổi sang **Affiliate B2B (Shopify / Printify / Link My Books)** và **Gumroad (\$0 Cheat Sheet → \$19.20/\$24 Excel OS)**.
 
 ---
 
@@ -55,9 +55,9 @@
 
 ---
 
-## PHẦN 2: Chuỗi 5 Email Tự Động Chăm Sóc Khách Tải Phễu \$0 (Payhip Email Updates / MailerLite)
+## PHẦN 2: Chuỗi 5 Email Tự Động Chăm Sóc Khách Tải Phễu \$0 (Gumroad Emails / MailerLite)
 
-> **Mục tiêu:** Khách tải `FREE-2026-Seller-Fee-Tax-Cheat-Sheet.xlsx` (`https://payhip.com/b/MGRn9`) → nuôi dưỡng tự động trong 12 ngày để chốt chéo **Excel OS (\$24)** và **3 Link Affiliate** (Shopify, Printify, Link My Books).
+> **Mục tiêu:** Khách tải `FREE-2026-Seller-Fee-Tax-Cheat-Sheet.xlsx` (`https://nomadstep.gumroad.com/l/ioyene`) → nuôi dưỡng tự động trong 12 ngày để chốt chéo **Excel OS (\$24)** và **3 Link Affiliate** (Shopify, Printify, Link My Books).
 
 ### Email 1 (Ngay lập tức — Day 0): Giao file + Gợi mở 7-Channel Showdown
 - **Subject:** `Your 2026 Seller Fee & Tax Cheat Sheet (.xlsx) is ready`
@@ -92,7 +92,7 @@
   > Check how much Printify Standard vs. Printify Premium saves you per year compared to Printful:
   > 👉 https://shopmarginlab.pages.dev/printful-vs-printify-calculator/
   >
-  > Want to bulk-price 50 SKUs with Offsite Ads & 15% sale protection built in? Grab our **2026 POD & Etsy Bulk Pricing Matrix (\$17)**: https://payhip.com/b/u1UYJ
+  > Want to bulk-price 50 SKUs with Offsite Ads & 15% sale protection built in? Grab our **2026 POD & Etsy Bulk Pricing Matrix (\$17)**: https://nomadstep.gumroad.com/l/mkjzky
 
 ### Email 4 (Ngày 8): Tránh nộp thừa thuế 1099-K → Giới thiệu Link My Books (Affiliate #3)
 - **Subject:** `Why your 1099-K overstates your profit (and how to fix it)`
@@ -109,7 +109,7 @@
 - **Body:**
   > You already have our free 2026 Fee Cheat Sheet—if you're ready to track all your SKUs, monthly ad spend, low-stock reorder alerts, and Schedule-C write-offs in one clean 5-tab workbook (zero monthly subscriptions):
   >
-  > 👉 Upgrade to the **2026 Multi-Channel Seller Profit, Inventory & Tax OS (\$24)**: https://payhip.com/b/rgL6o
+  > 👉 Upgrade to the **2026 Multi-Channel Seller Profit, Inventory & Tax OS (\$24)**: https://nomadstep.gumroad.com/l/yihnkv
   >
   > Works instantly in Microsoft Excel & Google Sheets with 100% unlocked formulas.
 

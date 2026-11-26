@@ -1,11 +1,11 @@
 # ShopMarginLab — Bộ Tài Liệu Thực Thi Kéo Khách 30 Ngày & Hồ Sơ Duyệt Affiliate 2026
 
-> Website trực tuyến: `https://shopmarginlab.pages.dev/` (20 trang SEO: 12 máy tính phí 2026 + 4 bài hướng dẫn chuyên sâu + 3 sản phẩm Payhip đã liên kết thật).
+> Website trực tuyến: `https://shopmarginlab.pages.dev/` (20 máy tính phí 2026 + 10 bài hướng dẫn chuyên sâu + 3 sản phẩm Gumroad đã liên kết thật).
 >
-> **3 Link Payhip thật đã hoạt động:**
-> - **Phễu \$0:** `https://payhip.com/b/MGRn9` (đã bật bán chéo giảm 20% sang gói \$24)
-> - **Bộ Flagship \$24:** `https://payhip.com/b/rgL6o`
-> - **Bộ POD Matrix \$17:** `https://payhip.com/b/u1UYJ`
+> **3 Link Gumroad thật đã hoạt động:**
+> - **Phễu \$0:** `https://nomadstep.gumroad.com/l/ioyene` (đã bật upsell giảm 20% sang gói \$24)
+> - **Bộ Flagship \$24:** `https://nomadstep.gumroad.com/l/yihnkv`
+> - **Bộ POD Matrix \$17:** `https://nomadstep.gumroad.com/l/mkjzky`
 
 ---
 
@@ -84,9 +84,9 @@ Dùng đúng đoạn mô tả tiếng Anh chuẩn chuyên nghiệp dưới đây
 
 ---
 
-## PHẦN 3: EMAIL TỰ ĐỘNG TRÊN PAYHIP (TĂNG TỶ LỆ CHỐT ĐƠN \$24 & AFFILIATE)
+## PHẦN 3: EMAIL TỰ ĐỘNG TRÊN GUMROAD (TĂNG TỶ LỆ CHỐT ĐƠN \$24 & AFFILIATE)
 
-Vào **Payhip -> Customers / Email Updates** (hoặc **Product Settings -> Thank You Email** của sản phẩm \$0 `MGRn9`) và dán nội dung sau:
+Vào **Gumroad -> Products -> FREE Cheat Sheet (`ioyene`) -> Receipt** (hoặc **Emails / Workflows**) và dán nội dung sau:
 
 - **Subject:** `Your Free 2026 Seller Fee & Schedule-C Tax Cheat Sheet (.xlsx) + 20% Upgrade`
 - **Body:**
@@ -95,8 +95,8 @@ Vào **Payhip -> Customers / Email Updates** (hoặc **Product Settings -> Thank
   > Thanks for grabbing the **2026 US Seller Fee & IRS Schedule-C Tax Cheat Sheet** from ShopMarginLab!
   >
   > **3 quick next steps to protect your 2026 margins:**
-  > 1. Run live single-order checks anytime with our **12 free calculators** (Etsy, Shopify, TikTok Shop, Amazon FBA, eBay, POD & Quarterly Tax): `https://shopmarginlab.pages.dev/`
-  > 2. If you track 10+ SKUs, inventory reorder levels, and monthly tax write-offs, grab the full **5-Tab Multi-Channel Seller Profit & Schedule-C Excel OS** ($24 — or 20% off via your checkout upgrade): `https://payhip.com/b/rgL6o`
+  > 1. Run live single-order checks anytime with our **20 free calculators** (Etsy, Shopify, TikTok Shop, Amazon FBA, eBay, Depop, POD & Quarterly Tax): `https://shopmarginlab.pages.dev/`
+  > 2. If you track 10+ SKUs, inventory reorder levels, and monthly tax write-offs, grab the full **5-Tab Multi-Channel Seller Profit & Schedule-C Excel OS** ($24 — or 20% off via your checkout upsell): `https://nomadstep.gumroad.com/l/yihnkv`
   > 3. Selling 50+ orders/month? Moving repeat buyers to your own Shopify store eliminates the 6.5%–15% marketplace fee drag immediately.
   >
   > Reply to this email anytime if you have a spreadsheet question!
@@ -108,7 +108,7 @@ Vào **Payhip -> Customers / Email Updates** (hoặc **Product Settings -> Thank
 
 | Tuần | Mục tiêu chính | Hành động cụ thể |
 | :--- | :--- | :--- |
-| **Tuần 1** | Mở cổng nhận tiền + Index Google + Nộp Affiliate | 1. Nối PayPal trên Payhip (`Setup checkout`).<br>2. Nộp `https://shopmarginlab.pages.dev/sitemap.xml` vào **Google Search Console**.<br>3. Đăng ký 3 Affiliate (Printify, Link My Books, Impact Shopify) bằng văn bản Phần 1.<br>4. Tạo Pinterest Business & đăng 6 Pin đầu tiên trong `products/dist/pins-png/`. |
+| **Tuần 1** | Mở cổng nhận tiền + Index Google + Nộp Affiliate | 1. Xong nối ngân hàng VN trên Gumroad & 3 link sản phẩm thật.<br>2. Nộp `https://shopmarginlab.pages.dev/sitemap.xml` vào **Google Search Console**.<br>3. Đăng ký 3 Affiliate (Printify, Link My Books, Impact Shopify) bằng văn bản Phần 1.<br>4. Tạo Pinterest Business & đăng 6 Pin đầu tiên trong `products/dist/pins-png/`. |
 | **Tuần 2** | Phủ sóng Pinterest & Cộng đồng người bán Mỹ | 1. Đăng nốt 6 Pin PNG còn lại (tổng 12 Pin trỏ về 12 máy tính).<br>2. Đăng 3 bài giá trị cao (Mẫu 1–3) trên Reddit / FB Groups.<br>3. Gắn các link Affiliate vừa được duyệt vào `src/site-config.mjs` và nhắn AI đẩy lên lại trong 15 giây. |
 | **Tuần 3** | Tối ưu chuyển đổi & mở rộng bài viết SEO | 1. Xem báo cáo **Google Search Console** (từ khóa nào có impression cao nhất).<br>2. Nhắn AI tạo thêm 4–6 máy tính/hướng dẫn đánh trúng đúng từ khóa đang có lượt tìm kiếm.<br>3. Nâng cấp tên miền chính thức `shopmarginlab.com` (Cloudflare Registrar ~\$10.44/năm) khi bắt đầu có đơn đầu tiên. |
-| **Tuần 4** | Đẩy mạnh Email List & Tái tiếp thị \$0 -> \$24 | 1. Gửi bản tin 1 lần/tuần cho danh sách email tải bản \$0 trên Payhip.<br>2. Chia sẻ lại các bài tính mẫu có dùng nút **Copy Shareable Link** trong cộng đồng seller.<br>3. Đối soát doanh thu Payhip + Affiliate tháng đầu để nhân bản nhóm công cụ ra tiền tốt nhất. |
+| **Tuần 4** | Đẩy mạnh Email List & Tái tiếp thị \$0 -> \$24 | 1. Gửi bản tin 1 lần/tuần qua **Gumroad Emails** cho danh sách email tải bản \$0.<br>2. Chia sẻ lại các bài tính mẫu có dùng nút **Copy Shareable Link** trong cộng đồng seller.<br>3. Đối soát doanh thu Gumroad + Affiliate tháng đầu để nhân bản nhóm công cụ ra tiền tốt nhất. |
