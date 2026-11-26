@@ -752,7 +752,7 @@ function buildHead({ title, description, canonicalPath, jsonLd = null }) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name='impact-site-verification' value='ad2f4c43-e9aa-438e-a3d7-bc3a9de06a18'>
+  <meta name='impact-site-verification' value='ad2f4c43-e9aa-438e-a3d7-bc3a9de06a18'>${SITE_CONFIG.extraHeadHtml ? `\n  ${SITE_CONFIG.extraHeadHtml}` : ''}
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(description)}">
   <link rel="canonical" href="${esc(fullUrl)}">
