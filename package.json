@@ -12,6 +12,10 @@
     "build:pins": "node scripts/build-pinterest-pins.mjs && powershell -ExecutionPolicy Bypass -File scripts/render-pinterest-pngs.ps1",
     "build": "npm run build:site && npm run build:products && npm run build:pins",
     "start": "node scripts/preview-server.mjs",
-    "test": "node tests/verify-all.mjs"
+    "test": "node tests/verify-all.mjs",
+    "pins:status": "node scripts/pinterest-autopost.mjs status",
+    "pins:auth": "node scripts/pinterest-autopost.mjs auth",
+    "pins:dry-run": "node scripts/pinterest-autopost.mjs publish --dry-run --limit 24",
+    "pins:publish": "node scripts/pinterest-autopost.mjs publish --limit 2"
   }
 }

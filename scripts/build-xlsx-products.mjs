@@ -499,7 +499,7 @@ writeFileSync(podPath, podBuffer);
 // =========================================================================
 const freebieRows = [
   [{ v: '2026 US E-COMMERCE FEE RATES & IRS SCHEDULE-C WRITE-OFF CHEAT SHEET', s: 1 }],
-  ['Free Quick-Reference Guide by ShopMarginLab (https://shopmarginlab.pages.dev) — Keep for Tax Season!'],
+  ['Free Quick-Reference Guide by ShopMarginLab (https://shopmarginlab.com) — Keep for Tax Season!'],
   [hdr('Platform / Expense Item'), hdr('2026 Rate / Rule'), hdr('Applies To'), hdr('Tax Deductible?'), hdr('Pro Margin Tip')],
   ['Etsy Listing Fee', '$0.20 flat', 'Per listing / quantity sold', 'Yes (Schedule C)', 'Bundle 2–3 items to dilute $0.20 fee'],
   ['Etsy Transaction Fee', '6.5%', 'Item price + Buyer shipping', 'Yes (Schedule C)', 'Free shipping rolls into item price—same 6.5%'],

@@ -1,15 +1,15 @@
 # Bộ Kéo Khách Đa Kênh & Tự Động Hóa Doanh Thu — ShopMarginLab v3
-**Mục tiêu:** Đưa lưu lượng miễn phí chất lượng cao (người bán Mỹ trên Etsy, Shopify, TikTok Shop, Amazon, eBay, Poshmark, Mercari, Whatnot) về `https://shopmarginlab.pages.dev/` → chuyển đổi sang **Affiliate B2B (Shopify / Printify / Link My Books)** và **Gumroad (\$0 Cheat Sheet → \$19.20/\$24 Excel OS)**.
+**Mục tiêu:** Đưa lưu lượng miễn phí chất lượng cao (người bán Mỹ trên Etsy, Shopify, TikTok Shop, Amazon, eBay, Poshmark, Mercari, Whatnot) về `https://shopmarginlab.com/` → chuyển đổi sang **Affiliate B2B (Shopify / Printify / Link My Books)** và **Gumroad (\$0 Cheat Sheet → \$19.20/\$24 Excel OS)**.
 
 ---
 
 ## PHẦN 1: 10 Kịch Bản Video Ngắn Faceless (TikTok / YouTube Shorts / Instagram Reels — 30–40 giây)
 
-> **Cách quay không cần lộ mặt (5 phút/video):** Mở `https://shopmarginlab.pages.dev/` trên màn hình dọc (hoặc quay màn hình điện thoại), gõ số trực tiếp vào máy tính cho số nhảy sống động, chèn giọng AI tiếng Anh (ElevenLabs/CapCut) hoặc chữ phụ đề lớn.
+> **Cách quay không cần lộ mặt (5 phút/video):** Mở `https://shopmarginlab.com/` trên màn hình dọc (hoặc quay màn hình điện thoại), gõ số trực tiếp vào máy tính cho số nhảy sống động, chèn giọng AI tiếng Anh (ElevenLabs/CapCut) hoặc chữ phụ đề lớn.
 
 ### Video 1 — 7-Channel Showdown (`/compare/`)
 - **Hook (0–3s):** *"Selling a \$40 item in 2026? Here's how much you ACTUALLY keep on all 7 US apps..."*
-- **Màn hình (3–25s):** Mở `https://shopmarginlab.pages.dev/compare/`, nhập `40` (giá bán), `11` (COGS), `5.50` (ship). Kéo bảng xếp hạng:
+- **Màn hình (3–25s):** Mở `https://shopmarginlab.com/compare/`, nhập `40` (giá bán), `11` (COGS), `5.50` (ship). Kéo bảng xếp hạng:
   - *"Poshmark takes 20%... eBay takes 15%+ because they charge fees on sales tax too... Etsy takes ~10.6% organic... TikTok Shop takes 6%... and Shopify takes just 2.9% + 30 cents."*
 - **CTA (25–35s):** *"Test your own product free at ShopMarginLab — link in bio, plus grab the \$0 2026 Fee & Tax Cheat Sheet."*
 
@@ -67,7 +67,7 @@
   > Thanks for grabbing the **2026 US Seller Fee & Schedule-C Tax Cheat Sheet**!
   >
   > Quick tip while you open the sheet: if you ever want to test an individual product across **Shopify, TikTok Shop, Etsy, Mercari, Whatnot, eBay, and Poshmark** at the same time, bookmark our free interactive 7-Channel Showdown:
-  > 👉 https://shopmarginlab.pages.dev/compare/
+  > 👉 https://shopmarginlab.com/compare/
   >
   > Reply anytime if you want us to add a calculator for another marketplace!
   > — ShopMarginLab
@@ -80,9 +80,9 @@
   > When we ran the 2026 US fee math, an average \$42 order loses ~\$4.44 on organic Etsy (and \$10.74 on Offsite Ads) vs. ~\$1.52 on Shopify Payments. That means at just **14 orders/month**, your fee savings pay for an entire Shopify Basic plan.
   >
   > Plug your own monthly order count in here (takes 10 seconds):
-  > 👉 https://shopmarginlab.pages.dev/shopify-vs-etsy-calculator/
+  > 👉 https://shopmarginlab.com/shopify-vs-etsy-calculator/
   >
-  > Ready to test owning your repeat customers at 0% marketplace commission? Start your Shopify trial here: [DÁN LINK AFFILIATE SHOPIFY]
+  > Ready to test owning your repeat customers at 0% marketplace commission? Start your Shopify free trial here: https://www.shopify.com/free-trial?utm_source=shopmarginlab&utm_medium=email&utm_campaign=shopify_partner *(thay bằng link tracking Impact.com ngay khi được duyệt)*
 
 ### Email 3 (Ngày 5): Tối ưu biên lợi nhuận POD → Giới thiệu Printify (Affiliate #2)
 - **Subject:** `How POD sellers add $3–$5 profit per shirt without raising prices`
@@ -90,7 +90,7 @@
   > If you sell Print-on-Demand tees, hoodies, or mugs on Etsy or Shopify, blank + print cost decides 70% of your take-home profit.
   >
   > Check how much Printify Standard vs. Printify Premium saves you per year compared to Printful:
-  > 👉 https://shopmarginlab.pages.dev/printful-vs-printify-calculator/
+  > 👉 https://shopmarginlab.com/printful-vs-printify-calculator/
   >
   > Want to bulk-price 50 SKUs with Offsite Ads & 15% sale protection built in? Grab our **2026 POD & Etsy Bulk Pricing Matrix (\$17)**: https://shopmarginlab.gumroad.com/l/pod-etsy-pricing-matrix
 
@@ -100,9 +100,9 @@
   > Etsy, Amazon, eBay, and TikTok Shop report GROSS sales on Form 1099-K—including refunded orders and platform fees that never hit your bank account.
   >
   > Estimate your exact quarterly 1040-ES tax set-aside here:
-  > 👉 https://shopmarginlab.pages.dev/ecommerce-tax-calculator/
+  > 👉 https://shopmarginlab.com/ecommerce-tax-calculator/
   >
-  > And if you're tired of reconciling lump-sum payouts into QuickBooks or Xero by hand, try **Link My Books** free for 14 days: [DÁN LINK AFFILIATE LINK MY BOOKS]
+  > And if you're tired of reconciling lump-sum payouts into QuickBooks or Xero by hand, try **Link My Books** free for 14 days (save 50% with our partner link): https://linkmybooks.cello.so/mqa9XBXQElJ
 
 ### Email 5 (Ngày 12): Chốt đơn gói chủ lực Excel OS (\$24)
 - **Subject:** `Ready to track all 12 months of profit, inventory & taxes in 1 sheet?`
@@ -119,10 +119,10 @@
 
 1. **`r/poshmark` / `r/Mercari` / `r/Flipping`:**
    - Tiêu đề: *I compared 2026 US fees across all 7 reseller platforms on a \$40 item (Shopify, TikTok, Etsy, Mercari, Whatnot, eBay, Poshmark) — here is the exact breakdown*
-   - Nội dung: Đăng bảng tóm tắt giá trị thật từ bài viết `/guides/reseller-platform-fees-compared-2026/`, cuối bài ghi nhẹ: *"If anyone wants to plug in their own sourcing COGS & shipping, I put the interactive 7-channel comparison table up for free (no login) at shopmarginlab.pages.dev/compare/"*.
+   - Nội dung: Đăng bảng tóm tắt giá trị thật từ bài viết `/guides/reseller-platform-fees-compared-2026/`, cuối bài ghi nhẹ: *"If anyone wants to plug in their own sourcing COGS & shipping, I put the interactive 7-channel comparison table up for free (no login) at shopmarginlab.com/compare/"*.
 2. **`r/whatnotapp`:**
    - Chia sẻ bảng ví dụ tính Break-Even Start Bid khi tính cả 2.9% + \$0.30 trên tiền ship & sales tax + chi phí giveaway trung bình, để lại link `/whatnot-fee-calculator/`.
 3. **`r/EtsySellers` (Digital Downloads):**
    - Phân tích bài toán vì sao sản phẩm số \$2.50 mất 27.5% phí cố định Etsy (`\$0.20 + \$0.25 + 9.5%`) và cách gom combo \$15–\$24 giữ lại 87%+, đính kèm `/etsy-digital-product-profit-calculator/`.
 4. **Nhóm Facebook Blogger / Shopify Agencies (Tạo Backlink tự nhiên bằng Embed):**
-   - Chia sẻ ngắn: *"We built 18 free 2026 US fee calculators (Etsy, Shopify, Amazon FBA, eBay, TikTok Shop, Poshmark, Whatnot) and added a 1-click free HTML embed widget (`</> Embed Free`) if any e-commerce blog or YouTube resource page wants an interactive calculator for readers."*
+   - Chia sẻ ngắn: *"We built 20 free 2026 US fee calculators (Etsy, Shopify, Amazon FBA, eBay, TikTok Shop, Depop, Poshmark, Mercari, Whatnot) and added a 1-click free HTML embed widget (`</> Embed Free`) if any e-commerce blog or YouTube resource page wants an interactive calculator for readers."*

@@ -610,3 +610,61 @@ html.embed-mode .embed-footer {
     color: #0f172a !important;
   }
 }
+
+.byline-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.9rem;
+  align-items: center;
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  margin-block: 0.75rem 1.25rem;
+  padding: 0.55rem 0.85rem;
+  border-radius: 10px;
+  background: var(--surface-muted);
+  border: 1px solid #e2e8f0;
+}
+
+.byline-meta a {
+  color: var(--brand-dark);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.byline-meta a:hover {
+  text-decoration: underline;
+}
+
+.formula-box {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-inline-start: 4px solid var(--brand);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.86rem;
+  color: var(--text);
+  margin-block: 0.75rem 1rem;
+}
+
+.takeaway-box {
+  background: #f0fdfa;
+  border: 1.5px solid #99f6e4;
+  border-radius: var(--radius-md);
+  padding: 1.15rem 1.35rem;
+  margin-block: 1.25rem 1.5rem;
+}
+
+.source-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.65rem 0 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.source-list a {
+  color: var(--brand-dark);
+  font-weight: 600;
+  font-size: 0.9rem;
+}

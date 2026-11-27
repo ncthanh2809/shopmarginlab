@@ -27,6 +27,7 @@ const urlList = [
   `${base}/compare/`,
   `${base}/templates/`,
   `${base}/guides/`,
+  `${base}/about/`,
   `${base}/legal/`,
   ...CALCULATORS.map((c) => `${base}/${c.slug}/`),
   ...GUIDES.map((g) => `${base}/guides/${g.slug}/`),

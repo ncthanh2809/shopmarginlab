@@ -288,6 +288,38 @@
     "brandName": "ShopMarginLab"
   },
   {
+    "slug": "depop-fee-calculator",
+    "pngName": "pin-depop-fee-calculator.png",
+    "board": "Reseller Profit Tips (Poshmark, eBay, Mercari)",
+    "topPill": "2026 DEPOP US FEES",
+    "line1": "Depop 0% Selling Fee",
+    "line2": "vs 12% Boosted:",
+    "line3": "Check Real Payout!",
+    "bullets": [
+      "• 3.3% + $0.45 Payment Processing",
+      "• 12% Boosted Hits Item + Shipping",
+      "• Compare Instant Savings vs Poshmark"
+    ],
+    "cta": "Calculate Depop Net Profit Free →",
+    "brandName": "ShopMarginLab"
+  },
+  {
+    "slug": "etsy-vs-tiktok-shop-calculator",
+    "pngName": "pin-etsy-vs-tiktok-shop-calculator.png",
+    "board": "TikTok Shop US Seller Strategy 2026",
+    "topPill": "ETSY VS TIKTOK SHOP 2026",
+    "line1": "6% TikTok Shop vs",
+    "line2": "Etsy Fees: Exact",
+    "line3": "Creator Break-Even",
+    "bullets": [
+      "• 6% Referral + 15%–20% Creator Cut",
+      "• Compare vs Etsy Offsite Ads Math",
+      "• Find Your Exact ~6.9% Switch Point"
+    ],
+    "cta": "Compare Etsy vs TikTok Free →",
+    "brandName": "ShopMarginLab"
+  },
+  {
     "slug": "compare-7-channels-2026",
     "pngName": "pin-compare-7-channels-2026.png",
     "board": "Reseller Profit Tips (Poshmark, eBay, Mercari)",

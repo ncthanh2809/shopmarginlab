@@ -7,8 +7,8 @@
 export const SITE_CONFIG = {
   brandName: 'ShopMarginLab',
   tagline: 'Free 2026 E-Commerce Fee, ROAS, POD & Tax Calculators',
-  domain: process.env.PUBLIC_SITE_URL || 'https://shopmarginlab.pages.dev',
-  supportEmail: process.env.SUPPORT_EMAIL || 'digitalnomadstep@gmail.com',
+  domain: process.env.PUBLIC_SITE_URL || 'https://shopmarginlab.com',
+  supportEmail: process.env.SUPPORT_EMAIL || 'thanh@shopmarginlab.com',
   founderName: 'Nguyen Chi Thanh',
   founderRole: 'Founder & E-Commerce Unit-Economics Researcher',
   lastReviewedDate: '2026-11-27',

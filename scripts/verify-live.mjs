@@ -2,7 +2,7 @@ import { SITE_CONFIG } from '../src/site-config.mjs';
 import { CALCULATORS } from '../src/calculators-data.mjs';
 import { GUIDES } from '../src/guides-data.mjs';
 
-const base = process.argv[2] || 'https://shopmarginlab.pages.dev';
+const base = process.argv[2] || 'https://shopmarginlab.com';
 const routes = [
   '/',
   '/compare/',
@@ -53,6 +53,9 @@ for (const r of routes) {
     }
     if (r === '/about/' && !body.includes('Verification Methodology')) {
       failures.push('/about/ missing Verification Methodology section');
+    }
+    if (r === '/robots.txt' && !body.includes(`${base.replace(/\/$/, '')}/sitemap.xml`)) {
+      failures.push(`/robots.txt missing canonical sitemap ${base.replace(/\/$/, '')}/sitemap.xml`);
     }
     if (r === '/sitemap.xml') {
       sitemapUrls = (body.match(/<loc>/g) || []).length;

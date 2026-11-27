@@ -186,6 +186,24 @@ const PIN_HOOKS = {
     line3: 'Than Full Price!',
     bullets: ['• Amortize Postage & Ad CPA Once', '• Test BOGO 50% Off & 3-Pack Math', '• Compare 1-Unit vs Bundle Dollars'],
     cta: 'Optimize Your Bundle Offer →'
+  },
+  'depop-fee-calculator': {
+    board: 'Reseller Profit Tips (Poshmark, eBay, Mercari)',
+    topPill: '2026 DEPOP US FEES',
+    line1: 'Depop 0% Selling Fee',
+    line2: 'vs 12% Boosted:',
+    line3: 'Check Real Payout!',
+    bullets: ['• 3.3% + $0.45 Payment Processing', '• 12% Boosted Hits Item + Shipping', '• Compare Instant Savings vs Poshmark'],
+    cta: 'Calculate Depop Net Profit Free →'
+  },
+  'etsy-vs-tiktok-shop-calculator': {
+    board: 'TikTok Shop US Seller Strategy 2026',
+    topPill: 'ETSY VS TIKTOK SHOP 2026',
+    line1: '6% TikTok Shop vs',
+    line2: 'Etsy Fees: Exact',
+    line3: 'Creator Break-Even',
+    bullets: ['• 6% Referral + 15%–20% Creator Cut', '• Compare vs Etsy Offsite Ads Math', '• Find Your Exact ~6.9% Switch Point'],
+    cta: 'Compare Etsy vs TikTok Free →'
   }
 };
 
@@ -244,11 +262,12 @@ const BONUS_INFOGRAPHIC_PINS = [
   }
 ];
 
+const totalPins = CALCULATORS.length + BONUS_INFOGRAPHIC_PINS.length;
 const base = SITE_CONFIG.domain.replace(/\/$/, '');
 const manifest = [];
 const mdLines = [
-  `# Pinterest Organic Traffic Launch Pack (22 Ready-to-Upload PNG Pins)`,
-  `Upload the 22 vertical \`1000x1500\` **PNG** graphics in \`products/dist/pins-png/\` to your **Pinterest Business** account (2 Pins/day = 11 days of fresh content, then recycle new hooks) to drive high-intent US seller traffic for $0.\n`
+  `# Pinterest Organic Traffic Launch Pack (${totalPins} Ready-to-Upload PNG Pins)`,
+  `Upload the ${totalPins} vertical \`1000x1500\` **PNG** graphics in \`products/dist/pins-png/\` to your **Pinterest Business** account (2 Pins/day = ${Math.ceil(totalPins / 2)} days of fresh content, then recycle new hooks) to drive high-intent US seller traffic for $0.\n`
 ];
 const csvLines = ['Pin Filename,Board,Title,Destination Link,Alt Text,Description'];
 

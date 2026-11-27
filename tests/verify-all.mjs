@@ -109,6 +109,9 @@ const sitemap = readFileSync(join(DIST, 'sitemap.xml'), 'utf8');
 const urlCount = (sitemap.match(/<url>/g) || []).length;
 assert.equal(urlCount, 36, `Expected 36 URLs in sitemap.xml, got ${urlCount}`);
 
+const robotsTxt = readFileSync(join(DIST, 'robots.txt'), 'utf8');
+assert.ok(robotsTxt.includes(`${SITE_CONFIG.domain.replace(/\/$/, '')}/sitemap.xml`), 'robots.txt missing canonical sitemap URL');
+
 const aboutHtml = readFileSync(join(DIST, 'about', 'index.html'), 'utf8');
 assert.ok(aboutHtml.includes('"@type":"AboutPage"') && aboutHtml.includes('5-Step 2026 Fee Verification Process'), '/about/ page incomplete');
 
@@ -156,9 +159,9 @@ for (const xlsxName of [
   assert.ok(foundSheet1, `Verified worksheet XML inside ${xlsxName}`);
 }
 
-// 4. Verify 22 Pinterest 1000x1500 SVG & PNG Pins + Bulk CSV + SEO Descriptions
+// 4. Verify 24 Pinterest 1000x1500 SVG & PNG Pins + Bulk CSV + SEO Descriptions
 const pinsManifest = JSON.parse(readFileSync(join(PROD_DIST, 'pins', 'pins-manifest.json'), 'utf8'));
-assert.equal(pinsManifest.length, 22, `Expected 22 pins in manifest, got ${pinsManifest.length}`);
+assert.equal(pinsManifest.length, 24, `Expected 24 pins in manifest, got ${pinsManifest.length}`);
 for (const pin of pinsManifest) {
   assert.ok(existsSync(join(PROD_DIST, 'pins', `pin-${pin.slug}.svg`)), `Missing SVG pin for ${pin.slug}`);
   const pngPath = join(PROD_DIST, 'pins-png', pin.pngName);
@@ -200,4 +203,4 @@ try {
   await new Promise((r) => srv.close(r));
 }
 
-console.log('✅ All 5 v3.3 verification suites (20 Calculators + Math Unit Tests, /compare/, 10 Guides, 35-URL Sitemap + IndexNow + llms.txt + feed.xml, 3 .XLSX Workbooks, 22 SVG+PNG Pinterest Pins + CSV, Preview Server) passed!');
+console.log('✅ All 5 v3.3 verification suites (20 Calculators + Math Unit Tests, /compare/, 10 Guides, 36-URL Sitemap + IndexNow + llms.txt + feed.xml, 3 .XLSX Workbooks, 24 SVG+PNG Pinterest Pins + CSV, Preview Server) passed!');
