@@ -8,6 +8,7 @@ const routes = [
   '/compare/',
   '/templates/',
   '/guides/',
+  '/about/',
   '/legal/',
   '/sitemap.xml',
   '/robots.txt',
@@ -50,9 +51,12 @@ for (const r of routes) {
     if (r === '/llms.txt' && !body.includes('ShopMarginLab')) {
       failures.push('/llms.txt missing brand index');
     }
+    if (r === '/about/' && !body.includes('Verification Methodology')) {
+      failures.push('/about/ missing Verification Methodology section');
+    }
     if (r === '/sitemap.xml') {
       sitemapUrls = (body.match(/<loc>/g) || []).length;
-      const expectedUrls = 5 + CALCULATORS.length + GUIDES.length;
+      const expectedUrls = 6 + CALCULATORS.length + GUIDES.length;
       if (sitemapUrls !== expectedUrls) failures.push(`Expected ${expectedUrls} sitemap URLs, got ${sitemapUrls}`);
     }
     ok++;

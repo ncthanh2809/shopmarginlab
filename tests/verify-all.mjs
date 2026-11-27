@@ -42,6 +42,10 @@ for (const calc of CALCULATORS) {
     html.includes(SITE_CONFIG.products.freeCheatSheet.checkoutUrl),
     `Missing $0 lead magnet checkoutUrl on ${calc.slug}`
   );
+  assert.ok(html.includes('id="methodology"'), `Missing #methodology section on ${calc.slug}`);
+  assert.ok(html.includes('Primary 2026 Fee Sources'), `Missing primary sources on ${calc.slug}`);
+  assert.ok(html.includes('"dateModified"'), `Missing dateModified schema on ${calc.slug}`);
+  assert.ok(calc.faqs.length >= 4, `Expected >=4 FAQs on ${calc.slug}, got ${calc.faqs.length}`);
   assert.ok(html.includes('cad1da804f7b4d96a19ba0c6a11ac227'), `Missing Cloudflare Web Analytics token on ${calc.slug}`);
 
   // Execute calculator computeFnBody with default inputs + every select option to verify zero NaN!
@@ -81,6 +85,12 @@ for (const g of GUIDES) {
   assert.ok(existsSync(gfile), `Missing guide: ${g.slug}`);
   const ghtml = readFileSync(gfile, 'utf8');
   assert.ok(ghtml.includes('"@type":"Article"'), `Missing Article JSON-LD on guide ${g.slug}`);
+  assert.ok(ghtml.includes('"@type":"Person"'), `Missing Person author schema on guide ${g.slug}`);
+  assert.ok(ghtml.includes('"dateModified"'), `Missing dateModified schema on guide ${g.slug}`);
+  assert.ok(ghtml.includes('Key 2026 Takeaways'), `Missing Key 2026 Takeaways on guide ${g.slug}`);
+  assert.ok(ghtml.includes('Primary 2026 Sources'), `Missing Primary 2026 Sources on guide ${g.slug}`);
+  const guideWordCount = g.sections.flatMap((s) => [s.heading, ...s.paragraphs]).join(' ').split(/\s+/).length;
+  assert.ok(guideWordCount >= 450, `Guide ${g.slug} looks thin (${guideWordCount} prose words, expected >=450)`);
   assert.ok(!/YOUR_[A-Z0-9_]+/.test(ghtml), `Found YOUR_* placeholder on guide ${g.slug}`);
 }
 
@@ -97,7 +107,10 @@ assert.ok(!/YOUR_[A-Z0-9_]+/.test(homeHtml), 'Found placeholder on home page');
 
 const sitemap = readFileSync(join(DIST, 'sitemap.xml'), 'utf8');
 const urlCount = (sitemap.match(/<url>/g) || []).length;
-assert.equal(urlCount, 35, `Expected 35 URLs in sitemap.xml, got ${urlCount}`);
+assert.equal(urlCount, 36, `Expected 36 URLs in sitemap.xml, got ${urlCount}`);
+
+const aboutHtml = readFileSync(join(DIST, 'about', 'index.html'), 'utf8');
+assert.ok(aboutHtml.includes('"@type":"AboutPage"') && aboutHtml.includes('5-Step 2026 Fee Verification Process'), '/about/ page incomplete');
 
 assert.ok(existsSync(join(DIST, `${SITE_CONFIG.indexNowKey}.txt`)), 'Missing IndexNow key txt file');
 assert.equal(readFileSync(join(DIST, `${SITE_CONFIG.indexNowKey}.txt`), 'utf8').trim(), SITE_CONFIG.indexNowKey);
@@ -174,6 +187,8 @@ try {
     '/guides/depop-fees-2026-guide/',
     '/guides/etsy-vs-tiktok-shop-2026-guide/',
     '/templates/',
+    '/about/',
+    '/legal/',
     '/llms.txt',
     '/feed.xml',
     `/${SITE_CONFIG.indexNowKey}.txt`

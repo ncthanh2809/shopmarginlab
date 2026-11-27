@@ -3,7 +3,9 @@
  * Verified against 2026 US Marketplace Fee Schedules (Etsy, Shopify, TikTok Shop US, Amazon FBA, eBay, Poshmark, Mercari, Depop, Whatnot, POD, ROAS, Markup, Bundles, Schedule-C Tax).
  */
 
-export const CALCULATORS = [
+import { CALCULATOR_DETAILS, VERIFIED_DATE } from './calculator-methodology.mjs';
+
+const RAW_CALCULATORS = [
   {
     slug: 'etsy-fee-calculator',
     category: 'etsy-pod',
@@ -1523,3 +1525,19 @@ export const CALCULATORS = [
     ]
   }
 ];
+
+export const CALCULATORS = RAW_CALCULATORS.map((calc) => {
+  const details = CALCULATOR_DETAILS[calc.slug];
+  if (!details) {
+    throw new Error(`Missing methodology details for calculator: ${calc.slug}`);
+  }
+  return {
+    ...calc,
+    verifiedDate: VERIFIED_DATE,
+    whenToUse: details.whenToUse,
+    formulaSummary: details.formulaSummary,
+    workedExample: details.workedExample,
+    sources: details.sources,
+    faqs: [...calc.faqs, ...details.extraFaqs]
+  };
+});

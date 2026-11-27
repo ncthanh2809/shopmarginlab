@@ -55,7 +55,7 @@ function mergeBySlug(b,ex){if(!Array.isArray(ex)||!ex.length)return b;const m=ne
 function buildAssets(cfg,calcs,guides,ov){
 SITE_CONFIG=cfg;CALCULATORS=calcs;GUIDES=guides;
 const BASE=SITE_CONFIG.domain.replace(/\\/$/,'');
-const ALL_PATHS=['/','/compare/','/templates/','/guides/','/legal/',...CALCULATORS.map(c=>'/'+c.slug+'/'),...GUIDES.map(g=>'/guides/'+g.slug+'/')];
+const ALL_PATHS=['/','/compare/','/templates/','/guides/','/about/','/legal/',...CALCULATORS.map(c=>'/'+c.slug+'/'),...GUIDES.map(g=>'/guides/'+g.slug+'/')];
 const SITEMAP='<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+ALL_PATHS.map(p=>'<url><loc>'+esc(BASE+p)+'</loc><priority>'+(p==='/'?'1.0':p==='/compare/'?'0.95':'0.85')+'</priority></url>').join('')+'</urlset>';
 const ROBOTS='User-agent: *\\nAllow: /\\nSitemap: '+BASE+'/sitemap.xml\\n';
 const LLMS=['# '+SITE_CONFIG.brandName,'> '+SITE_CONFIG.tagline,'','## Compare','- [7-Channel Showdown]('+BASE+'/compare/)','','## Calculators ('+CALCULATORS.length+')',...CALCULATORS.map(c=>'- ['+c.title+']('+BASE+'/'+c.slug+'/): '+c.metaDescription),'','## Guides ('+GUIDES.length+')',...GUIDES.map(g=>'- ['+g.title+']('+BASE+'/guides/'+g.slug+'/): '+g.metaDescription)].join('\\n');
@@ -68,6 +68,7 @@ const a={
 '/compare/index.html':{ct:'text/html; charset=utf-8',body:buildComparePage()},
 '/templates/index.html':{ct:'text/html; charset=utf-8',body:buildTemplatesPage()},
 '/guides/index.html':{ct:'text/html; charset=utf-8',body:buildGuidesIndexPage()},
+'/about/index.html':{ct:'text/html; charset=utf-8',body:buildAboutPage()},
 '/legal/index.html':{ct:'text/html; charset=utf-8',body:buildLegalPage()},
 '/favicon.svg':{ct:'image/svg+xml',body:FAVICON},
 '/og-card.svg':{ct:'image/svg+xml',body:OGCARD},
@@ -117,6 +118,7 @@ const testPaths = [
   '/compare/',
   '/templates/',
   '/guides/',
+  '/about/',
   '/legal/',
   '/sitemap.xml',
   '/robots.txt',

@@ -629,6 +629,64 @@ html.embed-mode .embed-footer {
     color: #0f172a !important;
   }
 }
+
+.byline-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.9rem;
+  align-items: center;
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  margin-block: 0.75rem 1.25rem;
+  padding: 0.55rem 0.85rem;
+  border-radius: 10px;
+  background: var(--surface-muted);
+  border: 1px solid #e2e8f0;
+}
+
+.byline-meta a {
+  color: var(--brand-dark);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.byline-meta a:hover {
+  text-decoration: underline;
+}
+
+.formula-box {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-inline-start: 4px solid var(--brand);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.86rem;
+  color: var(--text);
+  margin-block: 0.75rem 1rem;
+}
+
+.takeaway-box {
+  background: #f0fdfa;
+  border: 1.5px solid #99f6e4;
+  border-radius: var(--radius-md);
+  padding: 1.15rem 1.35rem;
+  margin-block: 1.25rem 1.5rem;
+}
+
+.source-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.65rem 0 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.source-list a {
+  color: var(--brand-dark);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
 `;
 
 const SHARED_JS = `
@@ -689,6 +747,7 @@ function renderHeader() {
           <li><a href="/shopify-vs-etsy-calculator/">Shopify vs Etsy</a></li>
           <li><a href="/amazon-fba-fee-calculator/">Amazon FBA</a></li>
           <li><a href="/guides/">2026 Guides</a></li>
+          <li><a href="/about/">Methodology</a></li>
           <li><a href="/templates/"><strong>📊 Excel Bundles ($0–$24)</strong></a></li>
         </ul>
       </nav>
@@ -727,6 +786,7 @@ function renderFooter() {
             <li style="margin-bottom:0.3rem"><a href="/compare/" style="color:var(--text-muted);text-decoration:none">7-Channel Live Fee Showdown</a></li>
             <li style="margin-bottom:0.3rem"><a href="/templates/" style="color:var(--text-muted);text-decoration:none">2026 Seller Excel Bundles ($0–$24)</a></li>
             <li style="margin-bottom:0.3rem"><a href="/guides/" style="color:var(--text-muted);text-decoration:none">2026 E-Commerce Fee &amp; Tax Guides (${GUIDES.length})</a></li>
+            <li style="margin-bottom:0.3rem"><a href="/about/" style="color:var(--text-muted);text-decoration:none">About &amp; 2026 Verification Methodology</a></li>
             <li style="margin-bottom:0.3rem"><a href="/legal/#affiliate-disclosure" style="color:var(--text-muted);text-decoration:none">FTC Affiliate Disclosure</a></li>
             <li style="margin-bottom:0.3rem"><a href="/legal/#privacy" style="color:var(--text-muted);text-decoration:none">Privacy &amp; Terms</a></li>
             <li style="margin-bottom:0.3rem"><a href="/feed.xml" style="color:var(--text-muted);text-decoration:none">RSS Feed</a> • <a href="/llms.txt" style="color:var(--text-muted);text-decoration:none">LLMs.txt</a></li>
@@ -734,11 +794,11 @@ function renderFooter() {
         </div>
       </div>
       <div style="border-top:1px solid var(--border);padding-top:1rem;font-size:0.8rem">
-        © 2026 ${esc(SITE_CONFIG.brandName)}. Independent seller toolset; not endorsed by Etsy, Inc., Shopify Inc., Amazon, eBay, Poshmark, Mercari, Whatnot, or TikTok. Verify final tax figures with a licensed CPA.
+        © 2026 ${esc(SITE_CONFIG.brandName)}. Independent seller toolset audited by <a href="/about/" style="color:inherit">${esc(SITE_CONFIG.founderName || 'ShopMarginLab Research')}</a>; not endorsed by Etsy, Inc., Shopify Inc., Amazon, eBay, Poshmark, Mercari, Depop, Whatnot, or TikTok. Verify final tax figures with a licensed CPA.
       </div>
     </div>
   </footer>
-  <script type="module" src="/shared.js?v=5"></script>${
+  <script type="module" src="/shared.js?v=6"></script>${
     SITE_CONFIG.cloudflareAnalyticsToken
       ? `\n  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"${esc(SITE_CONFIG.cloudflareAnalyticsToken)}"}'></script>`
       : ''
@@ -764,7 +824,7 @@ function buildHead({ title, description, canonicalPath, jsonLd = null }) {
   <meta property="og:url" content="${esc(fullUrl)}">
   <meta property="og:image" content="${esc(SITE_CONFIG.domain.replace(/\/$/, ''))}/og-card.svg">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="/styles.css?v=5">
+  <link rel="stylesheet" href="/styles.css?v=6">
   <script>if(location.search.indexOf('embed=1')!==-1)document.documentElement.classList.add('embed-mode');</script>
   ${jsonLd ? `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>` : ''}
 </head>`;
@@ -784,6 +844,10 @@ function buildCalculatorPage(calc) {
     ...rotatedCalcs.filter((c) => c.category !== calc.category)
   ].slice(0, 6);
 
+  const baseUrl = SITE_CONFIG.domain.replace(/\/$/, '');
+  const verifiedDate = calc.verifiedDate || SITE_CONFIG.lastReviewedDate || '2026-11-27';
+  const founderName = SITE_CONFIG.founderName || 'Nguyen Chi Thanh';
+
   const jsonLd = [
     {
       '@context': 'https://schema.org',
@@ -791,6 +855,9 @@ function buildCalculatorPage(calc) {
       name: calc.title,
       applicationCategory: 'BusinessApplication',
       operatingSystem: 'Any',
+      dateModified: verifiedDate,
+      author: { '@type': 'Person', name: founderName, url: `${baseUrl}/about/` },
+      publisher: { '@type': 'Organization', name: SITE_CONFIG.brandName, url: `${baseUrl}/` },
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
       description: calc.metaDescription
     },
@@ -807,8 +874,8 @@ function buildCalculatorPage(calc) {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: SITE_CONFIG.brandName, item: `${SITE_CONFIG.domain.replace(/\/$/, '')}/` },
-        { '@type': 'ListItem', position: 2, name: calc.shortName, item: `${SITE_CONFIG.domain.replace(/\/$/, '')}${canonicalPath}` }
+        { '@type': 'ListItem', position: 1, name: SITE_CONFIG.brandName, item: `${baseUrl}/` },
+        { '@type': 'ListItem', position: 2, name: calc.shortName, item: `${baseUrl}${canonicalPath}` }
       ]
     }
   ];
@@ -839,6 +906,15 @@ function buildCalculatorPage(calc) {
     <span class="pill">${esc(calc.badge)}</span>
     <h1 style="font-size:clamp(1.75rem,3.6vw,2.5rem);margin-top:0.55rem">${esc(calc.h1)}</h1>
     <p style="color:var(--text-muted);max-inline-size:68ch;font-size:1.05rem">${esc(calc.intro)}</p>
+    <div class="byline-meta non-embed-section">
+      <span>✓ Verified for 2026 US Fee Schedules</span>
+      <span>•</span>
+      <span>Updated <time datetime="${esc(verifiedDate)}">${esc(verifiedDate)}</time></span>
+      <span>•</span>
+      <span>Audited by <a href="/about/">${esc(founderName)}</a></span>
+      <span>•</span>
+      <a href="#methodology">Formula &amp; Primary Sources ↓</a>
+    </div>
 
     <div class="calc-layout">
       <!-- Left: Inputs -->
@@ -933,6 +1009,39 @@ function buildCalculatorPage(calc) {
         </div>
       </article>
     </section>
+
+    <!-- Formula Methodology, Worked 2026 Example & Primary Sources (E-E-A-T) -->
+    ${
+      calc.formulaSummary
+        ? `<section id="methodology" class="card non-embed-section" style="margin-block: 2rem;">
+      <span class="pill">2026 Verification &amp; Math Transparency</span>
+      <h2 style="font-size:1.4rem;margin-top:0.55rem">How ${esc(calc.shortName)} Works (2026 Formula &amp; Worked Example)</h2>
+      ${calc.whenToUse ? `<p style="color:var(--text-muted)"><strong>When to use this tool:</strong> ${esc(calc.whenToUse)}</p>` : ''}
+      <div class="formula-box"><strong>Exact Formula:</strong> ${esc(calc.formulaSummary)}</div>
+      ${
+        calc.workedExample
+          ? `<h3 style="font-size:1.1rem;margin-top:1rem">${esc(calc.workedExample.title)}</h3>
+      <ul style="padding-left:1.2rem;color:var(--text-muted);font-size:0.95rem">
+        ${calc.workedExample.bullets.map((b) => `<li>${esc(b)}</li>`).join('')}
+      </ul>`
+          : ''
+      }
+      ${
+        Array.isArray(calc.sources) && calc.sources.length
+          ? `<div style="margin-top:1.15rem;padding-top:0.95rem;border-top:1px solid #e2e8f0">
+        <strong style="font-size:0.92rem">Primary 2026 Fee Sources Verified on ${esc(verifiedDate)}:</strong>
+        <ul class="source-list">
+          ${calc.sources.map((s) => `<li>↗ <a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.label)}</a></li>`).join('')}
+        </ul>
+        <p style="font-size:0.82rem;color:var(--text-muted);margin:0.75rem 0 0">
+          Every calculator runs 100% locally in your browser and is mathematically independent of partner links. Read our <a href="/about/#verification-standards" style="color:var(--brand-dark);font-weight:600">5-Step Verification Methodology</a> or report a 2026 fee schedule update to <code>${esc(SITE_CONFIG.supportEmail)}</code>.
+        </p>
+      </div>`
+          : ''
+      }
+    </section>`
+        : ''
+    }
 
     <!-- SEO FAQ & Methodology -->
     <section class="card non-embed-section" style="margin-block: 2rem;">
@@ -1627,27 +1736,65 @@ function buildGuidePage(guide) {
   const prod = SITE_CONFIG.products[guide.recommendedProduct];
   const freebie = SITE_CONFIG.products.freeCheatSheet;
   const canonicalPath = `/guides/${guide.slug}/`;
+  const baseUrl = SITE_CONFIG.domain.replace(/\/$/, '');
+  const founderName = SITE_CONFIG.founderName || 'Nguyen Chi Thanh';
+  const datePublished = guide.datePublished || '2026-11-10';
+  const dateModified = guide.dateModified || SITE_CONFIG.lastReviewedDate || '2026-11-27';
   const guideIdx = GUIDES.findIndex((g) => g.slug === guide.slug);
   const relatedGuides = [...GUIDES.slice(guideIdx + 1), ...GUIDES.slice(0, guideIdx)].slice(0, 3);
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: guide.title,
-    description: guide.metaDescription,
-    author: { '@type': 'Organization', name: SITE_CONFIG.brandName },
-    publisher: { '@type': 'Organization', name: SITE_CONFIG.brandName }
-  };
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: guide.title,
+      description: guide.metaDescription,
+      datePublished,
+      dateModified,
+      mainEntityOfPage: `${baseUrl}${canonicalPath}`,
+      author: { '@type': 'Person', name: founderName, url: `${baseUrl}/about/` },
+      publisher: { '@type': 'Organization', name: SITE_CONFIG.brandName, url: `${baseUrl}/` }
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: SITE_CONFIG.brandName, item: `${baseUrl}/` },
+        { '@type': 'ListItem', position: 2, name: '2026 Guides', item: `${baseUrl}/guides/` },
+        { '@type': 'ListItem', position: 3, name: guide.title, item: `${baseUrl}${canonicalPath}` }
+      ]
+    }
+  ];
 
   return `${buildHead({ title: `${guide.title} | ${SITE_CONFIG.brandName}`, description: guide.metaDescription, canonicalPath, jsonLd })}
 <body>
   ${renderHeader()}
-  <main class="container" style="padding-block:2.5rem;max-inline-size:840px">
+  <main class="container" style="padding-block:2.5rem;max-inline-size:860px">
     <p style="font-size:0.86rem;color:var(--text-muted);margin-bottom:0.75rem">
       <a href="/" style="color:inherit">Home</a> / <a href="/guides/" style="color:inherit">2026 Guides</a>
     </p>
     <span class="pill">${esc(guide.badge)} • ${esc(guide.readTime)}</span>
     <h1 style="font-size:clamp(1.75rem,1rem + 2vw,2.5rem);margin-top:0.55rem">${esc(guide.title)}</h1>
     <p style="font-size:1.08rem;color:var(--text-muted);max-inline-size:68ch">${esc(guide.metaDescription)}</p>
+    <div class="byline-meta">
+      <span>By <a href="/about/">${esc(founderName)}</a></span>
+      <span>•</span>
+      <span>Published <time datetime="${esc(datePublished)}">${esc(datePublished)}</time></span>
+      <span>•</span>
+      <span>Verified <time datetime="${esc(dateModified)}">${esc(dateModified)}</time></span>
+      <span>•</span>
+      <a href="/about/#verification-standards">Editorial Standards</a>
+    </div>
+
+    ${
+      Array.isArray(guide.keyTakeaways) && guide.keyTakeaways.length
+        ? `<aside class="takeaway-box" aria-label="Key 2026 Takeaways">
+      <strong style="display:block;color:var(--brand-dark);margin-bottom:0.45rem">Key 2026 Takeaways</strong>
+      <ul style="padding-left:1.15rem;margin:0;color:var(--text);font-size:0.94rem">
+        ${guide.keyTakeaways.map((k) => `<li style="margin-bottom:0.35rem">${esc(k)}</li>`).join('')}
+      </ul>
+    </aside>`
+        : ''
+    }
 
     <div class="card affiliate-box" style="margin-block:1.5rem;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem">
       <div>
@@ -1656,6 +1803,33 @@ function buildGuidePage(guide) {
       </div>
       <a href="/${guide.relatedCalcSlug}/" class="btn btn-primary">${esc(guide.relatedCalcLabel)}</a>
     </div>
+
+    ${
+      guide.table
+        ? `<div tabindex="0" role="region" aria-labelledby="guideTableCaption" class="table-wrapper" style="margin-block:1.5rem">
+      <table class="compare-table" style="${guide.table.headers
+        .slice(1)
+        .map((h, i) => `--label-${i + 2}:'${esc(h)}';`)
+        .join(' ')}">
+        <caption id="guideTableCaption">${esc(guide.table.caption)}</caption>
+        <thead>
+          <tr>${guide.table.headers.map((h) => `<th>${esc(h)}</th>`).join('')}</tr>
+        </thead>
+        <tbody>
+          ${guide.table.rows
+            .map(
+              (r) =>
+                `<tr><th>${esc(r[0])}</th>${r
+                  .slice(1)
+                  .map((c, idx) => `<td${idx === r.length - 2 ? ' style="font-weight:700"' : ''}>${esc(c)}</td>`)
+                  .join('')}</tr>`
+            )
+            .join('')}
+        </tbody>
+      </table>
+    </div>`
+        : ''
+    }
 
     ${guide.sections
       .map(
@@ -1666,6 +1840,20 @@ function buildGuidePage(guide) {
       </section>`
       )
       .join('')}
+
+    ${
+      Array.isArray(guide.sources) && guide.sources.length
+        ? `<section class="card" style="margin-bottom:1.5rem;background:var(--surface-muted)">
+      <h2 style="font-size:1.15rem">Primary 2026 Sources &amp; Official Fee Documentation</h2>
+      <ul class="source-list">
+        ${guide.sources.map((s) => `<li>↗ <a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.label)}</a></li>`).join('')}
+      </ul>
+      <p style="font-size:0.84rem;color:var(--text-muted);margin:0.85rem 0 0">
+        <strong>Editorial &amp; Tax Note:</strong> All calculations reflect published 2026 US marketplace rates verified on ${esc(dateModified)} for educational planning only and do not constitute certified accounting or legal advice. See our <a href="/about/" style="color:var(--brand-dark);font-weight:600">About &amp; Verification Methodology</a>.
+      </p>
+    </section>`
+        : ''
+    }
 
     <section class="monetize-grid" aria-label="Next Steps">
       <article class="card affiliate-box">
@@ -1705,6 +1893,106 @@ function buildGuidePage(guide) {
           )
           .join('')}
       </div>
+    </section>
+  </main>
+  ${renderFooter()}
+</body>
+</html>`;
+}
+
+function buildAboutPage() {
+  const baseUrl = SITE_CONFIG.domain.replace(/\/$/, '');
+  const founderName = SITE_CONFIG.founderName || 'Nguyen Chi Thanh';
+  const founderRole = SITE_CONFIG.founderRole || 'Founder & E-Commerce Unit-Economics Researcher';
+  const reviewed = SITE_CONFIG.lastReviewedDate || '2026-11-27';
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'AboutPage',
+      name: `About ${SITE_CONFIG.brandName} & 2026 Fee Verification Methodology`,
+      url: `${baseUrl}/about/`,
+      dateModified: reviewed,
+      mainEntity: {
+        '@type': 'Organization',
+        name: SITE_CONFIG.brandName,
+        url: `${baseUrl}/`,
+        email: SITE_CONFIG.supportEmail,
+        founder: {
+          '@type': 'Person',
+          name: founderName,
+          jobTitle: founderRole
+        }
+      }
+    }
+  ];
+
+  const primarySources = [
+    { name: 'Etsy US Seller Fees & Offsite Ads Policy', url: 'https://help.etsy.com/hc/en-us/articles/360035902374-Beginner-s-Guide-to-Etsy-Fees' },
+    { name: 'Shopify Official US Plans & Shopify Payments Rates', url: 'https://www.shopify.com/pricing' },
+    { name: 'TikTok Shop US Seller Academy — Referral & Refund Fees', url: 'https://seller-us.tiktok.com/university/essay?knowledge_id=6837887923128065' },
+    { name: 'Amazon Seller Central — US Referral & FBA Pricing', url: 'https://sell.amazon.com/pricing' },
+    { name: 'eBay US Help Center — Final Value Fees & Store Discounts', url: 'https://www.ebay.com/help/selling/fees-credits-invoices/selling-fees?id=4822' },
+    { name: 'Poshmark Support — US Commission & Shipping Policies', url: 'https://support.poshmark.com/s/article/810758272' },
+    { name: 'Mercari US Help Center — 10% Flat Seller Fee Schedule', url: 'https://www.mercari.com/us/help_center/article/169/' },
+    { name: 'Depop Help Center — US 0% Commission & Payments Processing', url: 'https://depophelp.zendesk.com/hc/en-us/articles/360001791127-Selling-fees' },
+    { name: 'Whatnot Help Center — Official US Seller Fee Tiers', url: 'https://help.whatnot.com/hc/en-us/articles/4407962164621-Whatnot-Seller-Fees' },
+    { name: 'Printify & Printful Official POD Blank Pricing', url: 'https://printify.com/pricing/' },
+    { name: 'IRS — Schedule C (Form 1040) & Self-Employment Tax Guidance', url: 'https://www.irs.gov/forms-pubs/about-schedule-c-form-1040' }
+  ];
+
+  return `${buildHead({
+    title: `About ${SITE_CONFIG.brandName} — 2026 Fee Verification Methodology & Editorial Policy`,
+    description:
+      'Learn who builds ShopMarginLab, how every 2026 US marketplace fee calculator is verified against official schedules, our automated math testing, and FTC independence standards.',
+    canonicalPath: '/about/',
+    jsonLd
+  })}
+<body>
+  ${renderHeader()}
+  <main class="container" style="padding-block:2.5rem;max-inline-size:860px">
+    <span class="pill">Independent Research • Verified ${esc(reviewed)}</span>
+    <h1 style="font-size:clamp(1.85rem,3.8vw,2.65rem);margin-top:0.55rem">About ${esc(SITE_CONFIG.brandName)} &amp; Our 2026 Verification Methodology</h1>
+    <p style="font-size:1.06rem;color:var(--text-muted);max-inline-size:68ch">
+      ${esc(SITE_CONFIG.brandName)} was built to solve one recurring problem for independent US e-commerce sellers, Print-on-Demand creators, and resellers: headline marketplace fees almost never match what actually disappears from your payout statement.
+    </p>
+
+    <section class="card" style="margin-top:1.5rem">
+      <h2 style="font-size:1.35rem">1. Who Builds and Maintains ShopMarginLab</h2>
+      <p style="color:var(--text-muted)">
+        ${esc(SITE_CONFIG.brandName)} is founded and maintained by <strong>${esc(founderName)}</strong> (${esc(founderRole)}). Every calculator, multi-channel comparison model, and unlocked Excel workbook is authored specifically for small-business unit economics—focusing on the real edge cases that silently drain margin: fees applied to buyer-paid shipping and state sales tax, mandatory Etsy Offsite Ads thresholds, TikTok creator affiliate stacking, and US Schedule-C tax set-asides.
+      </p>
+      <p style="color:var(--text-muted);margin-bottom:0">
+        Have a correction, fee update, or feature request? Email us directly at <code>${esc(SITE_CONFIG.supportEmail)}</code>. We audit reported marketplace schedule changes within 72 hours.
+      </p>
+    </section>
+
+    <section id="verification-standards" class="card" style="margin-top:1.25rem">
+      <h2 style="font-size:1.35rem">2. Our 5-Step 2026 Fee Verification Process</h2>
+      <ol style="padding-left:1.25rem;color:var(--text-muted);font-size:0.96rem">
+        <li><strong>Primary Documentation Audit:</strong> Every rate is checked directly against official US marketplace fee schedules and IRS Schedule-C publications (listed below), never copied blindly from outdated blog posts.</li>
+        <li><strong>Tax &amp; Shipping Fee-Basis Normalization:</strong> We explicitly model platform-specific nuances—such as eBay, Whatnot, and Depop applying processing/FVF percentages to state sales tax, versus Poshmark charging strictly on item sale price.</li>
+        <li><strong>Automated Zero-NaN Formula Testing:</strong> Before any deployment goes live, our automated test suite executes every JavaScript calculation function across default inputs and every dropdown tier to confirm zero broken formulas or edge-case errors.</li>
+        <li><strong>100% Client-Side Privacy:</strong> All calculator math executes locally inside your browser. Your store prices, COGS, and revenue figures are never sent to or stored on our servers.</li>
+        <li><strong>Transparent Scope &amp; YMYL Boundaries:</strong> Our US Schedule-C tax estimators and financial workbooks are strictly for cash-flow planning and education—we clearly note where sellers should consult a licensed CPA (e.g., S-Corp elections, inventory accounting methods, or multi-state sales tax nexus).</li>
+      </ol>
+    </section>
+
+    <section class="card" style="margin-top:1.25rem">
+      <h2 style="font-size:1.35rem">3. Editorial Independence &amp; How We Keep Tools Free</h2>
+      <p style="color:var(--text-muted)">
+        All ${CALCULATORS.length} interactive calculators and ${GUIDES.length} playbooks are 100% free with zero signup walls or paywalled results. To fund ongoing maintenance and hosting, ${esc(SITE_CONFIG.brandName)} earns revenue from two clearly disclosed sources: (1) optional digital Excel/Google Sheets templates on Gumroad, and (2) clearly labeled affiliate links (marked <code>rel="sponsored"</code>) for seller tools like Shopify, Printify, and Link My Books.
+      </p>
+      <p style="color:var(--text-muted);margin-bottom:0">
+        <strong>Strict Math Independence:</strong> No affiliate partner can pay to alter a fee rate, hide a subscription cost, or manipulate ranking order inside our <a href="/compare/" style="color:var(--brand-dark);font-weight:600">7-Channel Live Fee Comparison</a>. Read our full <a href="/legal/#affiliate-disclosure" style="color:var(--brand-dark);font-weight:600">FTC Affiliate Disclosure &amp; Terms</a>.
+      </p>
+    </section>
+
+    <section class="card" style="margin-top:1.25rem">
+      <h2 style="font-size:1.35rem">4. Primary 2026 Fee &amp; Tax Sources Directory</h2>
+      <p style="color:var(--text-muted);font-size:0.94rem">Last full schedule verification: <strong>${esc(reviewed)}</strong></p>
+      <ul class="source-list">
+        ${primarySources.map((s) => `<li>↗ <a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.name)}</a></li>`).join('')}
+      </ul>
     </section>
   </main>
   ${renderFooter()}
@@ -1766,6 +2054,9 @@ for (const guide of GUIDES) {
   writeFileSync(join(gdir, 'index.html'), buildGuidePage(guide), 'utf8');
 }
 
+mkdirSync(join(DIST_DIR, 'about'), { recursive: true });
+writeFileSync(join(DIST_DIR, 'about', 'index.html'), buildAboutPage(), 'utf8');
+
 mkdirSync(join(DIST_DIR, 'legal'), { recursive: true });
 writeFileSync(join(DIST_DIR, 'legal', 'index.html'), buildLegalPage(), 'utf8');
 
@@ -1810,6 +2101,7 @@ const allPaths = [
   '/compare/',
   '/templates/',
   '/guides/',
+  '/about/',
   '/legal/',
   ...CALCULATORS.map((c) => `/${c.slug}/`),
   ...GUIDES.map((g) => `/guides/${g.slug}/`)
@@ -1830,8 +2122,9 @@ const llmsTxt = [
   `# ${SITE_CONFIG.brandName}`,
   `> ${SITE_CONFIG.tagline}. Free browser-based 2026 US marketplace fee calculators, multi-channel profit comparison, and unlocked Excel seller workbooks.`,
   '',
-  '## Interactive Multi-Channel Comparison',
+  '## Interactive Multi-Channel Comparison & Methodology',
   `- [7-Channel Live Fee Showdown](${base}/compare/): Compare net profit across Shopify, TikTok Shop US, Etsy, Mercari, Whatnot, eBay, and Poshmark simultaneously.`,
+  `- [About & 2026 Verification Methodology](${base}/about/): Editorial standards, 5-step fee verification workflow, and official primary sources.`,
   '',
   `## Free 2026 Interactive Calculators (${CALCULATORS.length})`,
   ...CALCULATORS.map((c) => `- [${c.title}](${base}/${c.slug}/): ${c.metaDescription}`),
