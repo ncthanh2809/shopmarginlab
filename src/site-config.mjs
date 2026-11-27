@@ -8,7 +8,7 @@ export const SITE_CONFIG = {
   brandName: 'ShopMarginLab',
   tagline: 'Free 2026 E-Commerce Fee, ROAS, POD & Tax Calculators',
   domain: process.env.PUBLIC_SITE_URL || 'https://shopmarginlab.pages.dev',
-  supportEmail: 'digitalnomadstep@gmail.com',
+  supportEmail: process.env.SUPPORT_EMAIL || 'digitalnomadstep@gmail.com',
   founderName: 'Nguyen Chi Thanh',
   founderRole: 'Founder & E-Commerce Unit-Economics Researcher',
   lastReviewedDate: '2026-11-27',
@@ -72,7 +72,7 @@ export const SITE_CONFIG = {
         'Top overlooked IRS Schedule-C seller write-offs (home office, postage, samples, software)',
         'Instant $0 download — opens in Microsoft Excel & Google Sheets'
       ],
-      checkoutUrl: 'https://nomadstep.gumroad.com/l/ioyene'
+      checkoutUrl: 'https://shopmarginlab.gumroad.com/l/free-2026-fee-cheat-sheet'
     },
     flagshipOs: {
       id: 'seller-profit-os-2026',
@@ -87,7 +87,7 @@ export const SITE_CONFIG = {
         '12-Month Order, Ad Spend & Net Profit Automated Dashboard',
         'Low-Stock Reorder Alert Tracker + US IRS Schedule-C Tax Deduction Log'
       ],
-      checkoutUrl: 'https://nomadstep.gumroad.com/l/yihnkv'
+      checkoutUrl: 'https://shopmarginlab.gumroad.com/l/seller-profit-tax-os-2026'
     },
     podMatrix: {
       id: 'pod-pricing-matrix-2026',
@@ -101,7 +101,7 @@ export const SITE_CONFIG = {
         'Printify Standard vs. Printify Premium break-even threshold calculator',
         'Target ROAS & Daily Ad Budget Planner + 100-Listing SEO Keyword Tracker'
       ],
-      checkoutUrl: 'https://nomadstep.gumroad.com/l/mkjzky'
+      checkoutUrl: 'https://shopmarginlab.gumroad.com/l/pod-etsy-pricing-matrix'
     }
   }
 };

@@ -3,9 +3,9 @@
 > Website trực tuyến: `https://shopmarginlab.pages.dev/` (20 máy tính phí 2026 + 10 bài hướng dẫn chuyên sâu + 3 sản phẩm Gumroad đã liên kết thật).
 >
 > **3 Link Gumroad thật đã hoạt động:**
-> - **Phễu \$0:** `https://nomadstep.gumroad.com/l/ioyene` (đã bật upsell giảm 20% sang gói \$24)
-> - **Bộ Flagship \$24:** `https://nomadstep.gumroad.com/l/yihnkv`
-> - **Bộ POD Matrix \$17:** `https://nomadstep.gumroad.com/l/mkjzky`
+> - **Phễu \$0:** `https://shopmarginlab.gumroad.com/l/free-2026-fee-cheat-sheet` (đã bật upsell giảm 20% sang gói \$24)
+> - **Bộ Flagship \$24:** `https://shopmarginlab.gumroad.com/l/seller-profit-tax-os-2026`
+> - **Bộ POD Matrix \$17:** `https://shopmarginlab.gumroad.com/l/pod-etsy-pricing-matrix`
 
 ---
 
@@ -96,7 +96,7 @@ Vào **Gumroad -> Products -> FREE Cheat Sheet (`ioyene`) -> Receipt** (hoặc *
   >
   > **3 quick next steps to protect your 2026 margins:**
   > 1. Run live single-order checks anytime with our **20 free calculators** (Etsy, Shopify, TikTok Shop, Amazon FBA, eBay, Depop, POD & Quarterly Tax): `https://shopmarginlab.pages.dev/`
-  > 2. If you track 10+ SKUs, inventory reorder levels, and monthly tax write-offs, grab the full **5-Tab Multi-Channel Seller Profit & Schedule-C Excel OS** ($24 — or 20% off via your checkout upsell): `https://nomadstep.gumroad.com/l/yihnkv`
+  > 2. If you track 10+ SKUs, inventory reorder levels, and monthly tax write-offs, grab the full **5-Tab Multi-Channel Seller Profit & Schedule-C Excel OS** ($24 — or 20% off via your checkout upsell): `https://shopmarginlab.gumroad.com/l/seller-profit-tax-os-2026`
   > 3. Selling 50+ orders/month? Moving repeat buyers to your own Shopify store eliminates the 6.5%–15% marketplace fee drag immediately.
   >
   > Reply to this email anytime if you have a spreadsheet question!
