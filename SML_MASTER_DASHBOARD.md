@@ -1,6 +1,6 @@
 # 📊 ShopMarginLab (SML) — Master Dashboard, Mindmap & Milestones ($2,000/Tháng)
 
-> **Cập nhật lần cuối:** `2026-11-27 21:20 (+07:00)` | **Live URL:** https://shopmarginlab.com/ | **Repo:** `ncthanh2809/shopmarginlab` (`master`)
+> **Cập nhật lần cuối:** `2026-11-27 21:26 (+07:00)` | **Live URL:** https://shopmarginlab.com/ | **Repo:** `ncthanh2809/shopmarginlab` (`master`)
 > **Quy ước chuẩn:** Mỗi khi **Mr. Thanh** yêu cầu *"cập nhật"* cho **SML**, Aldric cập nhật trực tiếp file này và báo cáo đúng theo 4 phần: **Dashboard → Mindmap → Milestones → Step-by-Step**.
 
 ---
@@ -13,13 +13,13 @@
 | **1. Web & SEO** | Google Search Console + Cloudflare Analytics + `SML_KV` | ✅ **XONG** | Đã verify `sc-domain:shopmarginlab.com`, nộp sitemap 36 trang, KV đổi link trong 2 giây. |
 | **2. Email & Domain** | Email Routing (`thanh@`, `founder@`, `support@shopmarginlab.com`) | ✅ **XONG** | Đã bật trên Cloudflare, chuyển tiếp thẳng về `digitalnomadstep@gmail.com`. |
 | **2. Email & Domain** | DNS gửi đi (Brevo + Resend + SPF + DKIM + DMARC) | ✅ **XONG** | Đã nạp đủ DNS & verify domain trên Resend + Brevo. |
-| **2. Email & Domain** | Gmail Send-As `thanh@shopmarginlab.com` | ⏳ **CHỜ 1 CLICK** | Đang `pending` trên `chithanhisme@gmail.com`; thư xác nhận nằm trong `digitalnomadstep@gmail.com`. |
+| **2. Email & Domain** | Gmail Send-As `thanh@shopmarginlab.com` | ✅ **ACCEPTED** | Đã xác minh thành công & gửi thật từ `Thanh Nguyen <thanh@shopmarginlab.com>`. |
 | **3. Kiếm tiền** | Gumroad 3 sản phẩm (`$0` Cheat Sheet, `$24` OS, `$17` POD) | ✅ **LIVE** | Link chuẩn `shopmarginlab.gumroad.com/...` đã live trên web. Còn kiểm tra Upsell 20% & dán 5-Email Funnel. |
 | **3. Kiếm tiền** | Affiliate #1: **Link My Books** (`$50 + 20%` trọn đời) | ✅ **ĐÃ DUYỆT & LIVE** | Đã gắn `linkmybooks.cello.so/mqa9XBXQElJ` lên web. Còn check email PayPal trên Cello. |
 | **3. Kiếm tiền** | Affiliate #2: **Printify** (`5%` / 12 tháng) | ⏳ **ĐÃ NỘP ĐƠN** | Đã nộp 18:48 ngày 27/11 (`thanh@shopmarginlab.com`). Còn bấm `Create PartnerStack account` + chờ duyệt. |
 | **3. Kiếm tiền** | Affiliate #3: **Shopify** (tới `$150`/đơn qua Impact.com) | ⏳ **CHỜ NỘP LẠI** | Trước bị reject do `.pages.dev`. Giờ đã có `.com`, cần đăng nhập Impact bằng `digitalnomadstep@gmail.com` để nộp lại. |
-| **4. Kéo Traffic** | Email B2B Batch 1 (15 đối tác Mỹ) | ⏳ **CHỜ BẤM GỬI** | **15/15 Gmail Drafts** đã cập nhật chuẩn `shopmarginlab.com` trong `chithanhisme@gmail.com` (`Sent = 0`). |
-| **4. Kéo Traffic** | Email B2B Batch 2 (15 đối tác) + Follow-up Ngày 4 | 📦 **SẴN SÀNG** | Đã soạn đủ tại `outreach/verified-campaigns.md`. Chờ gửi tối 28/11. |
+| **4. Kéo Traffic** | Email B2B Batch 1 (15 đối tác Mỹ) | ✅ **ĐÃ GỬI 15/15** | Đã gửi sạch từ `thanh@shopmarginlab.com` lúc 21:24–21:25 ngày 27/11 (`T003` done). Follow-up Ngày 4 hẹn 01/12 (`R005`). |
+| **4. Kéo Traffic** | Email B2B Batch 2 (15 đối tác) | 📦 **SẴN SÀNG** | Đã soạn đủ tại `outreach/verified-campaigns.md`. Chờ gửi tối 28/11 lúc 20:15 (`T004` / `R004`). |
 | **4. Kéo Traffic** | Pinterest Business (24 Pin PNG + Bulk CSV) | ⏳ **0/24 ĐÃ ĐĂNG** | Đã claim & verify `shopmarginlab.com`. App API v5 chờ submit reCAPTCHA (hoặc đăng tay luôn 4–5 pin/ngày). |
 | **4. Kéo Traffic** | Reddit (3 bài) + 12 Kịch bản Video + Danh bạ Web | 📦 **SẴN SÀNG** | GitHub Awesome-lists đã nộp 3/3. Còn copy-paste `FreeNoSignup`, Reddit (`v3.3-acquisition-pack.md`) & quay video. |
 
@@ -31,7 +31,7 @@
 flowchart TD
     SML["🎯 SHOPMARGINLAB (Mục tiêu ~$2,020/tháng | Chi phí $0/tháng server)"]
 
-    SML --> MKT["1. KÉO TRAFFIC MIỄN PHÍ (ĐANG TẮC Ở ĐÂY = 0 TRAFFIC)"]
+    SML --> MKT["1. KÉO TRAFFIC MIỄN PHÍ (🟡 ĐANG CHẠY — 15/30 MAIL ĐÃ BẮN)"]
     MKT --> M1["Email B2B 1-1: 15 Batch 1 + 15 Batch 2 (Widget ?embed=1)"]
     MKT --> M2["Pinterest SEO: 24 Pin PNG + CSV"]
     MKT --> M3["Cộng đồng & Video: 3 bài Reddit + 12 Shorts/Reels"]
@@ -56,8 +56,8 @@ flowchart TD
 | Milestone | Thời gian | Tiến độ | Mục tiêu & Tiêu chí hoàn thành (KPI) | Ai làm? |
 | :--- | :--- | :---: | :--- | :--- |
 | **M0: Dựng Sản Phẩm & Web v3.3** | 25–26/11 | **✅ 100%** | 20 máy tính, `/compare/`, 10 guides, 3 file `.xlsx` live trên Gumroad, 24 pins PNG, 30 leads B2B, 3 PR GitHub. | Agent + Mr. Thanh |
-| **M1: Hạ Tầng `.com` & Sẵn Sàng Bắn** | 27/11 | **🟡 95%** | Live `shopmarginlab.com` (45/45), `SML_KV`, GSC, Pinterest verify, Email Routing + Brevo/Resend DNS, Link My Books LIVE, Printify đã nộp, 15 Drafts Batch 1 chuẩn `.com`. **Còn đúng 1 bước:** Xác minh Send-As `thanh@shopmarginlab.com`. | Agent (xong) + Mr. Thanh (1 click) |
-| **M2: Kích Hoạt Traffic Đợt 1** | 27/11 → 03/12 | **⬜ 0%** | Gửi đủ 30 email B2B (Batch 1 + 2) + Follow-up Ngày 4; đăng ≥15–24 Pinterest Pins; đăng 3 bài Reddit; nộp `FreeNoSignup`; quay 2–3 video; cài xong Cello PayPal & Gumroad 5-Email Funnel. **KPI:** 500–1,000 lượt truy cập + opt-in/đơn đầu tiên. | Mr. Thanh (bấm gửi/đăng) + Agent (hỗ trợ) |
+| **M1: Hạ Tầng `.com` & Sẵn Sàng Bắn** | 27/11 | **✅ 100%** | Live `shopmarginlab.com` (45/45), `SML_KV`, GSC, Pinterest verify, Email Routing + Brevo/Resend DNS, Send-As `thanh@shopmarginlab.com` accepted, Link My Books LIVE, Printify đã nộp. | Agent + Mr. Thanh |
+| **M2: Kích Hoạt Traffic Đợt 1** | 27/11 → 03/12 | **🟡 ~20%** | ✅ **Đã gửi 15/15 email Batch 1** (`27/11`). Tiếp theo: Cello PayPal & Gumroad Funnel (**Bước 2**), gửi 15 mail Batch 2 (**Bước 3**), đăng Pin/Reddit/FreeNoSignup (**Bước 4**), Follow-up + Video (**Bước 5**). **KPI:** 500–1,000 lượt truy cập + opt-in/đơn đầu tiên. | Mr. Thanh + Agent |
 | **M3: Mở Khóa Shopify & Backlink DR Cao** | 04/12 → 10/12 | **⬜ Kế hoạch** | Nộp lại **Shopify Affiliate (Impact.com)** bằng `shopmarginlab.com`; rà GSC/Cloudflare Analytics; nộp **Product Hunt** & **AlternativeTo** (`T008`/`R009`). | Mr. Thanh + Agent |
 | **M4: Tối Ưu & Cán Mốc $2,000/Tháng** | Tháng 2+ | **⬜ Kế hoạch** | Nhân bản thêm 5–10 máy tính theo từ khóa có impression cao nhất trên GSC; mở rộng B2B embed (`?embed=1`) lên 100+ blog/podcast; ghép doanh thu Shopify + Link My Books + Printify + Gumroad chạm **$2,000/tháng**. | Agent + Mr. Thanh |
 
@@ -67,11 +67,11 @@ flowchart TD
 
 > **Nguyên tắc vàng để không bị ngợp:** Đừng nhìn sang Bước 3 hay việc của tuần sau. Anh chỉ cần làm xong **Bước hiện tại**, gạch đi, rồi mới sang bước kế tiếp.
 
-### 🔹 BƯỚC 1 — Ngay bây giờ (5 phút · Khóa xong M1 & mở màn M2)
-1. **Xác minh `thanh@shopmarginlab.com`:** Mở hộp thư **`digitalnomadstep@gmail.com`**, tìm thư *Gmail Confirmation - Send Mail as `thanh@shopmarginlab.com`* → bấm link xác nhận *(hoặc lấy mã nhập vào Cài đặt → Tài khoản và nhập → `xác minh` trong `chithanhisme@gmail.com`)*.
-2. **Gửi 15 Drafts Batch 1 (`T003`):** Vào **Drafts** trong `chithanhisme@gmail.com` → đổi người gửi thành `thanh@shopmarginlab.com` → bấm gửi lần lượt 15 thư *(xong nhắn Aldric: `"xong Bước 1"` để Aldric tick `done-task T003`)*.
+### 🔹 BƯỚC 1 — ~~Hôm nay 27/11~~ (**✅ ĐÃ HOÀN THÀNH lúc 21:25**)
+1. ~~Xác minh `thanh@shopmarginlab.com`~~ (**Accepted**).
+2. ~~Gửi 15 Drafts Batch 1 (`T003`)~~ (**Đã gửi 15/15** từ `Thanh Nguyen <thanh@shopmarginlab.com>` lúc 21:24–21:25 VN; Follow-up Ngày 4 hẹn 01/12).
 
-### 🔹 BƯỚC 2 — Sáng mai 28/11 (10 phút · Khóa cổng nhận tiền `T002`)
+### 🔹 BƯỚC 2 — Sáng mai 28/11 lúc 09:00 (`R010` · 10 phút · Khóa cổng nhận tiền `T002`) — **VIỆC TIẾP THEO**
 1. Đăng nhập **Cello (Link My Books)** → kiểm tra mục Payout đã điền đúng **PayPal** của anh chưa.
 2. Đăng nhập **Gumroad** → vào sản phẩm `$0` (`free-2026-fee-cheat-sheet`) kiểm tra đã bật **Upsell giảm 20%** sang gói `$24`, và dán **5 Email Funnel** trong [social-distribution-pack.md](file:///C:/Users/Admin/.gemini/antigravity/scratch/shopmarginlab/growth/social-distribution-pack.md) vào **Gumroad Workflows**. *(Xong nhắn: `"xong Bước 2"`).*
 
